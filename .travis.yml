@@ -3,12 +3,14 @@ node_js:
 - 7
 deploy:
   provider: gae
-  keyfile: client-secret.json.enc
+  keyfile: client-secret.p12.enc
   project: cse112-167715
   default: true
   skip_cleanup: true
 notifications:
   email: false
 before_install:
+- openssl aes-256-cbc -K $encrypted_2b01812ab861_key -iv $encrypted_2b01812ab861_iv
+  -in client-secret.p12.enc -out client-secret.p12 -d
 - openssl aes-256-cbc -K $encrypted_2b01812ab861_key -iv $encrypted_2b01812ab861_iv
   -in client-secret.json.enc -out client-secret.json -d

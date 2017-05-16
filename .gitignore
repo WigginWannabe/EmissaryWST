@@ -9,6 +9,7 @@ npm-debug.log
 server/log
 newrelic_agent.log
 client-secret.json
+client-secret.p12
 
 mobile/platforms/
 mobile/plugins/
