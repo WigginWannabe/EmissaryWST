@@ -1,0 +1,18 @@
+language: node_js
+node_js:
+- 7
+install:
+    - npm install
+script:
+    - gulp lint:server
+    - gulp lint:client
+    - gulp test:server
+    - gulp test:client
+    - gulp build:shared
+    - gulp dist:shared
+deploy:
+    provider: gae
+    keyfile: "SERVICE ACCOUNT JSON FILE"
+    project: "PROJECT ID"
+notifications:
+  email: false
