@@ -8,6 +8,7 @@ npm-debug.log
 .DS_Store
 server/log
 newrelic_agent.log
+client-secret.json
 
 mobile/platforms/
 mobile/plugins/

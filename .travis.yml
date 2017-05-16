@@ -1,11 +1,9 @@
 language: node_js
 node_js:
 - 7
-install: 
-script: 
 deploy:
   provider: gae
-  keyfile: "./client-secret.json.enc"
+  keyfile: "client-secret.json.enc"
   project: "cse112-167715"
 notifications:
   email: false
