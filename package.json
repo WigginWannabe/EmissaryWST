@@ -8,8 +8,7 @@
   },
   "author": "Eduardo Aguilar",
   "scripts": {
-      "start": "node server/app.js",
-      "test": "gulp test:server && gulp test:client"
+      "start": "node server/app.js"
   },
   "dependencies": {
     "async": "0.9.0",
