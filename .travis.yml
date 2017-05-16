@@ -4,12 +4,12 @@ node_js:
 install:
 - npm install
 script:
-- gulp lint:server
-- gulp lint:client
-- gulp test:server
-- gulp test:client
-- gulp build:shared
-- gulp dist:shared
+# - gulp lint:server
+# - gulp lint:client
+# - gulp test:server
+# - gulp test:client
+# - gulp build:shared
+# - gulp dist:shared
 deploy:
   provider: gae
   keyfile: "client-secret.json.enc"
