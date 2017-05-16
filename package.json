@@ -10,6 +10,7 @@
   "scripts": {
       "start": "node server/app.js"
   },
+  “heroku-postbuild”: “gulp build:prod”,
   "dependencies": {
     "async": "0.9.0",
     "bcrypt-nodejs": "0.0.3",
