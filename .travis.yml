@@ -2,17 +2,20 @@ language: node_js
 node_js:
 - 7
 install:
-    - npm install
+- npm install
 script:
-    - gulp lint:server
-    - gulp lint:client
-    - gulp test:server
-    - gulp test:client
-    - gulp build:shared
-    - gulp dist:shared
+- gulp lint:server
+- gulp lint:client
+- gulp test:server
+- gulp test:client
+- gulp build:shared
+- gulp dist:shared
 deploy:
-    provider: gae
-    keyfile: "SERVICE ACCOUNT JSON FILE"
-    project: "PROJECT ID"
+  provider: gae
+  keyfile: "client-secret.json.enc"
+  project: "cse112-167715"
 notifications:
   email: false
+before_install:
+- openssl aes-256-cbc -K $encrypted_2b01812ab861_key -iv $encrypted_2b01812ab861_iv
+  -in client-secret.json.enc -out client-secret.json -d
