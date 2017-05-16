@@ -1,6 +1,9 @@
 'use strict';
+/**
+ * @module Appointments
+ */
 
-/*This module is meant to house the functions
+/* This module is meant to house the functions
  * used by the authorization (auth) API. The
  * actual API is set up in index.js
 
@@ -20,6 +23,33 @@ var Appointment = require('../../models/Appointment');
 /****** Company TEMPLATE ROUTES ******/
 module.exports.template = {};
 
+/**
+ * @function createAppointment
+ * @description create an appointment
+ * @param first_name first name of patient
+ * @param last_name last name of patient
+ * @param phone_number phone number
+ * @param date date of the appointment
+ * @param company_id company the appointment is under
+ * @param provider_name patient's provider
+ * @example
+ * // success response
+ * {
+ *    _id : "12314125",
+ *    first_name : "test",
+ *    last_name : "test",
+ *    phone_number : "0123456789",
+ *    date : "2016-04-23T18:25:43.511Z",
+ *    company_id : "12314125",
+ *    provider_name : "test test"
+ * }
+ * @example
+ * // error response
+ * {
+ *  error: "Already Created"
+ * }
+ * @returns a response indicating either Success or Error
+ */
 module.exports.template.create = function(req, res) {
     var appointment = new Appointment();
     var param = req.body;
@@ -50,6 +80,40 @@ module.exports.template.create = function(req, res) {
         });
 };
 
+
+/**
+ * @function getAllAppointments
+ * @description get all the appointments of the company
+ * @param id the company's id
+ * @example
+ * // success response
+ *[
+ * {
+ *    _id : "12314125",
+ *    first_name : "test",
+ *    last_name : "test",
+ *    phone_number : "0123456789",
+ *    date : "2016-04-23T18:25:43.511Z",
+ *    company_id : "12314125",
+ *    provider_name : "test test"
+ * },
+ * {
+ *    _id : "12314125",
+ *    first_name : "test",
+ *    last_name : "test",
+ *    phone_number : "0123456789",
+ *    date : "2016-04-23T18:25:43.511Z",
+ *    company_id : "12314125",
+ *    provider_name : "test test"
+ * }
+ *]
+ * @example
+ * // error response
+ * {
+ *  error: "Could Not Find"
+ * }
+ * @returns a response indicating either Success or Error
+ */
 module.exports.template.getAll = function(req, res) {
     Appointment.find({company_id: req.params.id}, function(err, result){
             if(err){
@@ -59,6 +123,29 @@ module.exports.template.getAll = function(req, res) {
         });
 };
 
+
+/**
+ * @function getAppointment
+ * @description get an appointment under the company
+ * @param id the appointment id
+ * @example
+ * // success response
+ * {
+ *    _id : "12314125",
+ *    first_name : "test",
+ *    last_name : "test",
+ *    phone_number : "0123456789",
+ *    date : "2016-04-23T18:25:43.511Z",
+ *    company_id : "12314125",
+ *    provider_name : "test test"
+ * }
+ * @example
+ * // error response
+ * {
+ *  error: "Could Not Find"
+ * }
+ * @returns a response indicating either Success or Error
+ */
 module.exports.template.get = function(req, res) {
     Appointment.findOne({_id: req.params.id}, function(err, a) {
         if(err || !a)
@@ -67,6 +154,32 @@ module.exports.template.get = function(req, res) {
     });
 };
 
+/**
+ * @function updateAppointment
+ * @description update an appointment under the company
+ * @param id the appointment id
+ * @param [name] name to be updated
+ * @param [phone_number] phone number to be updated
+ * @param [date] new appointment date
+ * @param [provider] new provider to be updated
+ * @example
+ * // success response
+ * {
+ *    _id : "12314125",
+ *    first_name : "test",
+ *    last_name : "test",
+ *    phone_number : "0123456789",
+ *    date : "2016-04-23T18:25:43.511Z",
+ *    company_id : "12314125",
+ *    provider_name : "test test"
+ * }
+ * @example
+ * // error response
+ * {
+ *  error: "Could Not Find"
+ * }
+ * @returns a response indicating either Success or Error
+ */
 module.exports.template.update = function(req, res){
     Appointment.findOne({_id: req.params.id}, function (err, a) {
         if(err || !a)
@@ -83,6 +196,7 @@ module.exports.template.update = function(req, res){
 
         if (req.body.date!== undefined)
             a.date = req.body.date;
+
         if (req.body.provider_name!== undefined)
             a.provider_name = req.body.provider_name;
         //TODO check if the date is taken already
@@ -95,6 +209,29 @@ module.exports.template.update = function(req, res){
     });
 };
 
+
+/**
+ * @function deleteAppointment
+ * @description delete an appointment under the company
+ * @param id the appointment id
+ * @example
+ * // success response
+ * {
+ *    _id : "12314125",
+ *    first_name : "test",
+ *    last_name : "test",
+ *    phone_number : "0123456789",
+ *    date : "2016-04-23T18:25:43.511Z",
+ *    company_id : "12314125",
+ *    provider_name : "test test"
+ * }
+ * @example
+ * // error response
+ * {
+ *  error: "Could Not Find"
+ * }
+ * @returns a response indicating either Success or Error
+ */
 module.exports.template.delete = function(req, res){
     Appointment.findById(req.params.id, function(err, a) {
         if(err)

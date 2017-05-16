@@ -1,6 +1,10 @@
 'use strict';
 
-/*This module is meant to house the functions
+/**
+ * @module Company
+ */
+
+/* This module is meant to house the functions
  * used by the authorization (auth) API. The
  * actual API is set up in index.js
 
@@ -23,7 +27,31 @@ var jwt = require('jwt-simple');
 /****** Company TEMPLATE ROUTES ******/
 module.exports.template = {};
 
-/**signup- Used to sign up a user.*/
+/** 
+ * @function createCompany
+ * @description Use to sign up a company or a user
+ * @param name company name
+ * @param email company email
+ * @param phone_number company phone number
+ * @param [credit_card_number] credit card number for payment
+ * @param [expiration_date] the expiration date of the card
+ * @param paid_time the time in which the company paid their subscription
+ * @example
+ * // success response
+ * {
+ *   _id : "12314125"
+ *   name : "test",
+ *   email : "test",
+ *   phone_number : "0123456789",
+ *   paid_time: "2016-04-23T18:25:43.511Z"
+ *  }
+ * @example
+ * // error response
+ *  {
+ *   error: "Could Not Save"
+ *  }
+ * @returns a response indicating either Success or Error
+ */
 module.exports.template.create = function(req, res) {
     var company = new Company();
 
@@ -47,7 +75,36 @@ module.exports.template.create = function(req, res) {
     });
 };
 
-/**get All the companies*/
+
+
+/** 
+ * @function getAllCompanies
+ * @description get all registered companies
+ * @example
+ * // success response
+ *[
+ * {
+ *    _id : "12314125",
+ *    name : "test",
+ *    email : "test",
+ *    phone_number : "0123456789",
+ *    paid_time: "2016-04-23T18:25:43.511Z"
+ * },
+ * {
+ *    _id : "12314126",
+ *    name : "test2",
+ *    email : "test2",
+ *    phone_number : "01234567890",
+ *    paid_time: "2016-04-23T18:26:43.511Z"
+ * }
+ *]
+ * @example
+ * // error response
+ * {
+ *   error: "Incorrect Credentials"
+ * }
+ * @returns a response indicating either Success or Error
+ */
 module.exports.template.getAll = function(req, res) {
     Company.find({},
         {
@@ -62,7 +119,28 @@ module.exports.template.getAll = function(req, res) {
     });
 };
 
-/**authLogin- logs in a user*/
+
+/** 
+ * @function getCompany
+ * @param id the company's id
+ * @description Log into the company account
+ * @example
+ * // success response
+ *[
+ * {
+ *    _id : "12314125",
+ *    name : "test",
+ *    email : "test",
+ *    phone_number : "0123456789",
+ *    paid_time: "2016-04-23T18:25:43.511Z"
+ * }
+ * @example
+ * // error response
+ * {
+ *   error: "Incorrect Credentials"
+ * }
+ * @returns a response indicating either Success or Error
+ */
 module.exports.template.get = function(req, res) {
     Company.findOne({_id: req.params.id}, function(err, company) {
         if(err)
@@ -71,7 +149,29 @@ module.exports.template.get = function(req, res) {
     });
 };
 
-/* update the company info */
+
+/** 
+ * @function updateCompanyInfo
+ * @description update the company's basic information
+ * @param [name] company name
+ * @param [email] company email
+ * @param [phone_number] company phone number
+ * @example
+ * // success response
+ * {
+ *    _id : "12314125",
+ *    name : "test",
+ *    email : "test",
+ *    phone_number : "0123456789",
+ *    paid_time: "2016-04-23T18:25:43.511Z"
+ * }
+ * @example
+ * // error response
+ * {
+ *   error: "Could Not Find"
+ * }
+ * @returns a response indicating either Success or Error
+ */
 module.exports.template.update = function(req, res){
     Company.findOne({_id: req.params.id}, function (err, c) {
         if(err || !c)
@@ -98,7 +198,27 @@ module.exports.template.update = function(req, res){
     });
 };
 
-/* delete company */
+
+/** 
+ * @function deleteCompany
+ * @description Delete the company
+ * @param id company id in the database
+ * @example
+ * // success response
+ * {
+ *   _id : "12314125"
+ *   name : "test",
+ *   email : "test",
+ *   phone_number : "0123456789",
+ *   paid_time: "2016-04-23T18:25:43.511Z"
+ *  }
+ * @example
+ * // error response
+ *  {
+ *   error: "Could Not Find"
+ *  }
+ * @returns a response indicating either Success or Error
+ */
 module.exports.template.delete = function(req, res){
     Company.findById(req.params.id, function(err, c) {
         if(err)
@@ -113,7 +233,34 @@ module.exports.template.delete = function(req, res){
     });
 };
 
-/**authResetCredentials- resets a user's credentials*/
+
+/** 
+ * @function resetCompany
+ * @description Reset the company's information
+ * @param name company name
+ * @param email company email
+ * @param phone_number company phone number
+ * @example
+ * // success response
+ * {
+ *   _id : "12314125"
+ *   name : "test",
+ *   email : "test",
+ *   phone_number : "0123456789",
+ *   paid_time: "2016-04-23T18:25:43.511Z"
+ *  }
+ * @example
+ * // error response
+ *  {
+ *   error: "Could Not Find"
+ *  }
+ * @example
+ * // error response
+ *  {
+ *   error: "Could Not Save"
+ *  }
+ * @returns a response indicating either Success or Error
+ */
 module.exports.template.resetCredentials = function(req, res) {
     Company.findOne({email: req.params.user}, function (err, c) {
         if(err || !c)
@@ -150,6 +297,22 @@ module.exports.template.resetCredentials = function(req, res) {
     });
 };
 
+
+/** 
+ * @function showCompanyPublicInfo
+ * @description show all information about the company
+ * @param c the company object
+ * @example
+ * // success response
+ * {
+ *   _id : "12314125"
+ *   name : "test",
+ *   email : "test",
+ *   phone_number : "0123456789",
+ *   paid_time: "2016-04-23T18:25:43.511Z"
+ * }
+ * @returns a JSON object with the company's info from within
+ */
 function showCompanyPublicInfo(c){
     return {
         _id: c._id,

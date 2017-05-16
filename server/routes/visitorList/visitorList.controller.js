@@ -1,5 +1,9 @@
 'use strict';
 
+/**
+ * @module VisitorList
+ */
+
 //Import Resources and Libs
 
 var Email = require('../../notification/email');
@@ -28,7 +32,74 @@ exports.getCompanyVisitorListReq = function(req, res){
 }
 
 
-/* logic for getting the Company's visitor list */
+/**
+ * @function getVisitorList
+ * @description get the list of visitors of the current day of the company
+ * @param id the company's id
+ * @example
+ * // success response
+ * {
+ *   _id: "123124124",
+ *   company_id: "12312355",
+ *   visitors:
+ *   [
+ *     {
+ *      _id: "12314125",
+ *      company_id: "12314125",
+ *      first_name : "test",
+ *      last_name : "test",
+ *      phone_number: "21324125",
+ *      checkin_time: "2016-04-23T18:25:43.511Z",
+ *      appointments:
+ *      [
+ *       {
+ *          _id : "12314125",
+ *          name : "test",
+ *          phone_number : "0123456789",
+ *          date : "2016-04-23T18:25:43.511Z",
+ *          company_id : "12314125",
+ *          provider_name : "test test"
+ *        }
+ *      ],
+ *      additional_info:
+ *       {
+ *           allergies: "peanuts",
+ *           sex: "male"
+ *       }
+ *     },
+ *     {
+ *      _id: "12314125",
+ *      company_id: "12314125",
+ *      first_name : "test",
+ *      last_name : "test",
+ *      phone_number: "21324125",
+ *      checkin_time: "2016-04-23T18:25:43.511Z",
+ *      appointments:
+ *      [
+ *        {
+ *          _id : "12314125",
+ *          name : "test",
+ *          phone_number : "0123456789",
+ *          date : "2016-04-23T18:25:43.511Z",
+ *          company_id : "12314125",
+ *          provider_name : "test test"
+ *        }
+ *      ],
+ *      additional_info:
+ *       {
+ *           allergies: "peanuts",
+ *           sex: "male"
+ *       }
+ *     }
+ *    ]
+ *  }
+ * @example
+ * // error response
+ * {
+ *  error: "Getting Visitor List"
+ * }
+ * @returns a response indicating either Success or Error
+ */
 exports.getCompanyVisitorList = function(company_id, callback){
     if(!company_id)
         return callback({error: "Please send company id."}, null);
@@ -56,7 +127,52 @@ exports.deleteVisitorReq = function(req, res){
     });
 }
 
-/* logic for deleting the visitor in the list */
+
+/**
+ * @function deleteVisitor
+ * @description delete the visitor off the visitor list
+ * @param id the company's id
+ * @param visitor_id the visitor's id
+ * @example
+ * // success response
+ * {
+ *   _id: "123124124",
+ *   company_id: "12312355",
+ *   visitors:
+ *   [
+ *     {
+ *      _id: "12314125",
+ *      company_id: "12314125",
+ *      first_name : "test",
+ *      last_name : "test",
+ *      phone_number: "21324125",
+ *      checkin_time: "2016-04-23T18:25:43.511Z",
+ *      appointments:
+ *      [
+ *       {
+ *          _id : "12314125",
+ *          name : "test",
+ *          phone_number : "0123456789",
+ *          date : "2016-04-23T18:25:43.511Z",
+ *          company_id : "12314125",
+ *          provider_name : "test test"
+ *        }
+ *      ],
+ *      additional_info:
+ *       {
+ *           allergies: "peanuts",
+ *           sex: "male"
+ *       }
+ *     }
+ *    ]
+ *  }
+ * @example
+ * // error response
+ * {
+ *  error: "Can't Update List"
+ * }
+ * @returns a response indicating either Success or Error
+ */
 exports.deleteVisitor = function(company_id, visitor_id, callback){
     if(!company_id)
         return callback({error: "Please send company id."}, null);
@@ -71,7 +187,18 @@ exports.deleteVisitor = function(company_id, visitor_id, callback){
         });
 }
 
-/* clear the list */
+/**
+ * @function clearVisitorList
+ * @description clear the list of visitors of the current day of the company
+ * @param id the company's id
+ * @example
+ * // success response
+ * {
+ *   _id: "123124124",
+ *   company_id: "12312355",
+ *   visitors: []
+ * @returns a response indicating either Success or Error
+ */
 exports.deleteReq = function(req, res){
     var list_id=req.params.id;
     exports.delete(list_id, function(err_msg, result){
@@ -80,6 +207,52 @@ exports.deleteReq = function(req, res){
     });
 }
 
+
+/**
+ * @function clearAVisitor
+ * @description clear a visitor of the current day of the company
+ * @param id the company's id
+ * @param visitor_id the visitor's id
+ * @example
+ * // success response
+ * {
+ *   _id: "123124124",
+ *   company_id: "12312355",
+ *   visitors:
+ *   [
+ *     {
+ *      _id: "12314125",
+ *      company_id: "12314125",
+ *      first_name : "test",
+ *      last_name : "test",
+ *      phone_number: "21324125",
+ *      checkin_time: "2016-04-23T18:25:43.511Z",
+ *      appointments:
+ *      [
+ *       {
+ *          _id : "12314125",
+ *          name : "test",
+ *          phone_number : "0123456789",
+ *          date : "2016-04-23T18:25:43.511Z",
+ *          company_id : "12314125",
+ *          provider_name : "test test"
+ *        }
+ *      ],
+ *      additional_info:
+ *       {
+ *           allergies: "peanuts",
+ *           sex: "male"
+ *       }
+ *     }
+ *    ]
+ *  }
+ * @example
+ * // error response
+ * {
+ *  error: "Can't find company"
+ * }
+ * @returns a response indicating either Success or Error
+ */
 exports.delete = function(list_id, callback){
     if(!list_id)
         return callback({error: "Please send list id."}, null);
@@ -92,6 +265,7 @@ exports.delete = function(list_id, callback){
         });
     });
 }
+
 // This route will be called when a visitor checks in
 exports.createReq = function(req, res) {
     exports.create(req.body, function(err_msg, result){
@@ -100,6 +274,80 @@ exports.createReq = function(req, res) {
     });
 }
 
+
+/**
+ * @function addVisitor
+ * @description add a visitor to the visitor list
+ * @param company_id the company's id
+ * @param first_name first name of visitor
+ * @param last_name last name of visitor
+ * @param phone_number phone number of visitor
+ * @param checkin_time check-in time
+ * @param [additional_info] additional info about the visitor
+ * @example
+ * // success response
+ * {
+ *   _id: "123124124",
+ *   company_id: "12312355",
+ *   visitors:
+ *   [
+ *     {
+ *      _id: "12314125",
+ *      company_id: "12314125",
+ *      first_name : "test",
+ *      last_name : "test",
+ *      phone_number: "21324125",
+ *      checkin_time: "2016-04-23T18:25:43.511Z",
+ *      appointments:
+ *      [
+ *       {
+ *          _id : "12314125",
+ *          name : "test",
+ *          phone_number : "0123456789",
+ *          date : "2016-04-23T18:25:43.511Z",
+ *          company_id : "12314125",
+ *          provider_name : "test test"
+ *        }
+ *      ],
+ *      additional_info:
+ *       {
+ *           allergies: "peanuts",
+ *           sex: "male"
+ *       }
+ *     },
+ *     {
+ *      _id: "12314125",
+ *      company_id: "12314125",
+ *      first_name : "test",
+ *      last_name : "test",
+ *      phone_number: "21324125",
+ *      checkin_time: "2016-04-23T18:25:43.511Z",
+ *      appointments:
+ *      [
+ *        {
+ *          _id : "12314125",
+ *          name : "test",
+ *          phone_number : "0123456789",
+ *          date : "2016-04-23T18:25:43.511Z",
+ *          company_id : "12314125",
+ *          provider_name : "test test"
+ *        }
+ *      ],
+ *      additional_info:
+ *       {
+ *           allergies: "peanuts",
+ *           sex: "male"
+ *       }
+ *     }
+ *    ]
+ *  }
+ * @example
+ * // error response
+ * {
+ *  error: "Getting Visitor List"
+ * }
+ * @returns a response indicating either Success or Error
+ */
 exports.create = function(param, callback){
     //required fields
     var company_id = param.company_id;
@@ -142,7 +390,7 @@ exports.create = function(param, callback){
             {company_id: company_id},
             function(err, list) {
                 if(err)
-                    return callback({error: "an error occured while finding"}, null);
+                    return callback({error: "Getting Visitor List"}, null);
                 if(list==null) {
                     list = new VisitorList();
                     list.visitors=[];

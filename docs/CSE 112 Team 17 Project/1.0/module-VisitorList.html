@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>VisitorList - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Modules</li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-Appointments.html">Appointments</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Appointments.html#~createAppointment">createAppointment</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Appointments.html#~deleteAppointment">deleteAppointment</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Appointments.html#~getAllAppointments">getAllAppointments</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Appointments.html#~getAppointment">getAppointment</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Appointments.html#~updateAppointment">updateAppointment</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-Company.html">Company</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Company.html#~createCompany">createCompany</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Company.html#~deleteCompany">deleteCompany</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Company.html#~getAllCompanies">getAllCompanies</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Company.html#~getCompany">getCompany</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Company.html#~resetCompany">resetCompany</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Company.html#~showCompanyPublicInfo">showCompanyPublicInfo</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Company.html#~updateCompanyInfo">updateCompanyInfo</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-Employee.html">Employee</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Employee.html#~createEmployee">createEmployee</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Employee.html#~deleteEmployee">deleteEmployee</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Employee.html#~employeeLogin">employeeLogin</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Employee.html#~getAllEmployees">getAllEmployees</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Employee.html#~getEmployee">getEmployee</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Employee.html#~updateEmployee">updateEmployee</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-VisitorList.html">VisitorList</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-VisitorList.html#~addVisitor">addVisitor</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-VisitorList.html#~clearAVisitor">clearAVisitor</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-VisitorList.html#~clearVisitorList">clearVisitorList</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-VisitorList.html#~deleteVisitor">deleteVisitor</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-VisitorList.html#~getVisitorList">getVisitorList</a></span></li>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">VisitorList</h1>
+    
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+<div class="section-method">
+
+    
+
+    <h4 class="name" id="~addVisitor"><span class="type-signature">(inner) </span>addVisitor<span class="signature">(company_id, first_name, last_name, phone_number, checkin_time, additional_info<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    add a visitor to the visitor list
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="visitorList_visitorList.controller.js.html">visitorList/visitorList.controller.js</a>, <a href="visitorList_visitorList.controller.js.html#line278">line 278</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>company_id</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">
+                the company's id
+                
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>first_name</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">
+                first name of visitor
+                
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>last_name</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">
+                last name of visitor
+                
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>phone_number</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">
+                phone number of visitor
+                
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>checkin_time</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">
+                check-in time
+                
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>additional_info</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">
+                additional info about the visitor
+                
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="section-returns">
+<h5>Returns:</h5>
+
+        
+
+
+<div class="param-desc">
+    a response indicating either Success or Error
+</div>
+
+    
+</div>
+
+
+
+<div class="section-examples">
+<h5>Examples</h5>
+
+    <pre class="prettyprint"><code>// success response
+{
+  _id: "123124124",
+  company_id: "12312355",
+  visitors:
+  [
+    {
+     _id: "12314125",
+     company_id: "12314125",
+     first_name : "test",
+     last_name : "test",
+     phone_number: "21324125",
+     checkin_time: "2016-04-23T18:25:43.511Z",
+     appointments:
+     [
+      {
+         _id : "12314125",
+         name : "test",
+         phone_number : "0123456789",
+         date : "2016-04-23T18:25:43.511Z",
+         company_id : "12314125",
+         provider_name : "test test"
+       }
+     ],
+     additional_info:
+      {
+          allergies: "peanuts",
+          sex: "male"
+      }
+    },
+    {
+     _id: "12314125",
+     company_id: "12314125",
+     first_name : "test",
+     last_name : "test",
+     phone_number: "21324125",
+     checkin_time: "2016-04-23T18:25:43.511Z",
+     appointments:
+     [
+       {
+         _id : "12314125",
+         name : "test",
+         phone_number : "0123456789",
+         date : "2016-04-23T18:25:43.511Z",
+         company_id : "12314125",
+         provider_name : "test test"
+       }
+     ],
+     additional_info:
+      {
+          allergies: "peanuts",
+          sex: "male"
+      }
+    }
+   ]
+ }</code></pre>
+
+    <pre class="prettyprint"><code>// error response
+{
+ error: "Getting Visitor List"
+}</code></pre>
+
+</div>
+
+</div>
+        
+            
+<div class="section-method">
+
+    
+
+    <h4 class="name" id="~clearAVisitor"><span class="type-signature">(inner) </span>clearAVisitor<span class="signature">(id, visitor_id)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    clear a visitor of the current day of the company
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="visitorList_visitorList.controller.js.html">visitorList/visitorList.controller.js</a>, <a href="visitorList_visitorList.controller.js.html#line211">line 211</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                the company's id
+                
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>visitor_id</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                the visitor's id
+                
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="section-returns">
+<h5>Returns:</h5>
+
+        
+
+
+<div class="param-desc">
+    a response indicating either Success or Error
+</div>
+
+    
+</div>
+
+
+
+<div class="section-examples">
+<h5>Examples</h5>
+
+    <pre class="prettyprint"><code>// success response
+{
+  _id: "123124124",
+  company_id: "12312355",
+  visitors:
+  [
+    {
+     _id: "12314125",
+     company_id: "12314125",
+     first_name : "test",
+     last_name : "test",
+     phone_number: "21324125",
+     checkin_time: "2016-04-23T18:25:43.511Z",
+     appointments:
+     [
+      {
+         _id : "12314125",
+         name : "test",
+         phone_number : "0123456789",
+         date : "2016-04-23T18:25:43.511Z",
+         company_id : "12314125",
+         provider_name : "test test"
+       }
+     ],
+     additional_info:
+      {
+          allergies: "peanuts",
+          sex: "male"
+      }
+    }
+   ]
+ }</code></pre>
+
+    <pre class="prettyprint"><code>// error response
+{
+ error: "Can't find company"
+}</code></pre>
+
+</div>
+
+</div>
+        
+            
+<div class="section-method">
+
+    
+
+    <h4 class="name" id="~clearVisitorList"><span class="type-signature">(inner) </span>clearVisitorList<span class="signature">(id)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    clear the list of visitors of the current day of the company
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="visitorList_visitorList.controller.js.html">visitorList/visitorList.controller.js</a>, <a href="visitorList_visitorList.controller.js.html#line190">line 190</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                the company's id
+                
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="section-returns">
+<h5>Returns:</h5>
+
+        
+
+
+<div class="param-desc">
+    a response indicating either Success or Error
+</div>
+
+    
+</div>
+
+
+
+<div class="section-examples">
+<h5>Example</h5>
+
+    <pre class="prettyprint"><code>// success response
+{
+  _id: "123124124",
+  company_id: "12312355",
+  visitors: []</code></pre>
+
+</div>
+
+</div>
+        
+            
+<div class="section-method">
+
+    
+
+    <h4 class="name" id="~deleteVisitor"><span class="type-signature">(inner) </span>deleteVisitor<span class="signature">(id, visitor_id)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    delete the visitor off the visitor list
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="visitorList_visitorList.controller.js.html">visitorList/visitorList.controller.js</a>, <a href="visitorList_visitorList.controller.js.html#line131">line 131</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                the company's id
+                
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>visitor_id</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                the visitor's id
+                
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="section-returns">
+<h5>Returns:</h5>
+
+        
+
+
+<div class="param-desc">
+    a response indicating either Success or Error
+</div>
+
+    
+</div>
+
+
+
+<div class="section-examples">
+<h5>Examples</h5>
+
+    <pre class="prettyprint"><code>// success response
+{
+  _id: "123124124",
+  company_id: "12312355",
+  visitors:
+  [
+    {
+     _id: "12314125",
+     company_id: "12314125",
+     first_name : "test",
+     last_name : "test",
+     phone_number: "21324125",
+     checkin_time: "2016-04-23T18:25:43.511Z",
+     appointments:
+     [
+      {
+         _id : "12314125",
+         name : "test",
+         phone_number : "0123456789",
+         date : "2016-04-23T18:25:43.511Z",
+         company_id : "12314125",
+         provider_name : "test test"
+       }
+     ],
+     additional_info:
+      {
+          allergies: "peanuts",
+          sex: "male"
+      }
+    }
+   ]
+ }</code></pre>
+
+    <pre class="prettyprint"><code>// error response
+{
+ error: "Can't Update List"
+}</code></pre>
+
+</div>
+
+</div>
+        
+            
+<div class="section-method">
+
+    
+
+    <h4 class="name" id="~getVisitorList"><span class="type-signature">(inner) </span>getVisitorList<span class="signature">(id)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    get the list of visitors of the current day of the company
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="visitorList_visitorList.controller.js.html">visitorList/visitorList.controller.js</a>, <a href="visitorList_visitorList.controller.js.html#line35">line 35</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                the company's id
+                
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="section-returns">
+<h5>Returns:</h5>
+
+        
+
+
+<div class="param-desc">
+    a response indicating either Success or Error
+</div>
+
+    
+</div>
+
+
+
+<div class="section-examples">
+<h5>Examples</h5>
+
+    <pre class="prettyprint"><code>// success response
+{
+  _id: "123124124",
+  company_id: "12312355",
+  visitors:
+  [
+    {
+     _id: "12314125",
+     company_id: "12314125",
+     first_name : "test",
+     last_name : "test",
+     phone_number: "21324125",
+     checkin_time: "2016-04-23T18:25:43.511Z",
+     appointments:
+     [
+      {
+         _id : "12314125",
+         name : "test",
+         phone_number : "0123456789",
+         date : "2016-04-23T18:25:43.511Z",
+         company_id : "12314125",
+         provider_name : "test test"
+       }
+     ],
+     additional_info:
+      {
+          allergies: "peanuts",
+          sex: "male"
+      }
+    },
+    {
+     _id: "12314125",
+     company_id: "12314125",
+     first_name : "test",
+     last_name : "test",
+     phone_number: "21324125",
+     checkin_time: "2016-04-23T18:25:43.511Z",
+     appointments:
+     [
+       {
+         _id : "12314125",
+         name : "test",
+         phone_number : "0123456789",
+         date : "2016-04-23T18:25:43.511Z",
+         company_id : "12314125",
+         provider_name : "test test"
+       }
+     ],
+     additional_info:
+      {
+          allergies: "peanuts",
+          sex: "male"
+      }
+    }
+   ]
+ }</code></pre>
+
+    <pre class="prettyprint"><code>// error response
+{
+ error: "Getting Visitor List"
+}</code></pre>
+
+</div>
+
+</div>
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Tue May 16 2017 16:30:21 GMT-0700 (PDT) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
