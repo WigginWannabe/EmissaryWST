@@ -6,7 +6,7 @@ var gulp = require('gulp');
 gulp.task('dist', [
 // 'lint:server',
 // 'lint:client', uncomment this when ready to turn linting on
-  'bower',
+//  'bower',
   'concat:css',
   'concat:js',
   'copy:assets',
