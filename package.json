@@ -8,7 +8,7 @@
   },
   "author": "Eduardo Aguilar",
   "scripts": {
-      "document": "jsdoc server/routes -c ./jsdoc/conf.json -P ./jsdoc/package.json -r",
+      "document": "jsdoc server/routes -c ./docs/conf.json -P ./docs/package.json -r",
       "start": "node server/app.js",
       "heroku-postbuild": "gulp build:prod"
   },
