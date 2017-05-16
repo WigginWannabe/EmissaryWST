@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>company/company.controller.js - Documentation</title>
+    <title>appointment/appointment.controller.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,7 +29,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">company/company.controller.js</h1>
+    <h1 class="page-title">appointment/appointment.controller.js</h1>
     
 
     
@@ -40,9 +40,8 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>'use strict';
-
 /**
- * @module Company
+ * @module Appointments
  */
 
 /* This module is meant to house the functions
@@ -56,313 +55,237 @@
  */
 
 
-var config = require('../../config/config');
-
 /* need this to enable cross origin resource sharing.If disabled, we might
  * not need this later. This is just to get the example to work
  * when front end is served from a something other than our app server.
  */
-var Company = require('../../models/Company');
-var jwt = require('jwt-simple');
+var Appointment = require('../../models/Appointment');
 
 /****** Company TEMPLATE ROUTES ******/
 module.exports.template = {};
 
-/** 
- * @function createCompany
- * @description Use to sign up a company or a user
- * @param name company name
- * @param email company email
- * @param phone_number company phone number
- * @param [credit_card_number] credit card number for payment
- * @param [expiration_date] the expiration date of the card
- * @param paid_time the time in which the company paid their subscription
+/**
+ * @function createAppointment
+ * @description create an appointment
+ * @param first_name first name of patient
+ * @param last_name last name of patient
+ * @param phone_number phone number
+ * @param date date of the appointment
+ * @param company_id company the appointment is under
+ * @param provider_name patient's provider
  * @example
  * // success response
  * {
- *   _id : "12314125"
- *   name : "test",
- *   email : "test",
- *   phone_number : "0123456789",
- *   paid_time: "2016-04-23T18:25:43.511Z"
- *  }
+ *    _id : "12314125",
+ *    first_name : "test",
+ *    last_name : "test",
+ *    phone_number : "0123456789",
+ *    date : "2016-04-23T18:25:43.511Z",
+ *    company_id : "12314125",
+ *    provider_name : "test test"
+ * }
  * @example
  * // error response
- *  {
- *   error: "Could Not Save"
- *  }
+ * {
+ *  error: "Already Created"
+ * }
  * @returns a response indicating either Success or Error
  */
 module.exports.template.create = function(req, res) {
-    var company = new Company();
+    var appointment = new Appointment();
+    var param = req.body;
 
     //require provided info
-    company.email = req.body.email;
-    company.name = req.body.name;
-    company.phone_number = req.body.phone_number;
-    company.paid_time=new Date();
+    appointment.first_name = param.first_name;
+    appointment.last_name = param.last_name;
+    appointment.phone_number = param.phone_number;
+    appointment.date = param.date;
+    appointment.company_id = param.company_id;
+    appointment.provider_name = param.provider_name;
 
-    //optinal info
-    /*company.expiration_date=req.body.expiration_date;
-    company.credit_card_number=req.body.credit_card_number;
-    */
-
-
-    company.save(function(err, c) {
-        if(err) {
-            return res.status(400).json({error: "Could Not Save"});
-        }
-        return res.status(200).json(showCompanyPublicInfo(c));
-    });
+    Appointment.find(
+        {
+            company_id:param.company_id,
+            date:param.date
+        }, function(err, appointments){
+            if(err) return res.status(400).json({error: "Could Not Find"});
+            if(appointments.length==0) {
+                appointment.save(function (err, a) {
+                    if (err)
+                        return res.status(400).json({error: "Could Not Save"});
+                    return res.status(200).json(a);
+                });
+            }else{
+                return res.status(400).json({error: "Already Created"});
+            }
+        });
 };
 
 
-
-/** 
- * @function getAllCompanies
- * @description get all registered companies
+/**
+ * @function getAllAppointments
+ * @description get all the appointments of the company
+ * @param id the company's id
  * @example
  * // success response
  *[
  * {
  *    _id : "12314125",
- *    name : "test",
- *    email : "test",
+ *    first_name : "test",
+ *    last_name : "test",
  *    phone_number : "0123456789",
- *    paid_time: "2016-04-23T18:25:43.511Z"
+ *    date : "2016-04-23T18:25:43.511Z",
+ *    company_id : "12314125",
+ *    provider_name : "test test"
  * },
  * {
- *    _id : "12314126",
- *    name : "test2",
- *    email : "test2",
- *    phone_number : "01234567890",
- *    paid_time: "2016-04-23T18:26:43.511Z"
+ *    _id : "12314125",
+ *    first_name : "test",
+ *    last_name : "test",
+ *    phone_number : "0123456789",
+ *    date : "2016-04-23T18:25:43.511Z",
+ *    company_id : "12314125",
+ *    provider_name : "test test"
  * }
  *]
  * @example
  * // error response
  * {
- *   error: "Incorrect Credentials"
+ *  error: "Could Not Find"
  * }
  * @returns a response indicating either Success or Error
  */
 module.exports.template.getAll = function(req, res) {
-    Company.find({},
-        {
-            credit_card_number:false,
-            expiration_date:false
-        }
-        , function(err, result){
-        if(err){
-            return res.status(400).json(err);
-        }
-        return res.status(200).json(result);
-    });
+    Appointment.find({company_id: req.params.id}, function(err, result){
+            if(err){
+                return res.status(400).json(err);
+            }
+            return res.status(200).json(result);
+        });
 };
 
 
-/** 
- * @function getCompany
- * @param id the company's id
- * @description Log into the company account
+/**
+ * @function getAppointment
+ * @description get an appointment under the company
+ * @param id the appointment id
  * @example
  * // success response
- *[
  * {
  *    _id : "12314125",
- *    name : "test",
- *    email : "test",
+ *    first_name : "test",
+ *    last_name : "test",
  *    phone_number : "0123456789",
- *    paid_time: "2016-04-23T18:25:43.511Z"
+ *    date : "2016-04-23T18:25:43.511Z",
+ *    company_id : "12314125",
+ *    provider_name : "test test"
  * }
  * @example
  * // error response
  * {
- *   error: "Incorrect Credentials"
+ *  error: "Could Not Find"
  * }
  * @returns a response indicating either Success or Error
  */
 module.exports.template.get = function(req, res) {
-    Company.findOne({_id: req.params.id}, function(err, company) {
-        if(err)
-            return res.status(400).json({error: "Could Not Save"});
-        return res.status(200).json(showCompanyPublicInfo(company));
+    Appointment.findOne({_id: req.params.id}, function(err, a) {
+        if(err || !a)
+            return res.status(400).send({error: "Could Not Find"});
+        return res.status(200).json(a);
     });
 };
 
-
-/** 
- * @function updateCompanyInfo
- * @description update the company's basic information
- * @param [name] company name
- * @param [email] company email
- * @param [phone_number] company phone number
+/**
+ * @function updateAppointment
+ * @description update an appointment under the company
+ * @param id the appointment id
+ * @param [name] name to be updated
+ * @param [phone_number] phone number to be updated
+ * @param [date] new appointment date
+ * @param [provider] new provider to be updated
  * @example
  * // success response
  * {
  *    _id : "12314125",
- *    name : "test",
- *    email : "test",
+ *    first_name : "test",
+ *    last_name : "test",
  *    phone_number : "0123456789",
- *    paid_time: "2016-04-23T18:25:43.511Z"
+ *    date : "2016-04-23T18:25:43.511Z",
+ *    company_id : "12314125",
+ *    provider_name : "test test"
  * }
  * @example
  * // error response
  * {
- *   error: "Could Not Find"
+ *  error: "Could Not Find"
  * }
  * @returns a response indicating either Success or Error
  */
 module.exports.template.update = function(req, res){
-    Company.findOne({_id: req.params.id}, function (err, c) {
-        if(err || !c)
+    Appointment.findOne({_id: req.params.id}, function (err, a) {
+        if(err || !a)
             return res.status(401).json({error: "Could Not Find"});
 
-        //update email
-        if (req.body.email !== undefined)
-            c.email = req.body.email;
+        if (req.body.first_name !== undefined)
+            a.first_name = req.body.first_name;
 
-        //update company name
-        if (req.body.name !== undefined)
-            c.name = req.body.name;
+        if (req.body.last_name !== undefined)
+            a.last_name = req.body.last_name;
 
-        //update company's phone number
         if (req.body.phone_number !== undefined)
-            c.phone_number = req.body.phone_number;
+            a.phone_number  = req.body.phone_number ;
 
-        c.save(function(err) {
+        if (req.body.date!== undefined)
+            a.date = req.body.date;
+
+        if (req.body.provider_name!== undefined)
+            a.provider_name = req.body.provider_name;
+        //TODO check if the date is taken already
+        a.save(function(err) {
             if(err) {
                 return res.status(400).json({error: "Could Not Save"});
             }
-            return res.status(200).json(showCompanyPublicInfo(c));
+            return res.status(200).json(a);
         });
     });
 };
 
 
-/** 
- * @function deleteCompany
- * @description Delete the company
- * @param id company id in the database
+/**
+ * @function deleteAppointment
+ * @description delete an appointment under the company
+ * @param id the appointment id
  * @example
  * // success response
  * {
- *   _id : "12314125"
- *   name : "test",
- *   email : "test",
- *   phone_number : "0123456789",
- *   paid_time: "2016-04-23T18:25:43.511Z"
- *  }
+ *    _id : "12314125",
+ *    first_name : "test",
+ *    last_name : "test",
+ *    phone_number : "0123456789",
+ *    date : "2016-04-23T18:25:43.511Z",
+ *    company_id : "12314125",
+ *    provider_name : "test test"
+ * }
  * @example
  * // error response
- *  {
- *   error: "Could Not Find"
- *  }
+ * {
+ *  error: "Could Not Find"
+ * }
  * @returns a response indicating either Success or Error
  */
 module.exports.template.delete = function(req, res){
-    Company.findById(req.params.id, function(err, c) {
+    Appointment.findById(req.params.id, function(err, a) {
         if(err)
             res.status(400).json({error: "Could Not Find"});
-        c.remove(function(err) {
+        a.remove(function(err) {
             if(err) {
                 res.status(400).json({error: "Could Not Save"});
             } else {
-                return res.status(200).json(showCompanyPublicInfo(c));
+                return res.status(200).json(a);
             }
         });
     });
 };
-
-
-/** 
- * @function resetCompany
- * @description Reset the company's information
- * @param name company name
- * @param email company email
- * @param phone_number company phone number
- * @example
- * // success response
- * {
- *   _id : "12314125"
- *   name : "test",
- *   email : "test",
- *   phone_number : "0123456789",
- *   paid_time: "2016-04-23T18:25:43.511Z"
- *  }
- * @example
- * // error response
- *  {
- *   error: "Could Not Find"
- *  }
- * @example
- * // error response
- *  {
- *   error: "Could Not Save"
- *  }
- * @returns a response indicating either Success or Error
- */
-module.exports.template.resetCredentials = function(req, res) {
-    Company.findOne({email: req.params.user}, function (err, c) {
-        if(err || !c)
-            return res.status(400).json({error: "Could Not Find"});
-
-
-        // if the user is found but the password is wrong
-        if(!c.validPassword(req.body.password))
-            return res.status(400).send('loginMessage', 'Oops! Wrong password');
-        //update password
-
-        //upadate password
-        if (req.body.newpassword !== undefined)
-            c.password = c.generateHash(req.body.newpassword);
-
-        //update email
-        if (req.body.newemail !== undefined)
-            c.email = req.body.newemail;
-
-        //update company name
-        if (req.body.new_company_name !== undefined)
-            c.company_name = req.body.new_company_name;
-
-        //update company's phone number
-        if (req.body.new_company_phone_number !== undefined)
-            c.company_phone_number = req.body.new_company_phone_number;
-
-        c.save(function(err) {
-            if(err) {
-                res.status(400).send({error: "Could Not Save"});
-            }
-        });
-        return res.status(200).json(showCompanyPublicInfo(c));
-    });
-};
-
-
-/** 
- * @function showCompanyPublicInfo
- * @description show all information about the company
- * @param c the company object
- * @example
- * // success response
- * {
- *   _id : "12314125"
- *   name : "test",
- *   email : "test",
- *   phone_number : "0123456789",
- *   paid_time: "2016-04-23T18:25:43.511Z"
- * }
- * @returns a JSON object with the company's info from within
- */
-function showCompanyPublicInfo(c){
-    return {
-        _id: c._id,
-        name: c.name,
-        email: c.email,
-        phone_number: c.phone_number,
-        paid_time: c.paid_time
-    }
-}
 </code></pre>
         </article>
     </section>
@@ -375,7 +298,7 @@ function showCompanyPublicInfo(c){
 <br class="clear">
 
 <footer>
-    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Tue May 16 2017 16:30:21 GMT-0700 (PDT) using the Minami theme.
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Tue May 16 2017 16:37:26 GMT-0700 (PDT) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>
