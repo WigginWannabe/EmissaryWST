@@ -1,1 +1,1 @@
-})); // End of all modules
+})) // End of all modules

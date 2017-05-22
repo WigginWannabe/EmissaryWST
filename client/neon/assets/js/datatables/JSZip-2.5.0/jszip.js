@@ -5860,7 +5860,6 @@ module.exports = function inflate_fast(strm, start) {
 
     here = lcode[hold & lmask];
 
-    dolen:
     for (;;) { // Goto emulation
       op = here >>> 24/*here.bits*/;
       hold >>>= op;
@@ -5893,7 +5892,6 @@ module.exports = function inflate_fast(strm, start) {
         }
         here = dcode[hold & dmask];
 
-        dodist:
         for (;;) { // goto emulation
           op = here >>> 24/*here.bits*/;
           hold >>>= op;
@@ -6029,7 +6027,7 @@ module.exports = function inflate_fast(strm, start) {
           }
           else if ((op & 64) === 0) {          /* 2nd level distance code */
             here = dcode[(here & 0xffff)/*here.val*/ + (hold & ((1 << op) - 1))];
-            continue dodist;
+            continue;
           }
           else {
             strm.msg = 'invalid distance code';
@@ -6042,7 +6040,7 @@ module.exports = function inflate_fast(strm, start) {
       }
       else if ((op & 64) === 0) {              /* 2nd level length code */
         here = lcode[(here & 0xffff)/*here.val*/ + (hold & ((1 << op) - 1))];
-        continue dolen;
+        continue;
       }
       else if (op & 32) {                     /* end-of-block */
         //Tracevv((stderr, "inflate:         end of block\n"));
@@ -6072,7 +6070,7 @@ module.exports = function inflate_fast(strm, start) {
   strm.avail_out = (_out < end ? 257 + (end - _out) : 257 - (_out - end));
   state.hold = hold;
   state.bits = bits;
-  return;
+
 };
 
 },{}],35:[function(_dereq_,module,exports){

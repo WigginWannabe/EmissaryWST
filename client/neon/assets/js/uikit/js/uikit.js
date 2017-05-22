@@ -279,8 +279,8 @@
 //  https://raw.github.com/madrobby/zepto/master/src/touch.js
 //  Zepto.js may be freely distributed under the MIT license.
 
-;(function($){
-  var touch = {},
+(function ($) {
+    var touch = {},
     touchTimeout, tapTimeout, swipeTimeout, longTapTimeout,
     longTapDelay = 750,
     gesture;

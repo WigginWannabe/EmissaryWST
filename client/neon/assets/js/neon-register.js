@@ -6,8 +6,7 @@
 
 var neonRegister = neonRegister || {};
 
-;(function($, window, undefined)
-{
+(function ($, window, undefined) {
 	"use strict";
 	
 	$(document).ready(function()
@@ -207,7 +206,7 @@ var neonRegister = neonRegister || {};
 			var focus_set = false;
 			
 			setTimeout(function(){ 
-				neonRegister.$body.addClass('login-form-fall-init')
+				neonRegister.$body.addClass('login-form-fall-init');
 				
 				setTimeout(function()
 				{

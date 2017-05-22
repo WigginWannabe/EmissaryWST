@@ -1503,7 +1503,7 @@ testCM("addKeyMap", function(cm) {
   sendKey(39);
   eqPos(cm.getCursor(), Pos(0, 1));
   var test = 0;
-  var map1 = {Right: function() { ++test; }}, map2 = {Right: function() { test += 10; }}
+  var map1 = {Right: function() { ++test; }}, map2 = {Right: function() { test += 10; }};
   cm.addKeyMap(map1);
   sendKey(39);
   eqPos(cm.getCursor(), Pos(0, 1));

@@ -9,8 +9,7 @@ if(typeof Dropzone != 'undefined')
 	Dropzone.autoDiscover = false;
 }
 
-;(function($, window, undefined)
-{
+(function ($, window, undefined) {
 	"use strict";
 	
 	$(document).ready(function()
