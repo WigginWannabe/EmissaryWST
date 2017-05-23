@@ -6,9 +6,8 @@
 
 var public_vars = public_vars || {};
 
-;(function($, window, undefined){
-
-	"use strict";
+(function ($, window, undefined) {
+    "use strict";
 
 	$(document).ready(function()
 	{
@@ -226,7 +225,7 @@ var public_vars = public_vars || {};
 
 			setTimeout(function()
 			{
-				unblockUI($this)
+				unblockUI($this);
 				$this.removeClass('reloading');
 
 			}, 900);
@@ -941,9 +940,8 @@ var public_vars = public_vars || {};
 					case "currency":
 					case "rcurrency":
 
-						var sign = attrDefault($this, 'sign', '$');;
-
-						mask = "999,999,999.99";
+var sign = attrDefault($this, 'sign', '$');
+                        mask = "999,999,999.99";
 
 						if($this.data('mask').toLowerCase() == 'rcurrency')
 						{
@@ -1168,7 +1166,7 @@ var public_vars = public_vars || {};
 			$(".wysihtml5").each(function(i, el)
 			{
 				var $this = $(el),
-					stylesheets = attrDefault($this, 'stylesheet-url', '')
+					stylesheets = attrDefault($this, 'stylesheet-url', '');
 
 				$(".wysihtml5").wysihtml5({
 					stylesheets: stylesheets.split(',')
@@ -1621,7 +1619,7 @@ function setup_horizontal_menu()
 		$search				  = public_vars.$horizontalMenu.find('li#search'),
 		$search_input		  = $search.find('.search-input'),
 		$search_submit		  = $search.find('form'),
-		root_level_class 	  = 'root-level'
+		root_level_class 	  = 'root-level';
 		is_multiopen 		  = $nav_bar_menu.hasClass('multiple-expanded'),
 		submenu_options		  = {
 			submenu_open_delay: 0.5,
@@ -1942,7 +1940,7 @@ function init_page_transitions()
 
 		if(public_vars.$body.hasClass(transition_name))
 		{
-			public_vars.$body.addClass(transition_name + '-init')
+			public_vars.$body.addClass(transition_name + '-init');
 
 			setTimeout(function()
 			{

@@ -6,8 +6,7 @@
 
 var neonLogin = neonLogin || {};
 
-;(function($, window, undefined)
-{
+(function ($, window, undefined) {
 	"use strict";
 	
 	$(document).ready(function()
@@ -203,7 +202,7 @@ var neonLogin = neonLogin || {};
 			var focus_set = false;
 			
 			setTimeout(function(){ 
-				neonLogin.$body.addClass('login-form-fall-init')
+				neonLogin.$body.addClass('login-form-fall-init');
 				
 				setTimeout(function()
 				{
@@ -380,7 +379,7 @@ var neonLogin = neonLogin || {};
 			    ctx.stroke();
 			    
 			    currentProgress = current * 100;
-			}
+			};
 			
 			drawProgress(0/100);
 			

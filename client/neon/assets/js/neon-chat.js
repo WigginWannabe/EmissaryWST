@@ -18,8 +18,7 @@ var neonChat = neonChat || {
 	}
 };
 
-;(function($, window, undefined)
-{
+(function ($, window, undefined) {
 	"use strict";
 
 	var $chat = $("#chat"),

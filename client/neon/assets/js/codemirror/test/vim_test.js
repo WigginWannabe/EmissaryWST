@@ -188,7 +188,7 @@ function testVim(name, run, opts, expectedFail) {
       getRegisterController: function() {
         return CodeMirror.Vim.getRegisterController();
       }
-    }
+    };
     CodeMirror.Vim.resetVimGlobalState_();
     var successful = false;
     try {
@@ -202,7 +202,7 @@ function testVim(name, run, opts, expectedFail) {
       }
     }
   }, expectedFail);
-};
+}
 testVim('qq@q', function(cm, vim, helpers) {
   cm.setCursor(0, 0);
   helpers.doKeys('q', 'q', 'l', 'l', 'q');
@@ -239,7 +239,7 @@ function testJumplist(name, keys, endPos, startPos, dialog) {
     helpers.doKeys.apply(null, keys);
     helpers.assertCursorAt(endPos);
   }, {value: jumplistScene});
-};
+}
 testJumplist('jumplist_H', ['H', '<C-o>'], [5,2], [5,2]);
 testJumplist('jumplist_M', ['M', '<C-o>'], [2,2], [2,2]);
 testJumplist('jumplist_L', ['L', '<C-o>'], [2,2], [2,2]);
@@ -282,16 +282,13 @@ function testMotion(name, keys, endPos, startPos) {
     helpers.doKeys(keys);
     helpers.assertCursorAt(endPos);
   });
-};
-
+}
 function makeCursor(line, ch) {
   return { line: line, ch: ch };
-};
-
+}
 function offsetCursor(cur, offsetLine, offsetCh) {
   return { line: cur.line + offsetLine, ch: cur.ch + offsetCh };
-};
-
+}
 // Motion tests
 testMotion('|', '|', makeCursor(0, 0), makeCursor(0,4));
 testMotion('|_repeat', ['3', '|'], makeCursor(0, 2), makeCursor(0,4));
@@ -377,7 +374,7 @@ testVim('%_skip_string', function(cm, vim, helpers) {
   helpers.doKeys(['%']);
   helpers.assertCursorAt(0,0);
 }, {value:'(")")'});
-(')')
+(')');
 testVim('%_skip_comment', function(cm, vim, helpers) {
   cm.setCursor(0,0);
   helpers.doKeys(['%']);
@@ -656,7 +653,7 @@ testVim('dw_word_whitespace_word', function(cm, vim, helpers) {
   cm.setCursor(0, 0);
   helpers.doKeys('d', 'w');
   eq('\n   \nword2', cm.getValue());
-}, { value: 'word1\n   \nword2'})
+}, { value: 'word1\n   \nword2'});
 testVim('dw_end_of_document', function(cm, vim, helpers) {
   cm.setCursor(1, 2);
   helpers.doKeys('d', 'w');
@@ -1301,7 +1298,7 @@ testVim('jumpToMark_next_line_action', function(cm, vim, helpers) {
   helpers.doKeys('d', ']', '\'');
   helpers.assertCursorAt(0, 1);
   var actual = cm.getLine(0);
-  var expected = ' (a) [b] {c} '
+  var expected = ' (a) [b] {c} ';
   eq(actual, expected, "Deleting while jumping to the next mark line failed.");
 });
 testVim('jumpToMark_prev', function(cm, vim, helpers) {
@@ -2004,9 +2001,9 @@ testVim('zt==z<CR>', function(cm, vim, helpers){
 });
 
 var scrollMotionSandbox =
-  '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n'
-  '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n'
-  '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n'
+  '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n';
+  '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n';
+  '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n';
   '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n';
 testVim('scrollMotion', function(cm, vim, helpers){
   var prevCursor, prevScrollInfo;
@@ -2249,7 +2246,7 @@ testVim('ex_substitute_visual_range', function(cm, vim, helpers) {
 }, { value: '1\n2\n3\n4\n5' });
 testVim('ex_substitute_capture', function(cm, vim, helpers) {
   cm.setCursor(1, 0);
-  helpers.doEx('s/(\\d+)/$1$1/')
+  helpers.doEx('s/(\\d+)/$1$1/');
   eq('a1111 a1212 a1313', cm.getValue());
 }, { value: 'a11 a12 a13' });
 testVim('ex_substitute_empty_query', function(cm, vim, helpers) {
@@ -2283,7 +2280,7 @@ function testSubstituteConfirm(name, command, initialValue, expectedValue, keys,
     // First openDialog should save callback.
     cm.openDialog = function(template, callback, options) {
       recordedCallback = callback;
-    }
+    };
     // Do first openDialog.
     helpers.doKeys(':');
     // Second openDialog should save keyDown handler.
@@ -2295,7 +2292,7 @@ function testSubstituteConfirm(name, command, initialValue, expectedValue, keys,
     recordedCallback(command);
     // The event should really use keyCode, but here just mock it out and use
     // key and replace keyName to just return key.
-    CodeMirror.keyName = function (e) { return e.key; }
+    CodeMirror.keyName = function (e) { return e.key; };
     keys = keys.toUpperCase();
     for (var i = 0; i < keys.length; i++) {
       is(!closed);
@@ -2313,7 +2310,7 @@ function testSubstituteConfirm(name, command, initialValue, expectedValue, keys,
       cm.openDialog = savedOpenDialog;
     }
   }, { value: initialValue });
-};
+}
 testSubstituteConfirm('ex_substitute_confirm_emptydoc',
     '%s/x/b/c', '', '', '', makeCursor(0, 0));
 testSubstituteConfirm('ex_substitute_confirm_nomatch',
@@ -2363,7 +2360,7 @@ testVim('ex_map_key2key_to_colon', function(cm, vim, helpers) {
   var dialogOpened = false;
   cm.openDialog = function() {
     dialogOpened = true;
-  }
+  };
   helpers.doKeys(';');
   eq(dialogOpened, true);
 });

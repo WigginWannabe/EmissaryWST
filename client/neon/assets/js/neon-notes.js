@@ -6,8 +6,7 @@
 
 var neonNotes = neonNotes || {};
 
-;(function($, window, undefined)
-{
+(function ($, window, undefined) {
 	"use strict";
 	
 	$(document).ready(function()
@@ -63,9 +62,9 @@ var neonNotes = neonNotes || {};
 					neonNotes.$currentNoteTitle        = $current_note.find('strong');
 					neonNotes.$currentNoteDescription  = $current_note.find('span');
 					neonNotes.$currentNoteContent      = $current_note.find('.content');
-					
-					neonNotes.$writePadTxt.val( $.trim( neonNotes.$currentNoteContent.html() ) ).trigger('autosize.resize');;
-				}
+
+neonNotes.$writePadTxt.val($.trim(neonNotes.$currentNoteContent.html())).trigger('autosize.resize');
+                }
 				else
 				{
 					var first = neonNotes.$notesList.find('li:first:not(.no-notes)');

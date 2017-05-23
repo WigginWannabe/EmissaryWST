@@ -6,9 +6,8 @@ CodeMirror.defineMode('shell', function() {
     for(var i = 0; i < split.length; i++) {
       words[split[i]] = style;
     }
-  };
-
-  // Atoms
+  }
+    // Atoms
   define('atom', 'true false');
 
   // Keywords
@@ -84,9 +83,8 @@ CodeMirror.defineMode('shell', function() {
       }
       return (quote === '`' || quote === ')' ? 'quote' : 'string');
     };
-  };
-
-  var tokenDollar = function(stream, state) {
+  }
+    var tokenDollar = function(stream, state) {
     if (state.tokens.length > 1) stream.eat('$');
     var ch = stream.next(), hungry = /\w/;
     if (ch === '{') hungry = /[^}]/;
@@ -104,9 +102,8 @@ CodeMirror.defineMode('shell', function() {
 
   function tokenize(stream, state) {
     return (state.tokens[0] || tokenBase) (stream, state);
-  };
-
-  return {
+  }
+    return {
     startState: function() {return {tokens:[]};},
     token: function(stream, state) {
       if (stream.eatSpace()) return null;

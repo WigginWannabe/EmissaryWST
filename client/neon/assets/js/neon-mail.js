@@ -6,8 +6,7 @@
 
 var neonMail = neonMail || {};
 
-;(function($, window, undefined)
-{
+(function ($, window, undefined) {
 	"use strict";
 	
 	$(document).ready(function()

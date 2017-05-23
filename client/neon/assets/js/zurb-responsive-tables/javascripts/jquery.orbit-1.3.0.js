@@ -219,13 +219,13 @@
         }, this.options.advanceSpeed);            		
     	} else {
         this.timerRunning = true;
-        this.$pause.removeClass('active')
+        this.$pause.removeClass('active');
         this.clock = setInterval(this.rotateTimer, this.options.advanceSpeed / 180);
       }
     },
     
     rotateTimer: function () {
-      var degreeCSS = "rotate(" + this.degrees + "deg)"
+      var degreeCSS = "rotate(" + this.degrees + "deg)";
       this.degrees += 2;
       this.$rotator.css({ 
         "-webkit-transform": degreeCSS,
@@ -379,8 +379,8 @@
   			if (thumbName) {
           $li
             .addClass('has-thumb')
-            .css({background: "url(" + this.options.bulletThumbLocation + thumbName + ") no-repeat"});;
-  			}
+              .css({background: "url(" + this.options.bulletThumbLocation + thumbName + ") no-repeat"});
+            }
   		}
   		this.$bullets.append($li);
   		$li.data('index', index);
@@ -426,7 +426,7 @@
               this.activeSlide = 0;
           }
         } else if (direction == "prev") {
-          this.activeSlide--
+          this.activeSlide--;
           if (this.activeSlide < 0) {
             this.activeSlide = this.numberSlides - 1;
           }

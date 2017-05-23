@@ -166,9 +166,10 @@ var Class = (function() {
     }
     return true;
   })();
-  
-  function subclass() {};
-  function create() {
+
+  function subclass() {
+    }
+    function create() {
     var parent = null, properties = [].slice.apply(arguments);
     if (isFunction(properties[0]))
       parent = properties.shift();
