@@ -13,7 +13,7 @@ module.exports =
     "cli_args" : {
       "webdriver.chrome.driver" : "",
       "webdriver.ie.driver" : "",
-      "webdriver.firefox.driver":""
+    //  "webdriver.firefox.driver":""
     }
   },
 
