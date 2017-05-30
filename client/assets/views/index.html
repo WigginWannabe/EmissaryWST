@@ -8,6 +8,8 @@
     <meta name="description" content="Neon Admin Panel"/>
     <meta name="author" content=""/>
 
+    <script src="../js/dropdown.js"></script>
+
     <link rel="icon" href="assets/images/logo-emissary.png">
 
     <title>Emissary</title>
@@ -15,6 +17,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.css">
     <link rel="stylesheet" href="assets/css/font-icons/entypo/css/entypo.css">
     <link rel="stylesheet" href="assets/css/neon.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 
     <!--[if lt IE 9]>
     <script src="assets/js/ie8-responsive-file-warning.js" async></script><![endif]-->
@@ -78,13 +81,17 @@
                             </li>
                         </ul>
 
-
                         <div class="visible-xs">
-
-                            <a href="#" class="menu-trigger">
-                                <i class="entypo-menu"></i>
+                            <a href="#" onclick="toggleDropdown()" class="menu-trigger">
+                                <i onclick="toggleDropdown()" class="entypo-menu"></i>
                             </a>
-
+                    
+                            <div id="dropdown" class="dropdown-content">
+                                <a href="#features">Features</a>
+                                <a href="#pricing">Pricing</a>
+                                <a href="login.html">Login</a>
+                                <a href="signup.html">Sign Up</a>
+                            </div>
                         </div>
                     </nav>
 

@@ -236,7 +236,7 @@ var public_vars = public_vars || {};
 
 			setTimeout(function()
 			{
-				unblockUI($this)
+				unblockUI($this);
 				$this.removeClass('reloading');
 
 			}, 900);

@@ -583,8 +583,14 @@ body .carousel-inner > .active {
   padding-left: 60px;
 }
 @media screen and (min-width: 767px) {
+  .dropdown-content {
+    display: none !important;
+  }
   .mobile-menu {
     display: none !important;
+  }
+  .slider-container {
+    min-height: 335px !important;
   }
 }
 .footer-widgets {
@@ -1915,7 +1921,7 @@ section.blog .sidebar .sidebar-content .discussion-list li .details p {
   section.blog .blog-posts:after,
   section.blog .blog-post-single:after,
   .contact-container .sep:before {
-    display: none;
+    display: none !important;
   }
   section.blog .sidebar {
     margin-left: 0px;
@@ -1932,6 +1938,9 @@ section.blog .sidebar .sidebar-content .discussion-list li .details p {
   .breadcrumb .text-muted {
     font-size: 14px;
     text-align: left;
+  }
+  .dropdown-content {
+    display: none;
   }
   .site-header:before,
   .site-header:after {
@@ -2083,6 +2092,9 @@ section.blog .sidebar .sidebar-content .discussion-list li .details p {
     text-align: center;
     margin: 0 auto;
     margin-top: 20px;
+  }
+  .slider-container {
+    min-height: 600px !important; 
   }
   .slider-container .slides .slide {
     display: none;
