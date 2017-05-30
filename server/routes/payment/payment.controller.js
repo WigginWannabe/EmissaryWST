@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 var exports = module.exports;
 var BASIC_PLAN_ID = 'emissary_basic';
@@ -41,7 +41,7 @@ exports.getSubscription = function(req, res){
 			});
 	});
 
-}
+};
 
 function basicPlanIndex(arr){
 	var arrLength = arr.length;

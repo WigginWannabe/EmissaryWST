@@ -29,7 +29,7 @@ new function($) {
                 $(this).addClass(className).val($.data(this, key));
         }).focus(function() {
             if ($.trim($(this).val()) === $.data(this, key)) 
-                $(this).removeClass(className).val(value)
+                $(this).removeClass(className).val(value);
                 if ($.fn.setCursorPosition) {
                   $(this).setCursorPosition(position);
                 }

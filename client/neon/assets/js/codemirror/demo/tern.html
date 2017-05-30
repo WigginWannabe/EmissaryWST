@@ -116,7 +116,7 @@ overview.</p>
       "Alt-.": function(cm) { server.jumpToDef(cm); },
       "Alt-,": function(cm) { server.jumpBack(cm); },
       "Ctrl-Q": function(cm) { server.rename(cm); },
-    })
+    });
     editor.on("cursorActivity", function(cm) { server.updateArgHints(cm); });
   });
 

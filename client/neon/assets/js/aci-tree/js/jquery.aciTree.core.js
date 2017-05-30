@@ -902,7 +902,7 @@
                     }
                 }
             } else {
-                this._trigger(item, 'removefail', options)
+                this._trigger(item, 'removefail', options);
                 this._fail(item, options);
             }
         },

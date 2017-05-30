@@ -12,7 +12,7 @@ describe('Company Test', function() {
     var expiration_date="6/17";
     var phone_number="1234567890";
 
-    var new_email = "test1@test.edu";;
+    var new_email = "test1@test.edu";
     var new_name = "test1";
     var new_expiration_date="3/19";
     var new_phone_number="1231267890";

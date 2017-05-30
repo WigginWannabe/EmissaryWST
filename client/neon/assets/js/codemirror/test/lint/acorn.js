@@ -660,7 +660,7 @@
     if (/e/i.test(input.charAt(tokPos))) {
       var next = input.charAt(++tokPos);
       if (next === "-" || next === "+") ++tokPos;
-      if (readInt(10) === null) raise(start, "Invalid number")
+      if (readInt(10) === null) raise(start, "Invalid number");
       isFloat = true;
     }
     if (isIdentifierStart(input.charCodeAt(tokPos))) raise(tokPos, "Identifier directly after number");
@@ -970,9 +970,8 @@
       first = false;
     }
     return finishNode(node, "Program");
-  };
-
-  var loopLabel = {kind: "loop"}, switchLabel = {kind: "switch"};
+  }
+    var loopLabel = {kind: "loop"}, switchLabel = {kind: "switch"};
 
   // Parse a single statement.
   //

@@ -233,14 +233,14 @@
 			$(".panel span.line").peity("line", {width: 150});
 			$("span.bar").peity("bar", {width: 150});
 			
-			var updatingChart = $(".updating-chart").peity("line", { width: 150 })
+			var updatingChart = $(".updating-chart").peity("line", { width: 150 });
 
 			setInterval(function() 
 			{
 				var random = Math.round(Math.random() * 10);
 				var values = updatingChart.text().split(",");
 				
-				values.shift()
+				values.shift();
 				values.push(random);
 				
 				updatingChart.text(values.join(",")).change();

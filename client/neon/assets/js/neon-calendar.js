@@ -6,8 +6,7 @@
 
 var neonCalendar = neonCalendar || {};
 
-;(function($, window, undefined)
-{
+(function ($, window, undefined) {
 	"use strict";
 
 	$(document).ready(function()

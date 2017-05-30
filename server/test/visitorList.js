@@ -27,7 +27,7 @@ describe("VisitorList", function() {
         expiration_date: "6/17",
         phone_number: "1234567890",
         paid_time: new Date()
-    }
+    };
 
     //info for first visitor
     var first_visitor_info = {
@@ -38,7 +38,7 @@ describe("VisitorList", function() {
         additional_info: {
             allergies: "peanuts"
         }
-    }
+    };
 
     //info for second visitor
     var second_visitor_info = {
@@ -49,7 +49,7 @@ describe("VisitorList", function() {
         additional_info: {
             allergies: "seafood"
         }
-    }
+    };
 
     //info for visitor_one's appointment
     var first_appointment_info = {
@@ -58,7 +58,7 @@ describe("VisitorList", function() {
         phone_number: first_visitor_info.phone_number,
         date: new Date(),
         provider_name: "provider1"
-    }
+    };
 
     //info for visitor_two's appointment
     var second_appointment_info = {
@@ -67,7 +67,7 @@ describe("VisitorList", function() {
         phone_number: second_visitor_info.phone_number,
         date: tomorrow,
         provider_name: "provider2"
-    }
+    };
 
 
     before(function(done) {

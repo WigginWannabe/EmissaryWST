@@ -6,8 +6,7 @@
 
 var neonForgotPassword = neonForgotPassword || {};
 
-;(function($, window, undefined)
-{
+(function ($, window, undefined) {
 	"use strict";
 	
 	$(document).ready(function()
@@ -185,7 +184,7 @@ var neonForgotPassword = neonForgotPassword || {};
 			var focus_set = false;
 			
 			setTimeout(function(){ 
-				neonForgotPassword.$body.addClass('login-form-fall-init')
+				neonForgotPassword.$body.addClass('login-form-fall-init');
 				
 				setTimeout(function()
 				{

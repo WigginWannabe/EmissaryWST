@@ -280,7 +280,7 @@
                 baseReplacer("1. $1", editor);
             }
         }
-    }
+    };
 
     Markdownarea.defaults = {
         "mode"         : "split",
