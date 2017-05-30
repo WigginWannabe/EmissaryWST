@@ -3,8 +3,8 @@
 <head>
 	<script>
 		var userState = JSON.parse(localStorage.getItem("userState"));
-  		if(userState != 2)
-    		location.href= "login.html";
+  		<!--if(userState != 2) TODO COMMENTED FOR TESTING
+    		location.href= "login.html";-->
 	</script>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
@@ -137,7 +137,7 @@
 		
 		<hr />
 
-		<!-- TO DO: Move JS functions to js files -->
+		<!-- TODO: Move JS functions to js files -->
 		<script type="text/javascript">
 		jQuery(document).ready(function($)
 		{
@@ -153,9 +153,9 @@
 			$('.uniquevisitors').sparkline('html', {type: 'bar', height: '30px', barColor: '#00b19d'} );
 		
 		
-			$(".monthly-sales").sparkline([], {
+			$(".monthly-sales").sparkline([1,5,6,7,10,12,16,11,9,8.9,8.7,7,8,7,6,5.6,5,7,5,4,5,6,7,8,6,7,6,3,2], {
 				type: 'bar',
-				barColor: '#00a65a',
+				barColor: '#5d41a6',
 				height: '80px',
 				barWidth: 10,
 				barSpacing: 2
@@ -310,7 +310,7 @@
 				<div class="tile-stats tile-red">
 					<div class="icon"><i class="entypo-users"></i></div>
 					<div id = "companyCount" class="num" data-start="83" data-end="83" data-postfix="" data-duration="1500" data-delay="0">0</div>
-		
+
 					<h3>Registered Users</h3>
 					<p>Lifetime Total</p>
 				</div>
@@ -319,15 +319,9 @@
 		
 			<div class="col-sm-3 col-xs-6">
 		
-				<div class="tile-stats tile-green">
-					<div class="icon"><i class="entypo-chart-bar"></i></div>
-					<div id = "pageViews" class="num" data-start="135" data-end="135" data-postfix="" data-duration="1500" data-delay="600">
-						<div class="mask-loading">
-  							<div class="spinner">
-    						<div class="double-bounce1"></div>
-    						<div class="double-bounce2"></div>
-  							</div>
-						</div>
+				<div class="tile-stats tile-blue">
+					<div class="icon"><i class="entypo-eye"></i></div>
+                    <div id = "pageViews" class="num" data-start="0" data-end="135" data-postfix="" data-duration="1500" data-delay="0">135 <!--data-delay="600">-->
 					</div>
 		
 					<h3>Page Views</h3>
@@ -339,41 +333,37 @@
 			<div class="clear visible-xs"></div>
 		
 			<div class="col-sm-3 col-xs-6">
-		
+
 				<div class="tile-stats tile-aqua">
 					<div class="icon"><i class="entypo-mail"></i></div>
-					<div id = "eventCount" class="num" data-start="23" data-end="23" data-postfix="" data-duration="1500" data-delay="1200">
-						 <div class="mask-loading">
- 							 <div class="spinner">
-    							<div class="double-bounce1"></div>
-    							<div class="double-bounce2"></div>
- 						 	</div>
-						</div>
+					<div id = "eventCount" class="num" data-start="23" data-end="23" data-postfix="" data-duration="1500" data-delay="1200">23
 					</div>
 		
 					<h3>Number of Logins</h3>
 					<p>In the Past 7 Days</p>
 				</div>
-		
+
 			</div>
 		
 			<div class="col-sm-3 col-xs-6">
-		
+		<!--
 				<div class="tile-stats tile-blue">
 					<div class="icon"><i class="entypo-rss"></i></div>
-					<div id = "sessionCount" class="num" data-start="52" data-end="52" data-postfix="" data-duration="1500" data-delay="1800">
-						<div class="mask-loading">
-  							<div class="spinner">
-    							<div class="double-bounce1"></div>
-    							<div class="double-bounce2"></div>
-  							</div>
-						</div>
+					<div id = "sessionCount" class="num" data-start="52" data-end="52" data-postfix="" data-duration="1500" data-delay="1800">52
 					</div>
-		
+
 					<h3>Number of Sessions</h3>
 					<p>In the Past 7 Days</p>
-				</div>
-		
+				</div>-->
+
+                <div class="tile-stats tile-green">
+                    <div class="icon"><i class="entypo-credit-card"></i></div>
+                    <div id = "incomeGenerated" class="num" data-start="0" data-end="540" data-postfix="" data-duration="1500" data-delay="1800">$540
+                    </div>
+                    <h3>In Income Generated</h3>
+                    <p>In the Past 30 days</p>
+                </div>
+
 			</div>
 		</div>
 
@@ -387,13 +377,13 @@
 		
 				<div class="tile-stats tile-orange">
 					<div class="icon"><i class="entypo-chart-bar"></i></div>
-					<div id = "convRate" class="num" data-start="135" data-end="135" data-postfix="" data-duration="1500" data-delay="600">
-						<div class="mask-loading">
+					<div id = "convRate" class="num" data-start="37" data-end="37" data-postfix="" data-duration="1500" data-delay="600">37%
+						<!--<div class="mask-loading">
   							<div class="spinner">
     						<div class="double-bounce1"></div>
     						<div class="double-bounce2"></div>
   							</div>
-						</div>
+						</div>-->
 					</div>
 		
 					<h3>Conversion Rate</h3>
@@ -410,12 +400,6 @@
 								<th class="padding-bottom-none text-center">
 									<br />
 									<br />
-									<div class="mask-loading2">
-  							<div class="spinner2">
-    						<div class="double-bounce3"></div>
-    						<div class="double-bounce4"></div>
-  							</div>
-						</div>
 									<span class="monthly-sales"></span>
 								</th>
 							</tr>

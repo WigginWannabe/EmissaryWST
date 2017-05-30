@@ -3,8 +3,8 @@
 <head>
 	<script>
 		var userState = JSON.parse(localStorage.getItem("userState"));
-  		if(userState != 2)
-    		location.href= "login.html";
+  		<!--if(userState != 2) TODO COMMENTED FOR TESTING
+    		location.href= "login.html";-->
 	</script>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
@@ -149,11 +149,12 @@
 			// Initialize DataTable
 			$table2.DataTable( {
 				"sDom": "tip",
-				"bStateSave": false,
-				"iDisplayLength": 8,
-				"aoColumns": [
-					{ "bSortable": false },
-					null,
+				"pageLength": 25,
+                "lengthMenu": [ 10, 25, 50, 75, 100 ],
+                "aoColumns": [
+                    null,
+                    null,
+					{ "bSortable": false },  // disable sorting phone numbers
 					null,
 					null
 				],
@@ -172,7 +173,7 @@
 				} );
 			} );
 			
-			// Replace Checboxes
+			// Replace Checkboxes
 			$table2.find( ".pagination a" ).click( function( ev ) {
 				replaceCheckboxes();
 			} );
@@ -186,28 +187,40 @@
 			replaceCheckboxes(); // because there is checkbox, replace it
 			giCount++;
 		}
+
+		// Handlebars helper function to trim timestamp to just the date
+        Handlebars.registerHelper('trimStringToDate', function(passedString) {
+            //var theString = passedString.substring(0,150);
+            var theString = passedString.split('T')[0];
+            return new Handlebars.SafeString(theString)
+        });
 		</script>
 		
 		<table class="table table-bordered table-striped datatable" id="table-2">
 			<thead>
 				<tr>
-					<th>Company Name</th>
-					<th>Email</th>
+                    <th>Company Name</th>
+                    <th>Email</th>
 					<th>Phone Number</th>
-				</tr>
+					<th>Date Subscribed</th>
+				    <th>Last Login</th>
+                </tr>
 			</thead>
 			
 			<tbody id = "company-list">
 			
 			</tbody>
 		</table>
+
 		<script type = "text/x-handlebars-template" id = "company-list-template">
             {{#each []}}
             <tr>
                 <td>{{this.name}}</td>
                 <td>{{this.email}}</td>
                 <td>{{this.phone_number}}</td>
-                <!-- Modal -->
+                <td>{{trimStringToDate this.paid_time}}</td>
+                <td>{{this.paid_time}}</td>  <!--TODO record last login-->
+				<!-- Modal -->
             </tr>
             {{/each}}
         </script>
