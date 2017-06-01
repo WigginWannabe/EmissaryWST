@@ -32,7 +32,7 @@ module.exports =
       "desiredCapabilities": {
         "build": "build-${TRAVIS_JOB_NUMBER}",
         "tunnel-identifier": TRAVIS_JOB_NUMBER,
-        "browserName": "firefox",
+        "browserName": "chrome",
         "javascriptEnabled": true,
         "acceptSslCerts": true
       },

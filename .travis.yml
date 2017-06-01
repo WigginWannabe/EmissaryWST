@@ -1,6 +1,7 @@
 language: node_js
 node_js:
 - '7'
+script: gulp test:server
 deploy:
   provider: heroku
   api_key:
@@ -9,6 +10,7 @@ deploy:
     master: emissary-pseudopandas
     dev: emissary-pseudopandas-dev
     staging: emissary-pseudopandas-staging
+after_deploy: nightwatch --config nightwatch.js
 notifications:
   slack:
     secure: qbN5jWd3qesVEc9G7C1NxUAIAWXy3Rr4ThzmYh0/g6FxjsSVp6wOn+h9IDwj6ETt0jW8EFgPaZ5ox56XEZJ/yqwcg3qOE64G+QQXbufjcNCFf1R9/mPTwstZsns6b2IkYpV6ZK1K8tewkOkwoyj8sMrcaqPwASB1dNUcqnJNpE83vZHG/tbUXe38iLd/msO+HVoUoa5fDMmll+ptCFblXH84oFYxLPq8xMI4r23ddMBedIujWjBgdNVHEreoJGCPS0fWWM8kHFztEfeplmVhKFvwT7dh1K1EMQdZvwH/gqPBp1keqJWG94xlrAhOIUHUwqh08KxHSlLkk9yOdM6Ok40RyF0KxwQ4qSLCmyC/v7BGmTA7hftTXVhXO9A+r6k7G4swidD2iNKNyy6k1JHwFonyw0+ETfIO3sqq4MdJyXwqwBT32d/Vb+Av0sZRwtyfwieVPPIEt1P4xzbHgx2k6kOGS+UbS7BJhlZBrr9xObfircIDIiww7lsSpviVQmyWL7mfhnsjx2dZ9SIDilXMymBddTPzeamGcSW9RUK+D9C/GQEyMIFGTepdEzaeMFSxg3ykfPDJJ0rtlXFyZiwfrqp1fSjRAhN0aSxR5TFRGFWQCagZOoyuP6+YLJbVyZ5k2OYl9l1qg4hWV7hl7VNxkX9EdAJCLRkyszkJEaTtwI0=
