@@ -111,7 +111,7 @@ exports.getCompanyVisitorList = function(company_id, callback){
             list.company_id = company_id;
         }
         list.save(function(err){
-            if(err)return callback({error: "Error in saving"}, null);
+            if(err)return callback({error: "Error in saving Visitor List"}, null);
             return callback(null, list);
         });
     });
@@ -182,7 +182,7 @@ exports.deleteVisitor = function(company_id, visitor_id, callback){
         {company_id: company_id},
         {$pull: {visitors:{_id:visitor_id}}},
         {safe: true, upsert: true, new:true}, function(err, data){
-            if(err) return callback({error: "Can't update list"}, null);
+            if(err) return callback({error: "Error in deleting visitor."}, null);
             return callback(null, data);
         });
 };
@@ -257,10 +257,10 @@ exports.delete = function(list_id, callback){
     if(!list_id)
         return callback({error: "Please send list id."}, null);
     VisitorList.findOne({_id: list_id}, function(err, list){
-        if(err || list==null) return callback({error: "Can't find company"}, null);
+        if(err || list==null) return callback({error: "Can't find company while deleting a visitor."}, null);
         list.visitors=[];
         list.save(function(err){
-            if(err) return callback({error: "Can't save"}, null);
+            if(err) return callback({error: "Can't save while deleting a visitor."}, null);
             return callback(null, list);
         });
     });
@@ -390,7 +390,7 @@ exports.create = function(param, callback){
             {company_id: company_id},
             function(err, list) {
                 if(err)
-                    return callback({error: "Getting Visitor List"}, null);
+                    return callback({error: "Error getting Visitor List"}, null);
                 if(list==null) {
                     list = new VisitorList();
                     list.visitors=[];
@@ -398,7 +398,7 @@ exports.create = function(param, callback){
                 }
                 list.visitors.push(visitor);
                 list.save(function(err){
-                    if(err) return callback({error: "an error in saving"}, null);
+                    if(err) return callback({error: "Error saving while creating Visitor List"}, null);
                     return callback(null, list);
                     /*Employee.find({company : req.body.company_id},
                      function(err, employees) {
