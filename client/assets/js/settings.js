@@ -16,8 +16,8 @@ var id = GetURLParameter('code');
 var name= GetURLParameter('status');
 
 if(id){
-	var clientSecret = "a56caa836b9f386c400a69cda6f5c0b4";
-	var clientID = "11293703667.22923580850";
+	var clientSecret = "e703afc2c029775d23c4143065535c22";
+	var clientID = "184814795814.190980680353";
 	var something = {};
 	$.post("https://slack.com/api/oauth.access",
     {
