@@ -1,5 +1,5 @@
 
-       // Replace with your client ID from the developer console.
+    // Replace with your client ID from the developer console.
     console.log("googlestuff");
     var CLIENT_ID = '146644134636-h2i32dh4th00aqo4d4honm0o4vkcpaup.apps.googleusercontent.com';
 
@@ -274,8 +274,28 @@
         });
         return json;
     }
+
+    //TODO get trial statistics to use to calculate the count
+    function countTrials(companies) {
+        var count = 0;
+        /*for (var comp in companies) {
+            if (comp[trial]) {
+                count++;
+            }
+        }*/
+        count = 79;  // TODO remove placeholder value
+        return count;
+    }
+
     var companies = getCompanies();
     var num = companies.length;
-    document.getElementById('companyCount').innerHTML = num; 
+
+    var numTrials = countTrials(companies);
+    var numPaid = num - numTrials;
+    var percentPaid = Number(((numPaid/num).toFixed(2))*100);
+
+    document.getElementById('companyCount').innerHTML = num;
+    document.getElementById('clientPie').innerHTML = [numTrials, numPaid];
+    document.getElementById('clientPercent').innerHTML = percentPaid.toString() + "%";
     // Add an event listener to the 'auth-button'.
     document.getElementById('auth-button').addEventListener('click', authorize);
