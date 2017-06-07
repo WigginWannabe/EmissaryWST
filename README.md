@@ -1,7 +1,9 @@
 # Team #17: PseudoPandas
 
+
 ## Deployment Site: 
 http://emissary-pseudopandas-dev.herokuapp.com/
+
 
 ## What is Emissary:
 **-	Emissary is a visitor check-in SaaS (software as a service) application designed for small businesses. A few steps to get started with the application:**
@@ -13,11 +15,13 @@ http://emissary-pseudopandas-dev.herokuapp.com/
   b.	If an appointment matches the visitor’s information, his/her appointment time will automatically be populated in the queue.
 5.	Click on a visitor from the “Visitors” page to check him/her out. If he/she had an appointment, their appointment will automatically be removed from the "Appointments" section.
 
+
 ## Tools Required for the Application:
 1. **Node.js** (http://nodejs.org/)
 2. **MongoDB** (https://www.mongodb.org/)
 3. **HandleBars** (http://handlebarsjs.com/)
 4. **jQuery** (https://jquery.com/)
+
 
 ## Instructions to Get Started:
 **Step 1:** Do a `git clone` on our project on **Github** (https://github.com/WigginWannabe/EmissaryWST).
