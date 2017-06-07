@@ -1,6 +1,8 @@
 $(document).ready(function(){
 
     var socket = io();
+    //var MongoClient = require('mongodb').MongoClient;
+    //var url = "mongodb://ds143181.mlab.com:43181/cse112";
 
     var VALIDATE_COMPANY_ID = "validate_company_id";
     var ADD_VISITOR = "add_visitor";
@@ -33,6 +35,11 @@ $(document).ready(function(){
     function submitForm(){
         //event.preventDefault();
         var data = grabFormElements();
+
+        //reference database to check if visitor has an appointment
+        console.log("should be printing?");
+        //socket.emit(GET_APPOINTMENT,data);
+
         //console.log(data.company_id);
         if(localStorage.getItem("slackToken")&&localStorage.getItem("slackChannel"))
         {

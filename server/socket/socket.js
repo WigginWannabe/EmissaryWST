@@ -13,9 +13,12 @@ var DISCONNECT = "disconnect";
 var REMOVE_VISITOR = "remove_visitor";
 var ADD_VISITOR = "add_visitor";
 var NOTIFY_ERROR = "notify_error";
+var GET_APPOINTMENT = "get";
 
+var AppointmentCtr = require('../routes/appointment/appointment.controller');
 var VisitorListCtr = require('../routes/visitorList/visitorList.controller');
 var Company = require('../models/Company');
+var Appointment = require('../models/Appointment');
 /********** Socket IO Module **********/
 exports.createServer = function(io_in) {
     io = io_in;
@@ -87,24 +90,61 @@ exports.createServer = function(io_in) {
 
         //require the params to be set with info of the visitor
         socket.on(ADD_VISITOR, function(data) {
-            console.log("ADDING VISITOR");
-            console.log(data);
-            console.log(data.company_id);
+            console.log("LOOKING FOR APPOINTMENT");
             var company_id = data.company_id;
-            VisitorListCtr.create(data, function(err_msg, result){
-                if(err_msg){
-                    console.log("error");
-                    exports.notifyError(company_id, {error: err_msg});
-                }
-                else {
-                    exports.notifyNewList(company_id, result);
-                }
-            });
-        });
+            var appt = exports.getMatch(data);
+            if (appt == false) {
+                console.log("error");
+                exports.notifyError(company_id, {error: err_msg});
+            }
+            else {
+                console.log("ADDING VISITOR");
+                console.log(data);
+                console.log(data.company_id);
+                var company_id = data.company_id;
+                VisitorListCtr.create(data, function(err_msg, result){
+                    if(err_msg){
+                        console.log("error");
+                        exports.notifyError(company_id, {error: err_msg});
+                    }
+                    else {
+                        console.log(result);
+                        exports.notifyNewList(company_id, result);
+                    }
+                });
+            }
 
+        });
     });
+        //socket.on(GET_APPOINTMENT, function (data) {});
     return server;
 };
+
+exports.getMatch = function(data) {
+    console.log(data.company_id);
+    Appointment.find({first_name: data.first_name, 
+                        last_name: data.last_name, 
+                        phone_number: data.phone_number}, function(err, a) {
+        if (err) {
+            console.log("Appointment could not be found");
+            return false;
+        }
+        else {
+            console.log(a);
+            /* Check if appointment time is today */
+            if (a === []) {
+                console.log("No matching appointments");
+                return false;
+            }
+            else {
+
+                console.log("Appointment found");
+                return a.date;
+            }
+        }
+    });
+}
+
 /*
  * A function that allows you to notify all clients that
  * the queue has been updated.

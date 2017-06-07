@@ -148,6 +148,7 @@ $(document).ready(function(){
       var jsDate = reFormatDate(date);
       var jsTime = reFormatTime(time);
       jsDateObj = jsDate + ' ' + jsTime;
+      console.log("date: " + date + " time: " + time + " jsDate: " + jsDate + " jsTime " + jsTime + " jsDateObj " + jsDateObj)
       return jsDateObj;
     }
 
@@ -175,7 +176,7 @@ $(document).ready(function(){
       var formattedHour;
       var colon = time.indexOf(":");
 
-      if(ampm === "PM"){
+      if(ampm.toLowerCase() === "pm"){
         formattedHour = time.substr(0,2);
 
         if(formattedHour == '12')
@@ -220,7 +221,7 @@ $(document).ready(function(){
             currentTime = hour + ':' + minute +'PM';
         }
         else if(hour === 0){
-            currentTime = 1 + ':' + minute + 'AM';
+            currentTime = 12 + ':' + minute + 'AM';
         }
         else{
             currentTime = hour + ':' + minute +'AM';
