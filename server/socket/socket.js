@@ -14,6 +14,11 @@ var REMOVE_VISITOR = "remove_visitor";
 var ADD_VISITOR = "add_visitor";
 var NOTIFY_ERROR = "notify_error";
 var GET_APPOINTMENT = "get";
+var NOT_FOUND = "not found";
+var NOT_30MIN = "not within 30 min";
+var PASSED = "appointment time has passed";
+var MIN30SEC = 1800000;
+var error_msg = false;
 
 var AppointmentCtr = require('../routes/appointment/appointment.controller');
 var VisitorListCtr = require('../routes/visitorList/visitorList.controller');
@@ -93,25 +98,9 @@ exports.createServer = function(io_in) {
             console.log("LOOKING FOR APPOINTMENT");
             var company_id = data.company_id;
             var appt = exports.getMatch(data);
-            if (appt == false) {
-                console.log("error");
-                exports.notifyError(company_id, {error: err_msg});
-            }
-            else {
-                console.log("ADDING VISITOR");
-                console.log(data);
-                console.log(data.company_id);
-                var company_id = data.company_id;
-                VisitorListCtr.create(data, function(err_msg, result){
-                    if(err_msg){
-                        console.log("error");
-                        exports.notifyError(company_id, {error: err_msg});
-                    }
-                    else {
-                        console.log(result);
-                        exports.notifyNewList(company_id, result);
-                    }
-                });
+            if (error_msg != false) {
+                console.log(error_msg);
+                exports.notifyError(company_id, {error: error_msg});
             }
 
         });
@@ -127,23 +116,73 @@ exports.getMatch = function(data) {
                         phone_number: data.phone_number}, function(err, a) {
         if (err) {
             console.log("Appointment could not be found");
-            return false;
+            error_msg = NOT_FOUND;
         }
         else {
             console.log(a);
             /* Check if appointment time is today */
-            if (a === []) {
+            if (!a.length) {
                 console.log("No matching appointments");
-                return false;
+                error_msg = NOT_FOUND;
             }
             else {
-
                 console.log("Appointment found");
-                return a.date;
+                var closest = Number.MAX_VALUE;
+                var date = null;
+                var curr = a[0].date;
+                var now = new Date();
+                var timeLeft = 0;
+                // Loop through list of appointments to find closest one within 
+                // 30 minutes of the current time right now
+                for (var i = 0; i < a.length; i++) {
+                    curr = a[i].date;
+                    timeLeft = Date.parse(curr) - Date.parse(now)
+                    if (timeLeft >= (-MIN30SEC)) {
+                        if (Date.parse(curr) < closest) {
+                            date = curr;
+                        }
+                    }
+                }
+                console.log(date);
+                timeLeft = Date.parse(date) - Date.parse(now)
+                if (date == null) {
+                    console.log("Could not find an appointment");
+                    error_msg = true;
+                }
+                if (timeLeft < (-MIN30SEC)) {
+                    console.log("appointment passed time");
+                    error_msg = PASSED;
+                }
+                else if (timeLeft <= MIN30SEC) {
+                    console.log("appointment confirmed");
+                    error_msg = false;
+                }
+                else {
+                    console.log("Not within 30 minutes before appointment");
+                    error_msg = NOT_30MIN;
+                }
+            }
+            if (error_msg == false) {
+                console.log("ADDING VISITOR");
+                console.log(data);
+                console.log(data.company_id);
+                var company_id = data.company_id;
+                VisitorListCtr.create(data, function(err_msg, result){
+                    if(err_msg){
+                        console.log("error");
+                        exports.notifyError(company_id, {error: err_msg});
+                    }
+                    else {
+                        console.log(result);
+                        exports.notifyNewList(company_id, result);
+                    }
+                });
             }
         }
     });
 }
+
+
 
 /*
  * A function that allows you to notify all clients that
