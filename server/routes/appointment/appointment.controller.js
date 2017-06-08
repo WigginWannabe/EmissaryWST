@@ -142,7 +142,7 @@ module.exports.template.getAll = function(req, res) {
  * @example
  * // error response
  * {
- *  error: "Could Not Find"
+ *  error: "Could Not Find Appointment"
  * }
  * @returns a response indicating either Success or Error
  */
@@ -176,7 +176,7 @@ module.exports.template.get = function(req, res) {
  * @example
  * // error response
  * {
- *  error: "Could Not Find"
+ *  error: "Could Not Find Appointment To Update"
  * }
  * @returns a response indicating either Success or Error
  */
@@ -228,7 +228,7 @@ module.exports.template.update = function(req, res){
  * @example
  * // error response
  * {
- *  error: "Could Not Find"
+ *  error: "Could Not Find Appointment To Delete"
  * }
  * @returns a response indicating either Success or Error
  */

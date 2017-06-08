@@ -96,7 +96,7 @@ exports.getCompanyVisitorListReq = function(req, res){
  * @example
  * // error response
  * {
- *  error: "Getting Visitor List"
+ *  error: "Error in saving Visitor List"
  * }
  * @returns a response indicating either Success or Error
  */
@@ -169,7 +169,7 @@ exports.deleteVisitorReq = function(req, res){
  * @example
  * // error response
  * {
- *  error: "Can't Update List"
+ *  error: "Error in deleting visitor."
  * }
  * @returns a response indicating either Success or Error
  */
@@ -249,7 +249,7 @@ exports.deleteReq = function(req, res){
  * @example
  * // error response
  * {
- *  error: "Can't find company"
+ *  error: "Can't find company while deleting a visitor."
  * }
  * @returns a response indicating either Success or Error
  */
@@ -344,7 +344,7 @@ exports.createReq = function(req, res) {
  * @example
  * // error response
  * {
- *  error: "Getting Visitor List"
+ *  error: "Error getting Visitor List"
  * }
  * @returns a response indicating either Success or Error
  */
