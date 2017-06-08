@@ -141,11 +141,11 @@
 		
 		<h3>Companies</h3>
 		
-		<!-- TO DO: Move js functions to js files -->
+		<!-- TODO: Move js functions to js files -->
 		<script type="text/javascript">
 		jQuery( window ).load( function() {
 			var $table2 = jQuery( "#table-2" );
-			
+
 			// Initialize DataTable
 			$table2.DataTable( {
 				"sDom": "tip",
@@ -160,28 +160,28 @@
 				],
 				"bStateSave": true
 			});
-			
+
 			// Highlighted rows
 			$table2.find( "tbody input[type=checkbox]" ).each(function(i, el) {
 				var $this = $(el),
 					$p = $this.closest('tr');
-				
+
 				$( el ).on( 'change', function() {
 					var is_checked = $this.is(':checked');
-					
+
 					$p[is_checked ? 'addClass' : 'removeClass']( 'highlight' );
 				} );
 			} );
-			
+
 			// Replace Checkboxes
 			$table2.find( ".pagination a" ).click( function( ev ) {
 				replaceCheckboxes();
 			} );
 		} );
-			
+
 		// Sample Function to add new row
 		var giCount = 1;
-		
+
 		function fnClickAddRow() {
 			jQuery('#table-2').dataTable().fnAddData( [ '<div class="checkbox checkbox-replace"><input type="checkbox" /></div>', giCount + ".1", giCount + ".2", giCount + ".4" ] );
 			replaceCheckboxes(); // because there is checkbox, replace it
@@ -190,12 +190,11 @@
 
 		// Handlebars helper function to trim timestamp to just the date
         Handlebars.registerHelper('trimStringToDate', function(passedString) {
-            //var theString = passedString.substring(0,150);
             var theString = passedString.split('T')[0];
             return new Handlebars.SafeString(theString)
         });
 		</script>
-		
+
 		<table class="table table-bordered table-striped datatable" id="table-2">
 			<thead>
 				<tr>
@@ -206,9 +205,9 @@
 				    <th>Last Login</th>
                 </tr>
 			</thead>
-			
+
 			<tbody id = "company-list">
-			
+
 			</tbody>
 		</table>
 
@@ -219,7 +218,7 @@
                 <td>{{this.email}}</td>
                 <td>{{this.phone_number}}</td>
                 <td>{{trimStringToDate this.paid_time}}</td>
-                <td>{{this.paid_time}}</td>  <!--TODO record last login-->
+                <td>{{this.lost_login}}</td>
 				<!-- Modal -->
             </tr>
             {{/each}}
