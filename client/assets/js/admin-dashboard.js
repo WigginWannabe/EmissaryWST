@@ -13,7 +13,14 @@ jQuery(document).ready(function($)
         type: 'pie',
         width: '100',
         height: '100',
-        sliceColors: ['#fffa74','#74db4a']
+        sliceColors: ['#fffa74','#74db4a'],
+        tooltipFormat: '{{offset:offset}} ({{percent.1}}%)',
+        tooltipValueLookups: {
+            'offset': {
+                0: 'Trial',
+                1: 'Paid',
+            }
+        }
     });
 });
 
