@@ -69,7 +69,7 @@ module.exports.template.create = function(req, res) {
 
     company.save(function(err, c) {
         if(err) {
-            return res.status(400).json({error: "Could Not Save"});
+            return res.status(400).json({error: "Company Could Not Be Saved"});
         }
         return res.status(200).json(showCompanyPublicInfo(c));
     });
@@ -113,7 +113,7 @@ module.exports.template.getAll = function(req, res) {
         }
         , function(err, result){
         if(err){
-            return res.status(400).json(err);
+            return res.status(400).json({error: "Getting All Companies Failed"});
         }
         return res.status(200).json(result);
     });
@@ -144,7 +144,7 @@ module.exports.template.getAll = function(req, res) {
 module.exports.template.get = function(req, res) {
     Company.findOne({_id: req.params.id}, function(err, company) {
         if(err)
-            return res.status(400).json({error: "Could Not Save"});
+            return res.status(400).json({error: "Cannot Find Company. Incorrect Credentials"});
         return res.status(200).json(showCompanyPublicInfo(company));
     });
 };
@@ -175,7 +175,7 @@ module.exports.template.get = function(req, res) {
 module.exports.template.update = function(req, res){
     Company.findOne({_id: req.params.id}, function (err, c) {
         if(err || !c)
-            return res.status(401).json({error: "Could Not Find"});
+            return res.status(401).json({error: "Could Not Find Company To Update"});
 
         //update email
         if (req.body.email !== undefined)
@@ -191,7 +191,7 @@ module.exports.template.update = function(req, res){
 
         c.save(function(err) {
             if(err) {
-                return res.status(400).json({error: "Could Not Save"});
+                return res.status(400).json({error: "Could Not Save Company Update"});
             }
             return res.status(200).json(showCompanyPublicInfo(c));
         });
@@ -222,10 +222,10 @@ module.exports.template.update = function(req, res){
 module.exports.template.delete = function(req, res){
     Company.findById(req.params.id, function(err, c) {
         if(err)
-            res.status(400).json({error: "Could Not Find"});
+            res.status(400).json({error: "Could Not Find Company To Delete"});
         c.remove(function(err) {
             if(err) {
-                res.status(400).json({error: "Could Not Save"});
+                res.status(400).json({error: "Could Not Delete Company"});
             } else {
                 return res.status(200).json(showCompanyPublicInfo(c));
             }
@@ -264,7 +264,7 @@ module.exports.template.delete = function(req, res){
 module.exports.template.resetCredentials = function(req, res) {
     Company.findOne({email: req.params.user}, function (err, c) {
         if(err || !c)
-            return res.status(400).json({error: "Could Not Find"});
+            return res.status(400).json({error: "Cannot Find Company"});
 
 
         // if the user is found but the password is wrong
@@ -290,7 +290,7 @@ module.exports.template.resetCredentials = function(req, res) {
 
         c.save(function(err) {
             if(err) {
-                res.status(400).send({error: "Could Not Save"});
+                res.status(400).send({error: "Could Not Save Company Credentials Update"});
             }
         });
         return res.status(200).json(showCompanyPublicInfo(c));

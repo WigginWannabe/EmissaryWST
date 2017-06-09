@@ -3,14 +3,14 @@
 module.exports = {
   beforeEach: (browser) => {
     browser
-    .url('http://emissary-pseudopandas.herokuapp.com/login')
+    .url('http://emissary-pseudopandas-dev.herokuapp.com/login')
     .waitForElementVisible('body',10000);
   },
   AddingAppointment: (browser) => {
     browser.setValue('#username',"testing@testing.com");
     browser.setValue('#password',"password123");
     browser.click('#loginButton').pause(1000);
-    browser.assert.urlEquals("http://emissary-pseudopandas.herokuapp.com/visitors");
+    browser.assert.urlEquals("http://emissary-pseudopandas-dev.herokuapp.com/visitors");
     browser.assert.attributeContains("#main-menu li:nth-child(3) a", "href","appointments.html");
     browser.click('#main-menu li:nth-child(3)');
     browser.assert.containsText("#appt-list tr td:nth-child(1)","Hello");

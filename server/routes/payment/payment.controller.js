@@ -17,7 +17,7 @@ exports.createSubscription = function(req, res){
 		source: req.body.stripeToken
 	}, function (err, customer){ // then passes err and customer to this callback for handling
 		if (err) {
-			return res.status(400).send({ error: "Could not create customer" });
+			return res.status(400).send({ error: "Could not create customer for createSubscription" });
 		}
 		// TODO: set company's subscribed to true and 
 		// save customerID to account with a call to api/companies/update?
@@ -33,7 +33,7 @@ exports.getSubscription = function(req, res){
 				var subList = subscriptions.data;
 				var index = basicPlanIndex(subList);
 				if (index == -1){
-					return res.status(200).json({error: "Could not find"});
+					return res.status(200).json({error: "Could not find getSubscription"});
 				}
 				else {
 					return res.status(200).json(subList[index]);
