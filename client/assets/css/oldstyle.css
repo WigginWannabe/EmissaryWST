@@ -1,3 +1,4 @@
+
 body {
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
@@ -67,32 +68,26 @@ img { max-width: 100%; }
 .btn-link-2:active, .btn-link-2:active:focus { outline: 0; opacity: 0.6; background: rgba(0, 0, 0, 0.3); color: #fff; }
 
 
-/***** Dropdown Menu Homepage *****/
+/***** Top menu *****/
 .dropdown-content {
-	background-color: #303641;
-	box-shadow: 0px 8px 16px 9px rgba(0,0,0,0.2);
 	display: none;
-	float: right;
-	min-width: 68px;
 	position: absolute;
-	right: 0px;
-	top: 68px;
+	background-color: #f9f9f9;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 9px rgba(0,0,0,0.2);
 	z-index: 1;	
 }
 
 .dropdown-content a {
-	color: white;
-	display: block;
-	font-family: inherit;
-	font-size: 13px;
+	color: blue;
 	padding: 12px 16px;
-	text-align: center;
 	text-decoration: none;
-	text-transform: uppercase;
+	display: block;
 }
 
-.dropdown-content a:hover {background-color: #1DB2BC;}
-/***** Top menu *****/
+.dropdown-content a:hover {background-color: #f1f1f1;}
+
+.show {display:block;}
 
 .navbar {
 	padding-top: 10px;
@@ -234,6 +229,8 @@ form.registration-form fieldset {
 	.form-bottom { padding-bottom: 25px; }
 	form .form-bottom button.btn { margin-bottom: 5px; }
 
+	.dropdown-content {display: none;}
+
 }
 
 @media (max-width: 415px) {
@@ -266,3 +263,4 @@ only screen and (                min-resolution: 2dppx) {
 	color: red;
 	font-size: 10pt;
 	font-family: Arial;
+}

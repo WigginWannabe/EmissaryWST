@@ -1,14 +1,14 @@
 module.exports = {
     beforeEach: (browser) => {
         browser
-            .url('http://emissary-pseudopandas.herokuapp.com/login')
+            .url('http://emissary-pseudopandas-dev.herokuapp.com/login')
             .waitForElementVisible('body', 10000);
     },
     TestingVistor: (browser) => {
         browser.setValue('#username', "testing@testing.com");
         browser.setValue('#password', "password123");
         browser.click('#loginButton').pause(1000);
-        browser.assert.urlEquals("http://emissary-pseudopandas.herokuapp.com/visitors");
+        browser.assert.urlEquals("http://emissary-pseudopandas-dev.herokuapp.com/visitors");
         browser.assert.attributeContains("#main-menu li:nth-child(1) a", "href", "visitors");
         browser.click('#main-menu li:nth-child(1)').pause(1000);
         browser.assert.containsText("#visitor-list tr td:nth-child(1)", "First");
@@ -18,7 +18,7 @@ module.exports = {
 
         browser.click('.dropdown i').pause(1000);
         browser.click('.dropdown-menu li:nth-child(1) a').pause(1000);
-        browser.assert.urlEquals("http://emissary-pseudopandas.herokuapp.com/checkin");
+        browser.assert.urlEquals("http://emissary-pseudopandas-dev.herokuapp.com/checkin");
 
         browser.click('#tap-to-check');
 
@@ -29,7 +29,7 @@ module.exports = {
         browser.click('.submit-check-in').pause(1000);
 
 
-        browser.url("http://emissary-pseudopandas.herokuapp.com/visitors").pause(1000);
+        browser.url("http://emissary-pseudopandas-dev.herokuapp.com/visitors").pause(1000);
 
         browser.execute(function(data) {
             return document.getElementById("visitor-list").getElementsByTagName("tr").length;

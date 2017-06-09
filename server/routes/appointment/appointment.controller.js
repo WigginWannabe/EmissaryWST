@@ -142,14 +142,14 @@ module.exports.template.getAll = function(req, res) {
  * @example
  * // error response
  * {
- *  error: "Could Not Find"
+ *  error: "Could Not Find Appointment"
  * }
  * @returns a response indicating either Success or Error
  */
 module.exports.template.get = function(req, res) {
     Appointment.findOne({_id: req.params.id}, function(err, a) {
         if(err || !a)
-            return res.status(400).send({error: "Could Not Find"});
+            return res.status(400).send({error: "Could Not Find Appointment"});
         return res.status(200).json(a);
     });
 };
@@ -176,14 +176,14 @@ module.exports.template.get = function(req, res) {
  * @example
  * // error response
  * {
- *  error: "Could Not Find"
+ *  error: "Could Not Find Appointment To Update"
  * }
  * @returns a response indicating either Success or Error
  */
 module.exports.template.update = function(req, res){
     Appointment.findOne({_id: req.params.id}, function (err, a) {
         if(err || !a)
-            return res.status(401).json({error: "Could Not Find"});
+            return res.status(401).json({error: "Could Not Find Appointment To Update"});
 
         if (req.body.first_name !== undefined)
             a.first_name = req.body.first_name;
@@ -199,10 +199,10 @@ module.exports.template.update = function(req, res){
 
         if (req.body.provider_name!== undefined)
             a.provider_name = req.body.provider_name;
-        //TODO check if the date is taken already
+        //TO check if the date is taken already
         a.save(function(err) {
             if(err) {
-                return res.status(400).json({error: "Could Not Save"});
+                return res.status(400).json({error: "Could Not Save Appointment Update"});
             }
             return res.status(200).json(a);
         });
@@ -228,20 +228,57 @@ module.exports.template.update = function(req, res){
  * @example
  * // error response
  * {
- *  error: "Could Not Find"
+ *  error: "Could Not Find Appointment To Delete"
  * }
  * @returns a response indicating either Success or Error
  */
 module.exports.template.delete = function(req, res){
     Appointment.findById(req.params.id, function(err, a) {
         if(err)
-            res.status(400).json({error: "Could Not Find"});
+            res.status(400).json({error: "Could Not Find Appointment To Delete"});
         a.remove(function(err) {
             if(err) {
-                res.status(400).json({error: "Could Not Save"});
+                res.status(400).json({error: "Could Not Delete Appointment"});
             } else {
                 return res.status(200).json(a);
             }
         });
     });
 };
+
+
+
+/*module.exports.template.getMatch = function(req, res) {
+    console.log({_id: req.params.id, first_name: req.params.first_name, 
+                        last_name: req.params.last_name, 
+                        phone_number: req.params.phone_number});
+    Appointment.find({_id: req.params.id, first_name: req.params.first_name, 
+                        last_name: req.params.last_name, 
+                        phone_number: req.params.phone_number}, function(err, a) {
+        if (err) {
+            console.log("Appointment could not be found");
+            return res.status(400).json(err);
+        }
+        else {
+            console.log("Appointment found");
+            return res.status(200).json(a);
+        }
+    });
+}*/
+
+ /*           var company_id = data.company_id;
+            var first_name = data.first_name;
+            var last_name = data.last_name;
+            var phone_num = data.phone_number;
+            var apptArray = a.toArray()
+            var found = 0;
+            for (int i = 0; i < apptArray.length; i++) {
+                if (first_name == result.first_name && last_name == result.last_name && phone_num == result.phone_number) {
+                   console.log("Found appointment");
+                   var found = 1;
+                }
+            }
+            if (!found) {
+                console.log("No matching appointment");
+            }
+*/
