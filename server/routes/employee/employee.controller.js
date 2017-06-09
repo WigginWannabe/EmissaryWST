@@ -29,7 +29,7 @@ var Employee = require('../../models/Employee');
  * @example
  * // error response
  * {
- *  error: "Incorrect Credentials"
+ *  error: "Cannot Find Email Address"
  * }
  * @returns a response indicating either Success or Error
  */
@@ -72,7 +72,7 @@ exports.login = function(req, res) {
  * @example
  * // error response
  * {
- *  error: "Cannot Find"
+ *  error: "Cannot Find Employees"
  * }
  * @returns a response indicating either Success or Error
  */
@@ -102,7 +102,7 @@ exports.getAllEmployees = function(req, res) {
  * @example
  * // error response
  * {
- *  error: "Cannot Find"
+ *  error: "Employee Cannot Find The ID"
  * }
  * @returns a response indicating either Success or Error
  */
@@ -142,7 +142,7 @@ exports.getById = function(req, res) {
  * @example
  * // error response
  *  {
- *   error: "Cannot save"
+ *   error: "Employee Insert Cannot Save"
  *  }
  * @returns a response indicating either Success or Error
  */
@@ -194,7 +194,7 @@ exports.insert = function(req, res) {
  * @example
  * // error response
  * {
- *  error: "Cannot Save"
+ *  error: "Employee Update Cannot Save"
  * }
  * @returns a response indicating either Success or Error
  */
@@ -239,7 +239,7 @@ exports.update = function(req, res) {
  * @example
  * // error response
  * {
- *  error: "Cannot Find"
+ *  error: "Employee Delete Cannot Find The Employee"
  * }
  * @returns a response indicating either Success or Error
  */

@@ -20,3 +20,16 @@ exports.view = function(req, res){
 		
 		res.render('checkin');
 };
+
+exports.post = function(req, res) {
+	
+	var query = { first_name: data['first_name'], last_name: data['last_name'], 
+    phone_number: data['phone_number'], date: data['checkin_time'] };
+    db.collection("appointments").find(query).toArray(function(err, result) {
+        if (err) throw err;
+        console.log(result);
+        res.render('checkin');
+        db.close();
+	});	
+
+}

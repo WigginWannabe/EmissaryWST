@@ -48,7 +48,7 @@ module.exports.template = {};
  * @example
  * // error response
  *  {
- *   error: "Could Not Save"
+ *   error: "Company Could Not Be Saved"
  *  }
  * @returns a response indicating either Success or Error
  */
@@ -101,7 +101,7 @@ module.exports.template.create = function(req, res) {
  * @example
  * // error response
  * {
- *   error: "Incorrect Credentials"
+ *   error: "Getting All Companies Failed"
  * }
  * @returns a response indicating either Success or Error
  */
@@ -137,7 +137,7 @@ module.exports.template.getAll = function(req, res) {
  * @example
  * // error response
  * {
- *   error: "Incorrect Credentials"
+ *   error: "Cannot Find Company. Incorrect Credentials"
  * }
  * @returns a response indicating either Success or Error
  */
@@ -168,7 +168,7 @@ module.exports.template.get = function(req, res) {
  * @example
  * // error response
  * {
- *   error: "Could Not Find"
+ *   error: "Could Not Find Company To Update"
  * }
  * @returns a response indicating either Success or Error
  */
@@ -215,7 +215,7 @@ module.exports.template.update = function(req, res){
  * @example
  * // error response
  *  {
- *   error: "Could Not Find"
+ *   error: "Could Not Find Company To Delete"
  *  }
  * @returns a response indicating either Success or Error
  */
@@ -252,12 +252,12 @@ module.exports.template.delete = function(req, res){
  * @example
  * // error response
  *  {
- *   error: "Could Not Find"
+ *   error: "Cannot Find Company"
  *  }
  * @example
  * // error response
  *  {
- *   error: "Could Not Save"
+ *   error: "Could Not Save Company Credentials Update"
  *  }
  * @returns a response indicating either Success or Error
  */
