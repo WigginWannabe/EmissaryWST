@@ -20,6 +20,8 @@ gulp.task('frontend',['serve:frontend'], function() {
   gulp.watch(['./client/index.html', './client/app/**/*'], ['concat:js', 'copy:views', 'bower']);
   gulp.watch('./client/assets/**', ['copy:assets']);
   gulp.watch('./client/js/**',['copy:js']);
+  gulp.watch('./client/css/*.png', ['copy:schedule-imgs1']);
+  gulp.watch('./client/css/*.gif', ['copy:schedule-imgs2']);
   gulp.watch('./client/css/**',['copy:css']);
   gulp.watch('./client/assets/views/*.html',['copy:views']);
 });
@@ -32,6 +34,8 @@ gulp.task('frontend:combined', ['build:dev'], function() {
   gulp.watch('./client/assets/**', ['copy:assets']);
   gulp.watch('./client/js/*.js', ['copy:js']);
   gulp.watch('./client/css/*.css', ['copy:css']);
+  gulp.watch('./client/css/*.png', ['copy:schedule-imgs1']);
+  gulp.watch('./client/css/*.gif', ['copy:schedule-imgs2']);
   gulp.watch('./client/img/**', ['copy:images']);
   gulp.watch('./client/assets/views/*.html',['copy:views']);
 

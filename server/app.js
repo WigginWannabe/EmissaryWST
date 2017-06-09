@@ -134,6 +134,9 @@ app.get('/admin-settings', function(req,res){
 app.get('/index', function(req,res){
   res.sendFile(path.join(__dirname,'../dist/assets/views/index.html'))
 });   
+app.get('/scheduler', function(req,res){
+  res.sendFile(path.join(__dirname,'../dist/assets/views/scheduler.html'))
+});
 /*
  * Error Handler.
  */
