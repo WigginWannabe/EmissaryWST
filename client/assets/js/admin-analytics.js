@@ -276,6 +276,7 @@
     }
 
     //TODO get trial statistics to use to calculate the count
+    // Counts the number of companies on the free trial
     function countTrials(companies) {
         var count = 0;
         /*for (var comp in companies) {
@@ -290,12 +291,11 @@
     var companies = getCompanies();
     var num = companies.length;
 
-    var numTrials = countTrials(companies);
-    var numPaid = num - numTrials;
+    numTrials = countTrials(companies);
+    numPaid = num - numTrials;
     var percentPaid = Number(((numPaid/num).toFixed(2))*100);
 
     document.getElementById('companyCount').innerHTML = num;
-    document.getElementById('clientPie').innerHTML = [numTrials, numPaid];
     document.getElementById('clientPercent').innerHTML = percentPaid.toString() + "%";
     // Add an event listener to the 'auth-button'.
     document.getElementById('auth-button').addEventListener('click', authorize);
