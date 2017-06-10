@@ -48,6 +48,21 @@ textarea::-webkit-input-placeholder, textarea.form-control::-webkit-input-placeh
    padding: 0px !important;
 }
 
+.text-paid-service{
+   font-family: 'Roboto', sans-serif;
+   font-size: 12px;
+}
+
+input[type="radio"]{
+   vertical-align: middle;
+   margin: 0px;
+}
+
+.radio-inline{
+   font-family: 'Roboto', sans-serif;
+   font-size: 12px;
+}
+
 #signup-up-body{
    overflow: hidden;
 }
