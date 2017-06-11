@@ -28,7 +28,6 @@ $(document).ready(function(){
         company.phone_number = $('#form-phone').val();
         // adding radio button
         company.is_paid = $('input[name=is-paid]:checked').val();
-        alert(company.is_paid);
         return company;
 
     }
