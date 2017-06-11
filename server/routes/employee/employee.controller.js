@@ -167,6 +167,7 @@ exports.insert = function(req, res) {
     employee.company_id = req.body.company_id,
     employee.password = employee.generateHash(req.body.password),
     employee.role =  req.body.role;
+    employee.last_login = new Date();
 
     employee.save(function(err, e) {
         if(err) {
