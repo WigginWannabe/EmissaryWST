@@ -31,19 +31,29 @@ var Employee = require('../../models/Employee');
  * {
  *  error: "Cannot Find Email Address"
  * }
- * @returns a response indicating either Success or Error
- */
+  * @returns a response indicating either Success or Error
+   */
 exports.login = function(req, res) {
+    var loginTime = new Date();
+
     Employee.findOne({email:req.body.email}, function(err, e) {
         if(err || !e){
-          return res.status(400).send({error: "Cannot Find Email Address"});
+          return res.status(400).send({error: "Can not Find"});
         }
-        if(!e.validPassword(req.body.password))
-          return res.status(400).send({error: "Incorrect Password"});
-        var employee_json=e.toJSON();
-        delete employee_json.password;
-        return res.status(200).json(employee_json);
-    });
+        if(!e.validPassword(req.body.password)) {
+          return res.status(400).send({error: "Incorrect Credentials"});
+        }
+        e.last_login = loginTime;
+        e.save(function(err, updatedEmployee) {
+            if (err || !e) {
+                return res.status(400).send({error: "/login: Error saving login time"});
+            }
+
+            var employee_json = updatedEmployee.toJSON();
+            delete employee_json.password;
+            return res.status(200).json(employee_json);
+        });
+      });
 };
 
 

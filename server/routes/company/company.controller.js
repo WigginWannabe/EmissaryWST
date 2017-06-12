@@ -59,6 +59,7 @@ module.exports.template.create = function(req, res) {
     company.email = req.body.email;
     company.name = req.body.name;
     company.phone_number = req.body.phone_number;
+    company.is_paid = req.body.is_paid;
     company.paid_time=new Date();
 
     //optinal info
