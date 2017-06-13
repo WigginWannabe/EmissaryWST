@@ -293,7 +293,10 @@
     numTrials = num - numPaid;
     var percentPaid = Number(((numPaid/num).toFixed(2))*100);
 
+    var revenue = numPaid * 20;
+
     document.getElementById('companyCount').innerHTML = num;
     document.getElementById('clientPercent').innerHTML = percentPaid.toString() + "%";
+    document.getElementById('revenueGenerated').innerHTML = "$" + revenue.toString();
     // Add an event listener to the 'auth-button'.
     document.getElementById('auth-button').addEventListener('click', authorize);
