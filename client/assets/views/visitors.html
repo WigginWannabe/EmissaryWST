@@ -91,12 +91,24 @@
 			<ul id="main-menu" class="main-menu">
 				<!-- add class "multiple-expanded" to allow multiple submenus to open -->
 				<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
+                <li>
+                    <a href="/checkin.html">
+                        <i class="entypo-login"></i>
+                        <span class="title">Check-In</span>
+                    </a>
+                </li>
 				<li>
 					<a href="#">
 						<i class="entypo-users"></i>
 						<span class="title">Visitors</span>
 					</a>
 				</li>
+                <li>
+                    <a href="/scheduler.html">
+                        <i class="entypo-calendar"></i>
+                        <span class="title">Scheduler</span>
+                    </a>
+                </li>
 				<li>
 					<a href="/employees.html">
 						<i class="entypo-user"></i>
@@ -106,21 +118,9 @@
 				<li>
 					<a href="/form-builder.html">
 						<i class="entypo-clipboard"></i>
-						<span class="title">Forms</span>
+						<span class="title">Form Builder</span>
 					</a>
 				</li>
-				<li>
-					<a href="/settings.html">
-						<i class="entypo-tools"></i>
-						<span class="title">Settings</span>
-					</a>
-				</li>
-                <li>
-                    <a href="/scheduler.html">
-                        <i class="entypo-calendar"></i>
-                        <span class="title">Scheduler</span>
-                    </a>
-                </li>
 			</ul>
 
 		</div>
@@ -150,9 +150,11 @@
 					<div class="dropdown">
                         <i class="fa fa-3x fa-cog dropdown-toggle" data-toggle="dropdown"></i>
                         <ul class="dropdown-menu">
-                            <li><a href="/checkin.html">Check-In</a></li>
                             <li><a id="logoutButton" href="/index.html">
-                                Log Out <i class="entypo-logout right"></i></a>
+                                <i class="entypo-logout"></i>Log Out </a>
+                            </li>
+                            <li><a href="/settings.html">
+                                <i class="entypo-tools"></i>Profile</a>
                             </li>
                         </ul>
                   </div>
@@ -172,10 +174,10 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th st-sort="Name">First</th>
-                    <th st-sort="Appointment">Last</th>
+                    <th st-sort="Name">First Name</th>
+                    <th st-sort="Appointment">Last Name</th>
                     <th st-sort="Appointment">Appointment Time</th>
-                    <th st-sort="Time">Check-in Time</th>
+                    <th st-sort="Time">Check In Time</th>
                 </tr>
             </thead>
 
