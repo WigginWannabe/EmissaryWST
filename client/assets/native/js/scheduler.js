@@ -7,6 +7,7 @@ $(document).ready(function(){
       { name:"Employee", height:25, map_to:"employee", type:"textarea", focus:true },
       { name:"time", height:72, type:"time", map_to:"auto"} 
     ];
+    scheduler.config.time_step = 15;
     scheduler.attachEvent("onTemplatesReady", function(){
     scheduler.templates.event_text=function(start,end,event){
         return "<b>" + event.text + "</b><br><i>" + event.employee + "</i>";
