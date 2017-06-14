@@ -6,6 +6,7 @@ $(document).ready(function(){
 
     var VALIDATE_COMPANY_ID = "validate_company_id";
     var ADD_VISITOR = "add_visitor";
+    var GET_APPOINTMENT = "get";
     
     var companyData = JSON.parse(localStorage.getItem("currentCompany"));
     console.log(companyData);
@@ -15,6 +16,15 @@ $(document).ready(function(){
     document.ontouchmove = function(e) {
         e.preventDefault();
     };
+
+    socket.on(GET_APPOINTMENT, function(data) {
+        if (data.error) {
+            alert("error occured when getting appointment");
+        }
+        else {
+            alert("appointment found");
+        }
+    })
 
     //Bind Listeners
     $('#tap-to-check').on('click', startCheckIn);

@@ -10,7 +10,7 @@ var Schema = mongoose.Schema;
  * Appointment schema
  */
 
-//TODO add last and first name field
+//add last and first name field
 var appointmentSchema = mongoose.Schema({
     first_name: {type: String, required: true},
     last_name: {type: String, required: true},
@@ -18,6 +18,7 @@ var appointmentSchema = mongoose.Schema({
     date: {type: Date, required: true},
     provider_name: {type: String, required: true},
     company_id: { type: Schema.Types.ObjectId, ref: 'Company', required: true },
+    checked_in: { type: Boolean, default: false, required: true },
 });
 
 module.exports = mongoose.model('appointment', appointmentSchema);

@@ -97,7 +97,7 @@ exports.createServer = function(io_in) {
         socket.on(ADD_VISITOR, function(data) {
             console.log("LOOKING FOR APPOINTMENT");
             var company_id = data.company_id;
-            var appt = exports.getMatch(data);
+            var appt = getMatch(data);
             if (error_msg != false) {
                 console.log(error_msg);
                 exports.notifyError(company_id, {error: error_msg});
@@ -109,11 +109,12 @@ exports.createServer = function(io_in) {
     return server;
 };
 
-exports.getMatch = function(data) {
+var getMatch = function(socket, data) {
     console.log(data.company_id);
+
     Appointment.find({first_name: data.first_name, 
                         last_name: data.last_name, 
-                        phone_number: data.phone_number}, function(err, a) {
+                        company_id: data.company_id}, function(err, a) {
         if (err) {
             console.log("Appointment could not be found");
             error_msg = NOT_FOUND;
@@ -132,6 +133,7 @@ exports.getMatch = function(data) {
                 var curr = a[0].date;
                 var now = new Date();
                 var timeLeft = 0;
+                var apptToCheckin = null;
                 // Loop through list of appointments to find closest one within 
                 // 30 minutes of the current time right now
                 for (var i = 0; i < a.length; i++) {
@@ -140,6 +142,7 @@ exports.getMatch = function(data) {
                     if (timeLeft >= (-MIN30SEC)) {
                         if (Date.parse(curr) < closest) {
                             date = curr;
+                            apptToCheckin = i;
                         }
                     }
                 }
@@ -155,6 +158,15 @@ exports.getMatch = function(data) {
                 }
                 else if (timeLeft <= MIN30SEC) {
                     console.log("appointment confirmed");
+                    a[apptToCheckin].checked_in = true;
+                    a[apptToCheckin].save( function(err) {
+                        if (err) {
+                            socket.emit(ADD_VISITOR, { error: err });
+                        } 
+                        else {
+                            socket.emit(ADD_VISITOR, { succes: true });
+                        }
+                    })
                     error_msg = false;
                 }
                 else {
