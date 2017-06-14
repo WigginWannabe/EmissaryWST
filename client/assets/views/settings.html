@@ -89,87 +89,81 @@
             </header>
 
 
-            <ul id="main-menu" class="main-menu">
-                <!-- add class "multiple-expanded" to allow multiple submenus to open -->
-                <!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
+			<ul id="main-menu" class="main-menu">
+				<!-- add class "multiple-expanded" to allow multiple submenus to open -->
+				<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
                 <li>
-                    <a href="/visitors.html">
-                        <i class="entypo-users"></i>
-                        <span class="title">Visitors</span>
+                    <a href="/checkin.html">
+                        <i class="entypo-login"></i>
+                        <span class="title">Check-In</span>
                     </a>
                 </li>
-                <li>
-                    <a href="/employees.html">
-                        <i class="entypo-user"></i>
-                        <span class="title">Employees</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/form-builder.html">
-                        <i class="entypo-clipboard"></i>
-                        <span class="title">Forms</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="entypo-tools"></i>
-                        <span class="title">Settings</span>
-                    </a>
-                </li>
+				<li>
+					<a href="/visitors.html">
+						<i class="entypo-users"></i>
+						<span class="title">Visitors</span>
+					</a>
+				</li>
                 <li>
                     <a href="/scheduler.html">
                         <i class="entypo-calendar"></i>
                         <span class="title">Scheduler</span>
                     </a>
                 </li>
-            </ul>
+				<li>
+					<a href="/employees.html">
+						<i class="entypo-user"></i>
+						<span class="title">Employees</span>
+					</a>
+				</li>
+				<li>
+					<a href="/form-builder.html">
+						<i class="entypo-clipboard"></i>
+						<span class="title">Form Builder</span>
+					</a>
+				</li>
+			</ul>
 
-        </div>
+		</div>
 
-    </div>
+	</div>
 
-    <div class="main-content">
+	<div class="main-content">
+		<div class="row">
 
-        <div class="row">
+			<!-- Profile Info and Notifications -->
+			<div class=" col-md-6 col-sm-8 clearfix">
 
-            <!-- Profile Info and Notifications -->
-            <div class="col-md-6 col-sm-8 clearfix">
+				<ul class="user-info pull-left pull-none-xsm">
+					<!-- Profile Info -->
+					<li class="profile-info dropdown"><!-- add class "pull-right" if you want to place this from right -->
+						<div id="company-name">
+							<h1>Hello, <span id="user-name"> </span></h1>
+						</div>
+					</li>
+				</ul>
+			</div>
 
-                <ul class="user-info pull-left pull-none-xsm">
+			<!-- Raw Links -->
+			<div class="col-md-6 col-sm-4 clearfix hidden-xs">
 
-                    <!-- Profile Info -->
-                    <li class="profile-info dropdown"><!-- add class "pull-right" if you want to place this from right -->
-
-                        <div id="company-name">
-                            <h1>Hello, <span id="user-name"> </span></h1>
-                        </div>
-
-
-                    </li>
-
-                </ul>
-
-            </div>
-
-
-            <!-- Raw Links -->
-            <div class="col-md-6 col-sm-4 clearfix hidden-xs">
-
-                <ul class="list-inline links-list pull-right">
-                    <div class="dropdown">
+				<ul class="list-inline links-list pull-right">
+					<div class="dropdown">
                         <i class="fa fa-3x fa-cog dropdown-toggle" data-toggle="dropdown"></i>
                         <ul class="dropdown-menu">
-                            <li><a href="/checkin.html">Check-In</a></li>
                             <li><a id="logoutButton" href="/index.html">
-                                Log Out <i class="entypo-logout right"></i></a>
+                                <i class="entypo-logout"></i>Log Out </a>
+                            </li>
+                            <li><a href="#">
+                                <i class="entypo-tools"></i>Profile</a>
                             </li>
                         </ul>
                   </div>
-                </ul>
+				</ul>
 
-            </div>
+			</div>
 
-        </div>
+		</div>
 
 
         <hr />
