@@ -61,6 +61,7 @@ module.exports.template.create = function(req, res) {
     appointment.date = param.date;
     appointment.company_id = param.company_id;
     appointment.provider_name = param.provider_name;
+    appointment.is_checked_in = 0;
 
     Appointment.find(
         {

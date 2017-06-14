@@ -22,6 +22,7 @@ $(document).ready(function(){
         newAppt.last_name = event.last_name;
         newAppt.phone_number = event.phone_number;
         newAppt.provider_name = event.employee;
+        newAppt.is_checked_in = 0;
         updateApptList(newAppt);
 
     });
@@ -35,6 +36,7 @@ $(document).ready(function(){
         newAppt.last_name = event.last_name;
         newAppt.phone_number = event.phone_number;
         newAppt.provider_name = event.employee;
+        newAppt.is_checked_in = 0;
         updateAppointment(newAppt);
     });
     scheduler.attachEvent("onEventDeleted", function(id, event){
