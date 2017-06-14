@@ -1,0 +1,9 @@
+exclude-paths:
+- "**/vendor/"
+- "client/font-awesome/"
+- "client/neon/"
+- "client/assets/font-awesome/"
+- "client/assets/js/"
+- "client/assets/images/"
+- "client/assets/css/"
+- "docs/"
