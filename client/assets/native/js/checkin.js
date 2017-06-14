@@ -16,18 +16,16 @@ $(document).ready(function(){
     document.ontouchmove = function(e) {
         e.preventDefault();
     };
-socket.on("connect", function(){
-  console.log("a user connected");
-});
-        socket.on(GET_APPOINTMENT, function(data) {
-            console.log(data);
-            if (JSON.parse(data).error) {
-                alert("error occured when getting appointment");
-            }
-            else {
-                alert("checkin success");
-            }
-        });
+
+    socket.on(GET_APPOINTMENT, function(data) {
+        console.log(data);
+        if (false) {
+            alert("error occured when getting appointment");
+        }
+        else {
+            alert("checkin success");
+        }
+    });
 
     //Bind Listeners
     $('#tap-to-check').on('click', startCheckIn);
@@ -45,8 +43,9 @@ socket.on("connect", function(){
     }
 
     //When a patient submits their form
-    function submitForm(){
-        //event.preventDefault();
+    function submitForm(e){
+        e.preventDefault();
+
         var data = grabFormElements();
 
         //reference database to check if visitor has an appointment
@@ -68,8 +67,6 @@ socket.on("connect", function(){
 
         socket.emit(ADD_VISITOR, data);
 
-
-        console.log("")
         $(this).animate({
             top:'35%',
             opacity:'0'

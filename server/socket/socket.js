@@ -38,6 +38,7 @@ exports.createServer = function(io_in) {
      */
     io.on(CONNECTION, function (socket) {
         console.log("SOCKET CONNECTED");
+
         /* company_id is required to connect to join right socket to listen to*/
         socket.on(VALIDATE_COMPANY_ID, function(data){
             console.log(data);
@@ -177,7 +178,7 @@ var getMatch = function(socket, data) {
                         } 
                         else {
                             console.log("hi not error :" + a[apptToCheckin]);
-                            socket.emit(GET_APPOINTMENT, {succes: true});;
+                            socket.emit(GET_APPOINTMENT, { succes: true });
                         }
                     })
                     error_msg = false;
