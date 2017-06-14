@@ -8,6 +8,9 @@ $(document).ready(function(){
       { name:"time", height:72, type:"time", map_to:"auto"} 
     ];
     scheduler.config.time_step = 15;
+    scheduler.config.first_hour = 6;
+    scheduler.config.last_hour = 22;
+    scheduler.config.limit_time_select = true;
     scheduler.attachEvent("onTemplatesReady", function(){
     scheduler.templates.event_text=function(start,end,event){
         return "<b>" + event.text + "</b><br><i>" + event.employee + "</i>";
