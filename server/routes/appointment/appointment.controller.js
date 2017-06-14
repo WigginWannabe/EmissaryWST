@@ -61,6 +61,7 @@ module.exports.template.create = function(req, res) {
     appointment.date = param.date;
     appointment.company_id = param.company_id;
     appointment.provider_name = param.provider_name;
+    appointment.is_checked_in = 0;
 
     Appointment.find(
         {
@@ -142,14 +143,14 @@ module.exports.template.getAll = function(req, res) {
  * @example
  * // error response
  * {
- *  error: "Could Not Find"
+ *  error: "Could Not Find Appointment"
  * }
  * @returns a response indicating either Success or Error
  */
 module.exports.template.get = function(req, res) {
     Appointment.findOne({_id: req.params.id}, function(err, a) {
         if(err || !a)
-            return res.status(400).send({error: "Could Not Find"});
+            return res.status(400).send({error: "Could Not Find Appointment"});
         return res.status(200).json(a);
     });
 };
@@ -176,14 +177,14 @@ module.exports.template.get = function(req, res) {
  * @example
  * // error response
  * {
- *  error: "Could Not Find"
+ *  error: "Could Not Find Appointment To Update"
  * }
  * @returns a response indicating either Success or Error
  */
 module.exports.template.update = function(req, res){
     Appointment.findOne({_id: req.params.id}, function (err, a) {
         if(err || !a)
-            return res.status(401).json({error: "Could Not Find"});
+            return res.status(401).json({error: "Could Not Find Appointment To Update"});
 
         if (req.body.first_name !== undefined)
             a.first_name = req.body.first_name;
@@ -202,7 +203,7 @@ module.exports.template.update = function(req, res){
         //TO check if the date is taken already
         a.save(function(err) {
             if(err) {
-                return res.status(400).json({error: "Could Not Save"});
+                return res.status(400).json({error: "Could Not Save Appointment Update"});
             }
             return res.status(200).json(a);
         });
@@ -228,17 +229,17 @@ module.exports.template.update = function(req, res){
  * @example
  * // error response
  * {
- *  error: "Could Not Find"
+ *  error: "Could Not Find Appointment To Delete"
  * }
  * @returns a response indicating either Success or Error
  */
 module.exports.template.delete = function(req, res){
     Appointment.findById(req.params.id, function(err, a) {
         if(err)
-            res.status(400).json({error: "Could Not Find"});
+            res.status(400).json({error: "Could Not Find Appointment To Delete"});
         a.remove(function(err) {
             if(err) {
-                res.status(400).json({error: "Could Not Save"});
+                res.status(400).json({error: "Could Not Delete Appointment"});
             } else {
                 return res.status(200).json(a);
             }

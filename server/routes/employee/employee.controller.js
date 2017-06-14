@@ -29,21 +29,31 @@ var Employee = require('../../models/Employee');
  * @example
  * // error response
  * {
- *  error: "Incorrect Credentials"
+ *  error: "Cannot Find Email Address"
  * }
- * @returns a response indicating either Success or Error
- */
+  * @returns a response indicating either Success or Error
+   */
 exports.login = function(req, res) {
+    var loginTime = new Date();
+
     Employee.findOne({email:req.body.email}, function(err, e) {
         if(err || !e){
           return res.status(400).send({error: "Can not Find"});
         }
-        if(!e.validPassword(req.body.password))
+        if(!e.validPassword(req.body.password)) {
           return res.status(400).send({error: "Incorrect Credentials"});
-        var employee_json=e.toJSON();
-        delete employee_json.password;
-        return res.status(200).json(employee_json);
-    });
+        }
+        e.last_login = loginTime;
+        e.save(function(err, updatedEmployee) {
+            if (err || !e) {
+                return res.status(400).send({error: "/login: Error saving login time"});
+            }
+
+            var employee_json = updatedEmployee.toJSON();
+            delete employee_json.password;
+            return res.status(200).json(employee_json);
+        });
+      });
 };
 
 
@@ -72,14 +82,14 @@ exports.login = function(req, res) {
  * @example
  * // error response
  * {
- *  error: "Cannot Find"
+ *  error: "Cannot Find Employees"
  * }
  * @returns a response indicating either Success or Error
  */
 exports.getAllEmployees = function(req, res) {
   Employee.find({company_id : req.params.id}, { password: 0}, function(err, result) {
     if(err){
-      return res.status(400).send({error: "Cannot Find"});
+      return res.status(400).send({error: "Cannot Find Employees"});
     }
     return res.status(200).json(result);
   });
@@ -102,14 +112,14 @@ exports.getAllEmployees = function(req, res) {
  * @example
  * // error response
  * {
- *  error: "Cannot Find"
+ *  error: "Employee Cannot Find The ID"
  * }
  * @returns a response indicating either Success or Error
  */
 exports.getById = function(req, res) {
    Employee.findById(req.params.id, { password: 0}, function(err, employee) {
       if(err) {
-          return res.status(400).json({error: "Cannot Find"});
+          return res.status(400).json({error: "Employee Cannot Find The ID"});
       } else {
           console.log(employee);
           return res.status(200).json(employee);
@@ -142,7 +152,7 @@ exports.getById = function(req, res) {
  * @example
  * // error response
  *  {
- *   error: "Cannot save"
+ *   error: "Employee Insert Cannot Save"
  *  }
  * @returns a response indicating either Success or Error
  */
@@ -157,10 +167,11 @@ exports.insert = function(req, res) {
     employee.company_id = req.body.company_id,
     employee.password = employee.generateHash(req.body.password),
     employee.role =  req.body.role;
+    employee.last_login = new Date();
 
     employee.save(function(err, e) {
         if(err) {
-            return res.status(400).json({error: "Cannot Save"});
+            return res.status(400).json({error: "Employee Insert Cannot Save"});
         }
         var employee_json=e.toJSON();
         delete employee_json.password;
@@ -194,14 +205,14 @@ exports.insert = function(req, res) {
  * @example
  * // error response
  * {
- *  error: "Cannot Save"
+ *  error: "Employee Update Cannot Save"
  * }
  * @returns a response indicating either Success or Error
  */
 exports.update = function(req, res) {
     Employee.findById(req.params.id, function (err, employee) {
         if(err)
-            return res.status(400).json({error: "Cannot Update"});
+            return res.status(400).json({error: "Employee Update Cannot Update"});
  
         employee.first_name = req.body.first_name || employee.first_name;
         employee.last_name = req.body.last_name || employee.last_name;
@@ -214,7 +225,7 @@ exports.update = function(req, res) {
             console.log(err);
             console.log(employee);
             if(err)
-                return res.status(400).json({error: "Cannot Save"});
+                return res.status(400).json({error: "Employee Update Cannot Save"});
             var employee_json=employee.toJSON();
             delete employee_json.password;
             return res.status(200).send(employee_json);
@@ -239,7 +250,7 @@ exports.update = function(req, res) {
  * @example
  * // error response
  * {
- *  error: "Cannot Find"
+ *  error: "Employee Delete Cannot Find The Employee"
  * }
  * @returns a response indicating either Success or Error
  */
@@ -247,7 +258,7 @@ exports.delete = function(req, res) {
   Employee.findById(req.params.id, function(err, employee) {
     return employee.remove(function(err) {
       if(err) {
-        res.status(400).json({error: "Cannot Find"});
+        res.status(400).json({error: "Employee Delete Cannot Find The Employee"});
       } else {
           var employee_json=employee.toJSON();
           delete employee_json.password;

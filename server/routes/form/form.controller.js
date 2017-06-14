@@ -16,7 +16,7 @@ module.exports.template = {};
 module.exports.template.findByCompanyId =  function(req, res) {
   TemplateForm.findOne({'_admin_id' : req.params.id}, function(err, template) {
     if(err)
-      res.status(400).json({error: "There was an error finding the template form."});
+      res.status(400).json({error: "There was an error finding the template form's company."});
     else
       res.status(200).json(template);
   });
@@ -25,7 +25,7 @@ module.exports.template.findByCompanyId =  function(req, res) {
 module.exports.template.findByAdminId = function(req,res){
   TemplateForm.findOne({'_admin_id' : req.params.adminid}, function(err, template) {
     if(err)
-      res.status(400).json({error: "There was an error finding the template form."});
+      res.status(400).json({error: "There was an error finding the template form's adminid."});
     else
       res.status(200).json(template);
   });
@@ -34,7 +34,7 @@ module.exports.template.findByAdminId = function(req,res){
 module.exports.template.sendByAdminId = function(req,res){
   TemplateForm.findOne({'_admin_id' : req.params.adminid}, function(err, template) {
     if(err)
-      res.status(400).json({error: "There was an error finding the template form."});
+      res.status(400).json({error: "There was an error finding the template form's sendByAdminId."});
     else if(!template){//if doesn't exist
       createWithAdminId(req,res);
     }
@@ -51,7 +51,7 @@ function createWithAdminId(req,res){
 
   newTemplate.save(function(err, template) {
     if(err)
-        return res.status(400).json(err);
+        return res.status(400).json({error: "There is an error creating template with Adminid"});
     else
         return res.status(200).json(template);
   });
@@ -63,7 +63,7 @@ function updateWithAdminId(req,res){
   TemplateForm.findOneAndUpdate({_admin_id: req.params.adminid}, update,
     function(err, template) {
         if(err)
-          return res.status(400).json({error: "There was an error updating a template."});
+          return res.status(400).json({error: "There was an error updating a template with adminid."});
         else
           return res.status(200).json(template);
     });
@@ -76,7 +76,7 @@ module.exports.template.create =  function(req, res) {
 
   newTemplate.save(function(err, template) {
     if(err)
-        res.status(400).json(err);
+        res.status(400).json({error: "There was an error at saving a template"});
     else
       res.status(200).json(template);
   });

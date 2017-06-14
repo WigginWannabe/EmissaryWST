@@ -13,7 +13,7 @@ var DISCONNECT = "disconnect";
 var REMOVE_VISITOR = "remove_visitor";
 var ADD_VISITOR = "add_visitor";
 var NOTIFY_ERROR = "notify_error";
-var GET_APPOINTMENT = "get";
+var GET_APPOINTMENT = "get_appointment";
 var NOT_FOUND = "not found";
 var NOT_30MIN = "not within 30 min";
 var PASSED = "appointment time has passed";
@@ -97,13 +97,23 @@ exports.createServer = function(io_in) {
         socket.on(ADD_VISITOR, function(data) {
             console.log("LOOKING FOR APPOINTMENT");
             var company_id = data.company_id;
-            var appt = getMatch(data);
+            var appt = getMatch(socket, data);
             if (error_msg != false) {
                 console.log(error_msg);
                 exports.notifyError(company_id, {error: error_msg});
             }
 
         });
+
+        /*socket.on(GET_APPOINTMENT, function(data) {
+            console.log("please print");
+            if (data.error) {
+                alert("error occured when getting appointment");
+            }
+            else {
+                alert("checkin success");
+            }
+        });*/
     });
         //socket.on(GET_APPOINTMENT, function (data) {});
     return server;
@@ -158,13 +168,16 @@ var getMatch = function(socket, data) {
                 }
                 else if (timeLeft <= MIN30SEC) {
                     console.log("appointment confirmed");
-                    a[apptToCheckin].checked_in = true;
+                    a[apptToCheckin].is_checked_in = true;
                     a[apptToCheckin].save( function(err) {
+
                         if (err) {
-                            socket.emit(ADD_VISITOR, { error: err });
+                            console.log("hi error");
+                            socket.emit(GET_APPOINTMENT, { error: err });
                         } 
                         else {
-                            socket.emit(ADD_VISITOR, { succes: true });
+                            console.log("hi not error :" + a[apptToCheckin]);
+                            socket.emit(GET_APPOINTMENT, {succes: true});;
                         }
                     })
                     error_msg = false;
@@ -176,8 +189,8 @@ var getMatch = function(socket, data) {
             }
             if (error_msg == false) {
                 console.log("ADDING VISITOR");
-                console.log(data);
-                console.log(data.company_id);
+                //console.log(data);
+                //console.log(data.company_id);
                 var company_id = data.company_id;
                 VisitorListCtr.create(data, function(err_msg, result){
                     if(err_msg){

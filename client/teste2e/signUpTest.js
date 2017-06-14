@@ -2,7 +2,7 @@
 module.exports = {
   beforeEach: (browser) => {
     browser
-    .url('http://emissary-pseudopandas.herokuapp.com/signup')
+    .url('http://emissary-pseudopandas-dev.herokuapp.com/signup')
     .waitForElementVisible('body',10000);
   },
   InputTest: (browser) => {
@@ -19,7 +19,7 @@ module.exports = {
     browser.setValue('#form-password',Math.floor((Math.random() * 100000) + 1))
     browser.setValue('#form-repeat-password',Math.floor((Math.random() * 100000) + 1))
     browser.click('#submit-btn').pause(1000);
-    browser.assert.urlEquals("http://emissary-pseudopandas.herokuapp.com/visitors");
+    browser.assert.urlEquals("http://emissary-pseudopandas-dev.herokuapp.com/visitors");
   },
   after: browser => browser.end(),
 };

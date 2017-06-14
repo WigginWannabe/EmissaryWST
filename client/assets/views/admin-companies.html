@@ -141,73 +141,85 @@
 		
 		<h3>Companies</h3>
 		
-		<!-- TO DO: Move js functions to js files -->
+		<!-- TODO: Move js functions to js files -->
 		<script type="text/javascript">
 		jQuery( window ).load( function() {
 			var $table2 = jQuery( "#table-2" );
-			
+
 			// Initialize DataTable
 			$table2.DataTable( {
 				"sDom": "tip",
-				"bStateSave": false,
-				"iDisplayLength": 8,
-				"aoColumns": [
-					{ "bSortable": false },
-					null,
+				"pageLength": 25,
+                "lengthMenu": [ 10, 25, 50, 75, 100 ],
+                "aoColumns": [
+                    null,
+                    null,
+					{ "bSortable": false },  // disable sorting phone numbers
 					null,
 					null
 				],
 				"bStateSave": true
 			});
-			
+
 			// Highlighted rows
 			$table2.find( "tbody input[type=checkbox]" ).each(function(i, el) {
 				var $this = $(el),
 					$p = $this.closest('tr');
-				
+
 				$( el ).on( 'change', function() {
 					var is_checked = $this.is(':checked');
-					
+
 					$p[is_checked ? 'addClass' : 'removeClass']( 'highlight' );
 				} );
 			} );
-			
-			// Replace Checboxes
+
+			// Replace Checkboxes
 			$table2.find( ".pagination a" ).click( function( ev ) {
 				replaceCheckboxes();
 			} );
 		} );
-			
+
 		// Sample Function to add new row
 		var giCount = 1;
-		
+
 		function fnClickAddRow() {
 			jQuery('#table-2').dataTable().fnAddData( [ '<div class="checkbox checkbox-replace"><input type="checkbox" /></div>', giCount + ".1", giCount + ".2", giCount + ".4" ] );
 			replaceCheckboxes(); // because there is checkbox, replace it
 			giCount++;
 		}
+
+		// Handlebars helper function to trim timestamp to just the date
+        Handlebars.registerHelper('trimStringToDate', function(passedString) {
+            var theString = passedString.split('T')[0];
+            return new Handlebars.SafeString(theString)
+        });
 		</script>
-		
+
 		<table class="table table-bordered table-striped datatable" id="table-2">
 			<thead>
 				<tr>
-					<th>Company Name</th>
-					<th>Email</th>
+                    <th>Company Name</th>
+                    <th>Email</th>
 					<th>Phone Number</th>
-				</tr>
+					<th>Date Subscribed</th>
+				    <th>Last Login</th>
+                </tr>
 			</thead>
-			
+
 			<tbody id = "company-list">
-			
+
 			</tbody>
 		</table>
+
 		<script type = "text/x-handlebars-template" id = "company-list-template">
             {{#each []}}
             <tr>
                 <td>{{this.name}}</td>
                 <td>{{this.email}}</td>
                 <td>{{this.phone_number}}</td>
-                <!-- Modal -->
+                <td>{{trimStringToDate this.paid_time}}</td>
+                <td>{{this.last_login}}</td>
+				<!-- Modal -->
             </tr>
             {{/each}}
         </script>
@@ -230,34 +242,29 @@
 
 
 	<!-- Imported styles on this page -->
+	<link rel="stylesheet" href="./../js/datatables/datatables.css">
+	<link rel="stylesheet" href="./../js/select2/select2-bootstrap.css">
+	<link rel="stylesheet" href="./../js/select2/select2.css">
 
-	<link rel="stylesheet" href="./../assets/js/datatables/datatables.css">
-	<link rel="stylesheet" href="./../assets/js/select2/select2-bootstrap.css">
-	<link rel="stylesheet" href="./../assets/js/select2/select2.css">
 
 	<!-- Bottom scripts (common) -->
-	<script src="./../assets/js/gsap/TweenMax.min.js"></script>
-	<script src="./../assets/js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js"></script>
+	<script src="./../js/gsap/TweenMax.min.js"></script>
+	<script src="./../js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js"></script>
 	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
-	<script src="./../assets/js/bootstrap.js"></script>
-	<script src="./../assets/js/admin-companies.js"></script>
-	<script src="./../assets/js/joinable.js"></script>
-	<script src="./../assets/js/resizeable.js"></script>
-	<script src="./../assets/js/neon-api.js"></script>
+	<script src="./../js/bootstrap.js"></script>
+	<script src="./../js/admin-companies.js"></script>
+	<script src="./../js/joinable.js"></script>
+	<script src="./../js/resizeable.js"></script>
+	<script src="./../js/neon-api.js"></script>
 
 
 	<!-- Imported scripts on this page -->
-	<script src="./../assets/js/datatables/datatables.js"></script>
-	<script src="./../assets/js/select2/select2.min.js"></script>
-	<script src="./../assets/js/neon-chat.js"></script>
+	<script src="./../js/datatables/datatables.js"></script>
+	<script src="./../js/select2/select2.min.js"></script>
 
 
 	<!-- JavaScripts initializations and stuff -->
-	<script src="./../assets/js/neon-custom.js"></script>
-
-
-	<!-- Demo Settings -->
-	<script src="./../assets/js/neon-demo.js"></script>
+	<script src="./../js/neon-custom.js"></script>
 
 </body>
 </html>

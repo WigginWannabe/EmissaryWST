@@ -16,6 +16,16 @@ gulp.task('copy:css', function () {
      .pipe(gulp.dest('./dist/css'));
 });
 
+gulp.task('copy:schedule-imgs1', function () {
+  return gulp.src('.client/assets/css/**/*.png')
+     .pipe(gulp.dest('./dist/imgs_dhx_terrace'));
+});
+
+gulp.task('copy:schedule-imgs2', function () {
+  return gulp.src('.client/assets/css/**/*.gif')
+     .pipe(gulp.dest('./dist/imgs_dhx_terrace'));
+});
+
 gulp.task('copy:images', function () {
   return gulp.src('./client/assets/images/**/*.*')
      .pipe(gulp.dest('./dist/images'));
