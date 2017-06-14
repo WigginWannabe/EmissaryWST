@@ -24,4 +24,22 @@ $(document).ready(function(){
     var compiledHtml = template(companies);
     
     $('#company-list').html(compiledHtml);
+
+    function getEmployees(id) {
+       var json;
+       $.ajax({
+           dataType: 'json',
+           type: 'GET',
+           data: $('#response').serialize(),
+           url: '/api/employees/company/' + id,
+           success: function(response) {
+               json = response;
+               //console.log(response);
+           }
+       }).done(function(data) {
+           console.log("adminpanel.js");
+           console.log(data);
+       });
+       //return json;
+   }
 });
