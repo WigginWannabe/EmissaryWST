@@ -10512,7 +10512,7 @@ table {
 }
 .tile-block .tile-header {
   color: #fff;
-  font-size: 17px;
+  font-size: 18px;
   padding: 20px;
 }
 .tile-block .tile-header a,
@@ -10536,6 +10536,8 @@ table {
 .tile-block .tile-content {
   background: rgba(0, 0, 0, 0.03);
   padding: 20px;
+  font-size: 38px;
+  font-weight: bold;
 }
 .tile-block .tile-content .todo-list .neon-cb-replacement .cb-wrapper + label {
   top: -3px;

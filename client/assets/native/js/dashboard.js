@@ -40,11 +40,16 @@ $(document).ready(function(){
     //Modal Template
     var modal = $('#visitor-info-template').html();
     var modalTemplate = Handlebars.compile(modal);
-
+    
+    socket.on("connect", function(){
+      console.log("a user connected");
+    });
+    
     //SOCKET LISTEN FOR VISITOR QUEUE
     socket.on(VISITOR_LIST_UPDATE, function (data) {
         apptsToday = data; // has client name, appt time, checked_in, and checkin_time; ALL APPTS FOR THE DAY
-
+        console.log(data);
+        console.log("I AM HERE");
         //Parse Visitor List to format Date
         for(var i = 0, len = apptsToday.length; i< len; i++){
             apptsToday[i].checkin_time = formatTime(apptsToday[i].checkin_time);
@@ -52,11 +57,11 @@ $(document).ready(function(){
         }
 
        //visitorList.checkin_time = visitorList;
-        var compiledHtml = template(visitorList);
+        console.log(apptsToday);
+        var compiledHtml = template(apptsToday);
         $('#visitor-list').html(compiledHtml);
     });
-
-
+    
     /***
     * Listener for Opening a Modal
     */

@@ -1,5 +1,13 @@
 'use strict';
 
+/** 
+ * @module Payment
+ */
+
+/*
+ * This module handles subscription of a certain account
+ */
+
 var exports = module.exports;
 var BASIC_PLAN_ID = 'emissary_basic';
 
@@ -9,6 +17,17 @@ var stripe = require("stripe")(
   "sk_test_dqzYJJ6xWGgg6U1hgQr3hNye"
 ); // TODO: do i need to do this for every js file that uses stripe?
 
+
+/**
+ * @function createSubscription
+ * @description create a subscription for a new customer
+ * @param email customer's email
+ * @example
+ * // error response
+ * {
+ *   error: "Could not create customer for createSubscription"
+ * }
+ */
 exports.createSubscription = function(req, res){
 	// create customer, TODO: could there be an existing stripe customer ID?
 	stripe.customers.create({ // calls stripe customer create
@@ -25,6 +44,17 @@ exports.createSubscription = function(req, res){
 	});
 };
 
+
+/**
+ * @function getSubscription
+ * @description retrieve the subscription using the company id
+ * @param company_id company id
+ * @example
+ * // error response
+ * {
+ *	 error: "Could not get subscription"
+ * }
+ */
 exports.getSubscription = function(req, res){
 	Company.findOne({_id: req.params.id}, function (err, result){
 		var stripeCustomerID = result.stripeCustomerID;
@@ -33,7 +63,7 @@ exports.getSubscription = function(req, res){
 				var subList = subscriptions.data;
 				var index = basicPlanIndex(subList);
 				if (index == -1){
-					return res.status(200).json({error: "Could not find getSubscription"});
+					return res.status(200).json({error: "Could not get subscription"});
 				}
 				else {
 					return res.status(200).json(subList[index]);
@@ -43,6 +73,12 @@ exports.getSubscription = function(req, res){
 
 };
 
+
+/**
+ * @function basicPlanIndex
+ * @description get the plan id
+ * @returns the plan id
+ */
 function basicPlanIndex(arr){
 	var arrLength = arr.length;
 	for(var i = 0; i < arrLength; i++){
