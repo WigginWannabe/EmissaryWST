@@ -10538,6 +10538,7 @@ table {
   padding: 20px;
   font-size: 38px;
   font-weight: bold;
+  text-align: center;
 }
 .tile-block .tile-content .todo-list .neon-cb-replacement .cb-wrapper + label {
   top: -3px;

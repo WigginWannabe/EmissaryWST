@@ -189,24 +189,56 @@
 			giCount++;
 		}
 
-		// Handlebars helper function to trim timestamp to just the date
+		// Handlebars helper function to change timestamp to readable format
         Handlebars.registerHelper('dateFormat', function(passedString) {
             var theString = passedString.split('T')[0] + " at " + passedString.split('T')[1].split('Z')[0];
             return new Handlebars.SafeString(theString)
         });
 
+        // Format paid status to yes or no format
         Handlebars.registerHelper('paidFormat', function(val) {
-            //var theString = "no";
             if (val) {
-                //theString = "yes";
                 return new Handlebars.SafeString("yes")
             }
             else {
-                //theString = "no";
                 return new Handlebars.SafeString("no")
             }
-            //return new Handlebars.SafeString(theString)
         });
+
+        // Get last login of first employee of company
+        Handlebars.registerHelper('loginHelper', function(id) {
+        	var prop = 'last_login';
+        	function employeesFunc(id) {
+                var json;
+                $.ajax({
+                    dataType: 'json',
+                    type: 'GET',
+                    data: $('#response').serialize(),
+                    async: false,
+                    url: '/api/employees/company/' + id,
+                    success: function(response) {
+                        json = response;
+                    }
+                });
+                return json;
+            };
+
+            var employees = employeesFunc(id);
+        	/*employees = employees.sort(function(a,b) {
+        		return (b[prop] > a[prop]) ? 1 : ((b[prop] < a[prop]) ? -1 : 0);
+        	});*/
+
+            //console.log(id);
+            if (employees[0]) {
+	        //    console.log(employees[0].last_login);
+	            var passedString = employees[0].last_login;
+	            var theString = passedString.split('T')[0] + " at " + passedString.split('T')[1].split('Z')[0];
+	        	return theString;
+	        } else {
+	        	return "";
+	        }
+        });
+
 		</script>
 
 		<table class="table table-bordered table-striped datatable" id="table-2">
@@ -234,7 +266,7 @@
                 <td>{{this.phone_number}}</td>
                 <td>{{dateFormat this.paid_time}}</td>
 				<td>{{paidFormat this.is_paid}}</td>
-                <td>{{this.last_login}}</td>
+                <td>{{loginHelper this._id}}</td>
 				<!-- Modal -->
             </tr>
             {{/each}}
