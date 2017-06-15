@@ -1,0 +1,4 @@
+
+> Emissary@1.0.0 document /Users/evahuynh/Documents/introHCI/EmissaryWST
+> jsdoc server/routes -c ./docs/conf.json -P ./docs/package.json -r
+
