@@ -196,21 +196,49 @@
 
         <script type="text/javascript">
 			// Handlebars helper function to change timestamp to readable format
-	        Handlebars.registerHelper('dateFormat', function(passedString) {
-	        	return "hi";
+	        Handlebars.registerHelper('dateFormat', function(time) {
+	        	if (!time)
+	        		return null;
+	        	
+	        	var currentTime = new Date(Date.parse(time));
+		        var hour = currentTime.getHours();
+		        var minute = currentTime.getMinutes();
+
+		        if(minute < 10) {
+		            minute = '0' + minute;
+		        }
+
+		        if(hour >= 13){
+		            hour = hour-12;
+		            currentTime = hour + ':' + minute + 'PM';
+		        }
+
+		        else if(hour === 12){
+		            currentTime = hour + ':' + minute +'PM';
+		        }
+		        else if(hour === 0){
+		            currentTime = 12 + ':' + minute + 'AM';
+		        }
+		        else{
+		            currentTime = hour + ':' + minute +'AM';
+		        }
+
+		        return currentTime;
 	        });
 
 			Handlebars.registerHelper('chooseIcon', function (checked, apptTime) {
 				var appt = new Date(apptTime);
-				var now = Date();
+				var now = new Date();
 				console.log(appt);
 				console.log(now);
+				console.log(now > appt);
+				console.log(checked);
 				if ((now > appt) && !checked) { // LATE
-					return "entypo-cancel";
+					return "fa fa-2x fa-times";
 				} else if (checked) { // CHECKED IN
-					return "entypo-check";
+					return "fa fa-2x fa-check";
 				} else { // NOT APPT TIME YET
-					return "entypo-dot-3";
+					return "fa fa-2x fa-ellipsis-h";
 				}
 			});
 
@@ -244,7 +272,7 @@
 							 <p><span>Appointment Time:</span> {{this.appointmentTime}}</p>
 						 </div>
 						 <div class="modal-right">
-                    		<p><span>Check-In Time:</span> {{this.checkin_time}}</p>
+                    		<p><span>Check-In Time:</span> {{dateFormat this.checkin_time}}</p>
                     		<p><span>Phone Number:</span> {{this.phone_number}}</p>
 						 </div>
                 </div>

@@ -2,8 +2,8 @@ body {
     /*background: linear-gradient(to right top, #2d0166 , #FDFFFF);*/
     /*background: linear-gradient(to bottom, #000, #77e700 100px, #000);*/
     background-color: #171311;
-    background: url("https://s-media-cache-ak0.pinimg.com/originals/d8/7b/63/d87b63afdc6d174bf1caef057ec8d466.jpg");
-    background-size: 100%;
+    background: url("../images/dojo.jpg");
+    background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
@@ -48,6 +48,6 @@ hr{
    border-top: 3px solid #396e00 !important;
 }
 
-/*.main-menu .here {
-	background-color: rgba(#396e00,.8);
-}*/
+.fa-cog {
+   color: #171311;
+}

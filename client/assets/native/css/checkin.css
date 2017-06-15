@@ -37,7 +37,7 @@ body {
 body#check-in-page{
     /*background-color: #cf4646;*/
     background-color: rgb(23,19,17,.5);
-    background: url("https://s-media-cache-ak0.pinimg.com/originals/d8/7b/63/d87b63afdc6d174bf1caef057ec8d466.jpg");
+    background: url("../../../images/dojo.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     height: 100vh;

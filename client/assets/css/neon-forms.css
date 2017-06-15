@@ -4097,7 +4097,7 @@ hr + .mail-env {
 }
 .login-page .login-header {
   position: relative;
-  background: black;
+  background: #050000;
   padding: 100px 0;
   -moz-transition: all 550ms ease-in-out;
   -webkit-transition: all 550ms ease-in-out;
