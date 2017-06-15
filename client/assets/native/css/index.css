@@ -125,3 +125,11 @@ li a.active {
     background-color: #FF2274;
 }
 
+.testimonial {
+    column-count: 2;
+}
+
+.testimonial h2 {
+    color: #009900;
+    text-align: center;
+}
