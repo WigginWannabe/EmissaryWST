@@ -136,8 +136,9 @@ li a.active {
 }
 
 .footer {
-    margin-top: 50px;
+    margin-top: 30px;
     //background-color: rgba(0,0,0,.7);
+    margin-bottom: 1em;
 }
 
 .black-bar {
@@ -154,7 +155,9 @@ li a.active {
 }
 
 .testimonial {
+    margin-top: 75px;
     column-count: 2;
+    margin-bottom: 30px;
 }
 
 .testimonial h2 {
