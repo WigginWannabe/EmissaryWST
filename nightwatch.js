@@ -23,8 +23,8 @@ module.exports =
       "selenium_port"  : 80,
       "selenium_host"  : "ondemand.saucelabs.com",
       "silent": true,
-      "username": "moonyremus",
-      "access_key": "3fb9278c-3b5c-48c5-b992-70fae1a86b3a",
+      "username": "pseudopandas",
+      "access_key": "0ce32794-608f-4513-81c2-b0a092bc238c",
       "screenshots" : {
         "enabled" : false,
         "path" : ""

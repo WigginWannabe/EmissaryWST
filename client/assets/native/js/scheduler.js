@@ -7,6 +7,7 @@ $(document).ready(function(){
       { name:"Employee", height:25, map_to:"employee", type:"textarea", focus:true },
       { name:"time", height:72, type:"time", map_to:"auto"} 
     ];
+    scheduler.config.time_step = 15;
     scheduler.attachEvent("onTemplatesReady", function(){
     scheduler.templates.event_text=function(start,end,event){
         return "<b>" + event.text + "</b><br><i>" + event.employee + "</i>";
@@ -17,6 +18,7 @@ $(document).ready(function(){
         console.log(event);
         newAppt = {};
         newAppt.date = formatSchedulerTime(event.start_date.toString());
+        newAppt.end_date = formatSchedulerTime(event.end_date.toString());
         newAppt.company_id = myCompanyId;
         newAppt.first_name = event.first_name;
         newAppt.last_name = event.last_name;
@@ -24,13 +26,14 @@ $(document).ready(function(){
         newAppt.provider_name = event.employee;
         newAppt.is_checked_in = 0;
         updateApptList(newAppt);
-
+        event.text = newAppt.first_name + " " +  newAppt.last_name;
     });
     scheduler.attachEvent("onEventChanged", function(id,event){
         console.log(event);
         newAppt = {};
         newAppt.id = event.id;
         newAppt.date = formatSchedulerTime(event.start_date.toString());
+        newAppt.end_date = formatSchedulerTime(event.end_date.toString());
         newAppt.company_id = myCompanyId;
         newAppt.first_name = event.first_name;
         newAppt.last_name = event.last_name;
@@ -74,7 +77,7 @@ $(document).ready(function(){
       json.employee = appts[i].provider_name.toString();
       json.phone_number = appts[i].phone_number.toString();
       json.start_date = formatDate(appts[i].date.toString()) + " " + formatTime(appts[i].date.toString());
-      json.end_date = formatDate(appts[i].date.toString()) + " " + formatTime(appts[i].date.toString());
+      json.end_date = formatDate(appts[i].end_date.toString()) + " " + formatTime(appts[i].end_date.toString());
 
       apptlist.push((json));
 

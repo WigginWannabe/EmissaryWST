@@ -59,6 +59,7 @@ module.exports.template.create = function(req, res) {
     appointment.last_name = param.last_name;
     appointment.phone_number = param.phone_number;
     appointment.date = param.date;
+    appointment.end_date = param.end_date;
     appointment.company_id = param.company_id;
     appointment.provider_name = param.provider_name;
     appointment.is_checked_in = 0;
@@ -197,6 +198,9 @@ module.exports.template.update = function(req, res){
 
         if (req.body.date!== undefined)
             a.date = req.body.date;
+
+        if (req.body.end_date !== undefined)
+            a.date = req.body.end_date;
 
         if (req.body.provider_name!== undefined)
             a.provider_name = req.body.provider_name;
