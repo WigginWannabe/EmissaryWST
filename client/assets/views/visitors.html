@@ -199,7 +199,7 @@
 	        Handlebars.registerHelper('dateFormat', function(time) {
 	        	if (!time)
 	        		return null;
-	        	
+
 	        	var currentTime = new Date(Date.parse(time));
 		        var hour = currentTime.getHours();
 		        var minute = currentTime.getMinutes();
@@ -245,12 +245,17 @@
 			Handlebars.registerHelper('concatName', function (first, last) {
 				return first + " " + last;
 			});
+
+			Handlebars.registerHelper('concatID', function (first, last, time) {
+				console.log(first+last+time);
+				return first + last + time;
+			});
 		</script>
 
         <!-- HANDLE BAR TEMPLATES -->
         <script type = "text/x-handlebars-template" id = "visitor-list-template">
             {{#each []}}
-            <tr class="patient-check-out" data-toggle="modal" data-target="#myModal" value = "{{this._id}}">
+            <tr class="patient-check-out" data-toggle="modal" data-target="#myModal" value = "{{this._id}}" id="{{concatID this.first_name this.last_name this.appointmentTime}}">
                 <td class="patient-queue-text">{{concatName this.first_name this.last_name}}</td>
                 <td class="patient-queue-text appt-id">{{this.appointmentTime}}</td>
                 <td class="patient-queue-text"><i class="{{chooseIcon this.is_checked_in this.date}}"></i></td>
