@@ -11,6 +11,8 @@ gulp.task('dist', [
   'concat:js',
   'copy:assets',
 //  'copy:bower-components',
+  'copy:schedule-imgs1',
+  'copy:schedule-imgs2',
   'copy:views',
   'copy:css',
   'copy:js',
