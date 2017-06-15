@@ -80,9 +80,9 @@ module.exports = {
                 return document.getElementById("visitor-list").getElementsByTagName("tr").length;
             }, function(result) {
                 var originalLength = result.value;
-                browser.assert.containsText('#visitor-list tr:nth-child(' + result.value + ') td:nth-child(1)', firstname);
+                browser.assert.containsText('#visitor-list tr:nth-child(' + result.value + ') td:nth-child(1)', firstname).pause(1000);
                 browser.click('#visitor-list tr:nth-child(' + result.value + ')').pause(1000);
-                browser.assert.containsText('#myModal .modal-dialog .modal-content .modal-body .modal-left p', firstname);
+                browser.assert.containsText('#myModal .modal-dialog .modal-content .modal-body .modal-left p', firstname).pause(1000);
                 browser.click('#myModal .modal-dialog .modal-content .modal-footer button:nth-child(1)').pause(1000);
 
                 browser.execute(function(data) {
