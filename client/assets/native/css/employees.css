@@ -15,35 +15,6 @@
    border-bottom: none !important;
 }
 
-
-.add-button{
-   float: left;
-   border-radius: 2px;
-   padding: 7px;
-   background-color: #01b2bd;
-   color: white;
-}
-
-.add-button:hover{
-   background-color: #049099;
-   cursor: pointer;
-}
-
-.update-button{
-   /*border-radius: 2px;
-   padding: 7px;
-   margin-top: 15px; */
-   float: left;
-   background-color: #ec971f;
-   color: white;
-}
-
-.update-button:hover{
-   background-color: #ec971f;
-   color: white;
-   cursor: pointer;
-}
-
 .patient-table-header > .form-control{
    width: 150px;
    margin-bottom: 15px;
@@ -84,10 +55,6 @@ table{
 
 tr:nth-last-child(1){
    border-bottom: 1px solid rgb(215,215,215) !important;
-}
-
-hr{
-   border-top: 3px solid #01b2bd !important;
 }
 
 .modal-body .form-horizontal .col-sm-2,

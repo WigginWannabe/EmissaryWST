@@ -113,3 +113,16 @@ hr{
 .modal-dialog{
    top: 150px !important;
 }
+
+
+.fa-times {
+   color: #df0052;
+}
+
+.fa-check {
+   color: #77e700;
+}
+
+.fa-ellipsis-h .fa-cog {
+   color: #171311;
+}

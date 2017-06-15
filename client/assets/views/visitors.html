@@ -23,6 +23,7 @@
 	<link rel="stylesheet" href="assets/css/custom.css">
 	<!--<link rel="stylesheet" href="assets/css/patient-queue.css"> FOR HOVER-->
 	<link rel="stylesheet" href="assets/native/css/visitors.css">
+	<link rel="stylesheet" href="assets/css/page.css">
 	
 
 	<script src="assets/js/jquery-1.11.3.min.js"></script>
@@ -68,7 +69,7 @@
 				<!-- logo -->
 				<div class="logo">
 					<a href="#">
-						<img src="images/emissary.png" width="150" alt="" />
+						<img src="images/logo_black.png" width="175" alt="" />
 					</a>
 				</div>
 
@@ -88,7 +89,7 @@
 
 			</header>
 
-
+			<br><br>
 			<ul id="main-menu" class="main-menu">
 				<!-- add class "multiple-expanded" to allow multiple submenus to open -->
 				<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
@@ -195,21 +196,49 @@
 
         <script type="text/javascript">
 			// Handlebars helper function to change timestamp to readable format
-	        Handlebars.registerHelper('dateFormat', function(passedString) {
-	        	return "hi";
+	        Handlebars.registerHelper('dateFormat', function(time) {
+	        	if (!time)
+	        		return null;
+	        	
+	        	var currentTime = new Date(Date.parse(time));
+		        var hour = currentTime.getHours();
+		        var minute = currentTime.getMinutes();
+
+		        if(minute < 10) {
+		            minute = '0' + minute;
+		        }
+
+		        if(hour >= 13){
+		            hour = hour-12;
+		            currentTime = hour + ':' + minute + 'PM';
+		        }
+
+		        else if(hour === 12){
+		            currentTime = hour + ':' + minute +'PM';
+		        }
+		        else if(hour === 0){
+		            currentTime = 12 + ':' + minute + 'AM';
+		        }
+		        else{
+		            currentTime = hour + ':' + minute +'AM';
+		        }
+
+		        return currentTime;
 	        });
 
 			Handlebars.registerHelper('chooseIcon', function (checked, apptTime) {
 				var appt = new Date(apptTime);
-				var now = Date();
+				var now = new Date();
 				console.log(appt);
 				console.log(now);
+				console.log(now > appt);
+				console.log(checked);
 				if ((now > appt) && !checked) { // LATE
-					return "entypo-cancel";
+					return "fa fa-2x fa-times";
 				} else if (checked) { // CHECKED IN
-					return "entypo-check";
+					return "fa fa-2x fa-check";
 				} else { // NOT APPT TIME YET
-					return "entypo-dot-3";
+					return "fa fa-2x fa-ellipsis-h";
 				}
 			});
 
@@ -243,7 +272,7 @@
 							 <p><span>Appointment Time:</span> {{this.appointmentTime}}</p>
 						 </div>
 						 <div class="modal-right">
-                    		<p><span>Check-In Time:</span> {{this.checkin_time}}</p>
+                    		<p><span>Check-In Time:</span> {{dateFormat this.checkin_time}}</p>
                     		<p><span>Phone Number:</span> {{this.phone_number}}</p>
 						 </div>
                 </div>
