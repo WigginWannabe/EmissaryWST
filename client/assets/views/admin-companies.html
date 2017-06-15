@@ -79,16 +79,19 @@
 				<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
 				<li>
 					<a href="admin-dashboard.html">
+						<i class="entypo-chart-pie"></i>
 						<span class="title">Admin Dashboard</span>
 					</a>
 				</li>
 				<li>
 					<a href="admin-companies.html">
+						<i class="entypo-briefcase"></i>
 						<span class="title">Companies</span>
 					</a>
 				</li>
 				<li>
 					<a href="admin-settings.html">
+						<i class="entypo-cog"></i>
 						<span class="title">Settings</span>
 					</a>
 				</li>
@@ -111,7 +114,7 @@
 					<li class="profile-info dropdown"><!-- add class "pull-right" if you want to place this from right -->
 		
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<img src="./../assets/images/thumb-1@2x.png" alt="" class="img-circle" width="44" />
+							<img src="./../assets/images/peter.png" alt="" class="img-circle" width="60" />
 							Peter Venkman
 						</a>
 					</li>
@@ -223,14 +226,14 @@
                 return json;
             };
 
-            var employees = employeesFunc(id);
-        	/*employees = employees.sort(function(a,b) {
-        		return (b[prop] > a[prop]) ? 1 : ((b[prop] < a[prop]) ? -1 : 0);
-        	});*/
+            var employeesList = employeesFunc(id);
 
-            //console.log(id);
+            // Sort list so that first 
+        	var employees = employeesList.sort(function(a,b) {
+        		return (b[prop] > a[prop]) ? 1 : ((b[prop] < a[prop]) ? -1 : 0);
+        	});
+
             if (employees[0]) {
-	        //    console.log(employees[0].last_login);
 	            var passedString = employees[0].last_login;
 	            var theString = passedString.split('T')[0] + " at " + passedString.split('T')[1].split('Z')[0];
 	        	return theString;
