@@ -1,3 +1,8 @@
+/*
+ *  Overview:
+ *  This test tests the Home page
+ *  >Checks if the navbar contents are there and are linked properly
+ */
 
 module.exports = {
   beforeEach: (browser) => {
@@ -6,6 +11,7 @@ module.exports = {
     .waitForElementVisible('body',10000);
   },
   HeaderVisibility: (browser) => {
+    //Simple test checking the navbar contents
     browser.assert.attributeContains("#main-menu li a", "href","index.html");
     browser.assert.attributeContains("#main-menu li:nth-child(2) a", "href","#features");
     browser.assert.attributeContains("#main-menu li:nth-child(3) a", "href","#pricing");

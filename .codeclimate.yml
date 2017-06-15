@@ -1,0 +1,29 @@
+engines:
+    rubocop:
+        enabled: true
+#checks:
+# Rubocop/Metrics/ClassLength:
+#     enabled: false
+    golint:
+        enabled: true
+    eslint:
+        enabled: true
+    csslint:
+        enabled: true
+    duplication:
+      enabled: true
+      config:
+        languages:
+        - ruby:
+            mass_threshold: 30
+        - javascript
+ratings:
+exclude-paths:
+- "**/vendor/"
+- "client/font-awesome/"
+- "client/neon/"
+- "client/assets/font-awesome/"
+- "client/assets/js/"
+- "client/assets/images/"
+- "client/assets/css/"
+- "docs/"
