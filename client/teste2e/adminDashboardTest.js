@@ -4,7 +4,7 @@ module.exports = {
             .url('http://emissary-pseudopandas-dev.herokuapp.com/login')
             .waitForElementVisible('body', 10000);
     },
-    AddingEmployee: (browser) => {
+    AdminDashboard: (browser) => {
 
         //login into testing admin account
         browser.setValue('#username', "admin@tests.com");
@@ -16,11 +16,6 @@ module.exports = {
 
         //check if company dashboard is visible
         browser.isVisible('#companyCount', function(result) {
-            this.assert.equal(result.value, true);
-        });
-
-        //check if conversion rate dashboard is visible 
-        browser.isVisible('#convRate', function(result) {
             this.assert.equal(result.value, true);
         });
 
