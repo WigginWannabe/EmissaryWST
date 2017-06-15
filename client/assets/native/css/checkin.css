@@ -2,6 +2,26 @@ body {
     font-family: "Helvetica Neue";
 }
 
+.button {
+    display: block;
+    font-size: 32px;
+    background: #4E9CAF;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    display: none;
+    position: absolute;
+    left: 50%;
+    margin-left: -155px;
+    width: 310px;
+    height: 50px;
+    bottom: 25%;
+    border-radius: 3px;
+    vertical-align: middle;
+    text-decoration: none;
+}
+
 #clock{
     margin-top: 0;
     padding-top: 150px;
@@ -90,6 +110,29 @@ body#check-in-page{
     color: #f1f1f1;
 }
 
+#confirmation {
+    color: #ffffff;
+    font-size: 250%;
+    top: 25%;
+    margin: auto;
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    font-weight: bold;
+    display: none;
+}
+
+#failedCheckin {
+    color: #ffffff;
+    font-size: 250%;
+    top: 25%;
+    margin: auto;
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    font-weight: bold;
+    display: none;
+}
 
 .submit-check-in{
     position: absolute;

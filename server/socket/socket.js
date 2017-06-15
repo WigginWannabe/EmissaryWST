@@ -13,10 +13,10 @@ var DISCONNECT = "disconnect";
 var REMOVE_VISITOR = "remove_visitor";
 var ADD_VISITOR = "add_visitor";
 var NOTIFY_ERROR = "notify_error";
-var GET_APPOINTMENT = "get";
-var NOT_FOUND = "not found";
-var NOT_30MIN = "not within 30 min";
-var PASSED = "appointment time has passed";
+var GET_APPOINTMENT = "get_appointment";
+var NOT_FOUND = "Appointment not found.\n Please schedule an appointment.";
+var NOT_30MIN = "Appointment is not within 30 minutes.\n Please try again later.";
+var PASSED = "Appointment time has passed.\n Please schedule another appointment.";
 var MIN30SEC = 1800000;
 var error_msg = false;
 
@@ -38,6 +38,7 @@ exports.createServer = function(io_in) {
      */
     io.on(CONNECTION, function (socket) {
         console.log("SOCKET CONNECTED");
+
         /* company_id is required to connect to join right socket to listen to*/
         socket.on(VALIDATE_COMPANY_ID, function(data){
             console.log(data);
@@ -97,23 +98,34 @@ exports.createServer = function(io_in) {
         socket.on(ADD_VISITOR, function(data) {
             console.log("LOOKING FOR APPOINTMENT");
             var company_id = data.company_id;
-            var appt = exports.getMatch(data);
+            var appt = getMatch(socket, data);
             if (error_msg != false) {
                 console.log(error_msg);
                 exports.notifyError(company_id, {error: error_msg});
             }
 
         });
+
+        /*socket.on(GET_APPOINTMENT, function(data) {
+            console.log("please print");
+            if (data.error) {
+                alert("error occured when getting appointment");
+            }
+            else {
+                alert("checkin success");
+            }
+        });*/
     });
         //socket.on(GET_APPOINTMENT, function (data) {});
     return server;
 };
 
-exports.getMatch = function(data) {
+var getMatch = function(socket, data) {
     console.log(data.company_id);
+
     Appointment.find({first_name: data.first_name, 
                         last_name: data.last_name, 
-                        phone_number: data.phone_number}, function(err, a) {
+                        company_id: data.company_id}, function(err, a) {
         if (err) {
             console.log("Appointment could not be found");
             error_msg = NOT_FOUND;
@@ -132,6 +144,7 @@ exports.getMatch = function(data) {
                 var curr = a[0].date;
                 var now = new Date();
                 var timeLeft = 0;
+                var apptToCheckin = null;
                 // Loop through list of appointments to find closest one within 
                 // 30 minutes of the current time right now
                 for (var i = 0; i < a.length; i++) {
@@ -140,6 +153,7 @@ exports.getMatch = function(data) {
                     if (timeLeft >= (-MIN30SEC)) {
                         if (Date.parse(curr) < closest) {
                             date = curr;
+                            apptToCheckin = i;
                         }
                     }
                 }
@@ -155,17 +169,33 @@ exports.getMatch = function(data) {
                 }
                 else if (timeLeft <= MIN30SEC) {
                     console.log("appointment confirmed");
+                    a[apptToCheckin].is_checked_in = true;
+                    a[apptToCheckin].save( function(err) {
+
+                        if (err) {
+                            console.log("hi error");
+                            socket.emit(GET_APPOINTMENT, { error: err });
+                        } 
+                        else {
+                            console.log("hi not error :" + a[apptToCheckin]);
+                            socket.emit(GET_APPOINTMENT, { succes: true });
+                        }
+                    })
                     error_msg = false;
                 }
                 else {
                     console.log("Not within 30 minutes before appointment");
                     error_msg = NOT_30MIN;
                 }
+
             }
-            if (error_msg == false) {
+            if (error_msg) {
+                socket.emit(GET_APPOINTMENT, { error: error_msg });
+            }
+            else {
                 console.log("ADDING VISITOR");
-                console.log(data);
-                console.log(data.company_id);
+                //console.log(data);
+                //console.log(data.company_id);
                 var company_id = data.company_id;
                 VisitorListCtr.create(data, function(err_msg, result){
                     if(err_msg){
