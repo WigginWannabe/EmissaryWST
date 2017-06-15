@@ -201,13 +201,16 @@
 	        });
 
 			Handlebars.registerHelper('chooseIcon', function (checked, apptTime) {
+				var appt = new Date(apptTime);
 				var now = Date();
-				if (!checked && (now > apptTime)) {
-					return "entypo-menu";
-				} else if (checked) {
-					return "entypo-clipboard";
-				} else {
-					return "entypo-user";
+				console.log(appt);
+				console.log(now);
+				if ((now > appt) && !checked) { // LATE
+					return "entypo-cancel";
+				} else if (checked) { // CHECKED IN
+					return "entypo-check";
+				} else { // NOT APPT TIME YET
+					return "entypo-dot-3";
 				}
 			});
 		</script>
@@ -219,7 +222,7 @@
                 <td class="patient-queue-text">{{this.first_name}}</td>
                 <td class="patient-queue-text">{{this.last_name}}</td>
                 <td class="patient-queue-text appt-id">{{this.appointmentTime}}</td>
-                <td class="patient-queue-text"><i class="{{chooseIcon this.is_checked_in this.appointmentTime}}"></i></td>
+                <td class="patient-queue-text"><i class="{{chooseIcon this.is_checked_in this.date}}"></i></td>
                 <!-- Modal -->
             </tr>
             {{/each}}

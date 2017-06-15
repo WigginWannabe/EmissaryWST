@@ -75,6 +75,7 @@ exports.createServer = function(io_in) {
             };
 
             Appointment.find(query, function(err, appointments){
+
                 console.log(result);
                 if (err) {
                     console.log("hi error");
@@ -88,7 +89,7 @@ exports.createServer = function(io_in) {
 
 
 
-            
+
             // AppointmentCtr.getToday(company_id, function(err, result) {
 
             // });
@@ -200,6 +201,8 @@ var getMatch = function(socket, data) {
                 else if (timeLeft <= MIN30SEC) {
                     console.log("appointment confirmed");
                     a[apptToCheckin].is_checked_in = true;
+                    a[apptToCheckin].checkin_time = new Date();
+                    
                     a[apptToCheckin].save( function(err) {
 
                         if (err) {
