@@ -15,7 +15,7 @@ $(document).ready(function(){
     var REMOVE_VISITOR = "remove_visitor";
 
     var companyData = JSON.parse(localStorage.getItem("currentCompany"));
-    var visitorList;
+    var apptsToday;
     companyData.company_id = companyData._id;
 
 
@@ -43,28 +43,12 @@ $(document).ready(function(){
 
     //SOCKET LISTEN FOR VISITOR QUEUE
     socket.on(VISITOR_LIST_UPDATE, function (data) {
-        visitorList = data.visitors
-        //Parse Visitor List to format Date
-        for(var i = 0, len = visitorList.length; i< len; i++){
-            visitorList[i].checkin_time = formatTime(visitorList[i].checkin_time);
-        }
+        apptsToday = data; // has client name, appt time, checked_in, and checkin_time; ALL APPTS FOR THE DAY
 
-        //Parse Visitors appoitments
-        for(i = 0; i < len; i++){
-          var appList = visitorList[i].appointments;
-          if(appList[0]){
-            for(var j = 0, appLen = appList.length; j < appLen; j++){
-              if(compareDate(appList[j].date)){
-                visitorList[i].appointmentTime = formatTime(appList[j].date);
-                visitorList[i]._apptId = appList[j]._id;
-                break;
-              }
-            }
-          }
-          else{
-      
-            visitorList[i].appointmentTime = "None";
-          }
+        //Parse Visitor List to format Date
+        for(var i = 0, len = apptsToday.length; i< len; i++){
+            apptsToday[i].checkin_time = formatTime(apptsToday[i].checkin_time);
+            apptsToday[i].date = formatTime(apptsToday[i].date);
         }
 
        //visitorList.checkin_time = visitorList;

@@ -63,14 +63,24 @@ exports.createServer = function(io_in) {
         //requires the company_id to be sent
         socket.on(VISITOR_LIST_UPDATE, function(data) {
             var company_id = data.company_id;
-            console.log("Visitor List Update" + data);
-            VisitorListCtr.getCompanyVisitorList(company_id, function(err_msg, result){
-                if(err_msg) {
+            console.log("Appointment " + data);
+            AppointmentCtr.getToday(company_id, function(err_msg, result) {
+                console.log(result);
+                if (err_msg) {
                     exports.notifyError(company_id, {error: err_msg});
                 }
                 else
-                    exports.notifyNewList(company_id, result);
+                    exports.notfiyNewList(company_id,result);
             });
+
+
+            // VisitorListCtr.getCompanyVisitorList(company_id, function(err_msg, result){
+            //     if(err_msg) {
+            //         exports.notifyError(company_id, {error: err_msg});
+            //     }
+            //     else
+            //         exports.notifyNewList(company_id, result);
+            // });
         });
 
         socket.on(DISCONNECT, function() {

@@ -103,18 +103,19 @@ exports.getCompanyVisitorListReq = function(req, res){
 exports.getCompanyVisitorList = function(company_id, callback){
     if(!company_id)
         return callback({error: "Please send company id."}, null);
-    VisitorList.findOne({company_id: company_id}, function(err, list){
-        if(err) return callback({error: "Getting Visitor List"}, null);
-        if(list==null) {
-            list = new VisitorList();
-            list.visitors=[];
-            list.company_id = company_id;
-        }
-        list.save(function(err){
-            if(err)return callback({error: "Error in saving Visitor List"}, null);
-            return callback(null, list);
-        });
-    });
+
+    // VisitorList.findOne({company_id: company_id}, function(err, list){
+    //     if(err) return callback({error: "Getting Visitor List"}, null);
+    //     if(list==null) {
+    //         list = new VisitorList();
+    //         list.visitors=[];
+    //         list.company_id = company_id;
+    //     }
+    //     list.save(function(err){
+    //         if(err)return callback({error: "Error in saving Visitor List"}, null);
+    //         return callback(null, list);
+    //     });
+    // });
 };
 
 /* handles route to delete visitor in the list*/

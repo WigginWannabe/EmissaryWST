@@ -125,6 +125,67 @@ module.exports.template.getAll = function(req, res) {
         });
 };
 
+/**
+ * @function getToday
+ * @description get all the appointments of the company
+ * @param id the company's id
+ * @example
+ * // success response
+ *[
+ * {
+ *    _id : "12314125",
+ *    first_name : "test",
+ *    last_name : "test",
+ *    phone_number : "0123456789",
+ *    date : "2016-04-23T18:25:43.511Z",
+ *    company_id : "12314125",
+ *    provider_name : "test test"
+ * },
+ * {
+ *    _id : "12314125",
+ *    first_name : "test",
+ *    last_name : "test",
+ *    phone_number : "0123456789",
+ *    date : "2016-04-23T18:25:43.511Z",
+ *    company_id : "12314125",
+ *    provider_name : "test test"
+ * }
+ *]
+ * @example
+ * // error response
+ * {
+ *  error: "Could Not Find"
+ * }
+ * @returns a response indicating either Success or Error
+ */
+exports.getToday = function(company_id, callback){
+
+    var today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    var query=
+    {
+        company_id: company_id,
+        date: {$gte:today}
+    };
+
+    Appointment.find(query, function(err, appointments){
+        if (err) {
+            return callback(err,null);
+        }
+        console.log(appointments);
+        return callback(null,appointments);
+    });
+
+
+    // Appointment.find({company_id: req.params.id}, function(err, result){
+    //         if(err){
+    //             return res.status(400).json(err);
+    //         }
+    //         return res.status(200).json(result);
+    //     });
+};
+
 
 /**
  * @function getAppointment
