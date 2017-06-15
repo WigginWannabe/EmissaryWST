@@ -226,14 +226,14 @@
                 return json;
             };
 
-            var employees = employeesFunc(id);
-        	/*employees = employees.sort(function(a,b) {
-        		return (b[prop] > a[prop]) ? 1 : ((b[prop] < a[prop]) ? -1 : 0);
-        	});*/
+            var employeesList = employeesFunc(id);
 
-            //console.log(id);
+            // Sort list so that first 
+        	var employees = employeesList.sort(function(a,b) {
+        		return (b[prop] > a[prop]) ? 1 : ((b[prop] < a[prop]) ? -1 : 0);
+        	});
+
             if (employees[0]) {
-	        //    console.log(employees[0].last_login);
 	            var passedString = employees[0].last_login;
 	            var theString = passedString.split('T')[0] + " at " + passedString.split('T')[1].split('Z')[0];
 	        	return theString;
