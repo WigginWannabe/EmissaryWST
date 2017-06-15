@@ -5412,8 +5412,8 @@ body {
 .page-container .sidebar-menu {
   display: table-cell;
   vertical-align: top;
-  background: #303641;
-  width: 280px;
+  background: #4c3f54;
+  width: 240px;
   position: relative;
   z-index: 100;
   -webkit-box-sizing: border-box;

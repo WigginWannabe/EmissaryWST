@@ -1,0 +1,13 @@
+body {
+//    background: linear-gradient(to right top, #1E656D , #F1F3CE);
+    background: linear-gradient(to bottom, #fdffff 33.33%, #4c3f54 33.33%, #4c3f54 66.66%, #fdffff 66.66%);
+//    background: #4c3f54;
+}
+
+.page-container {
+    width: 87%;
+    margin: auto;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
