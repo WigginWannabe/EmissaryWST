@@ -1,45 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>scheduler.js - Documentation</title>
-
-    <script src="scripts/prettify/prettify.js"></script>
-    <script src="scripts/prettify/lang-css.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
-    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
-</head>
-<body>
-
-<input type="checkbox" id="nav-trigger" class="nav-trigger" />
-<label for="nav-trigger" class="navicon-button x">
-  <div class="navicon"></div>
-</label>
-
-<label for="nav-trigger" class="overlay"></label>
-
-<nav>
-    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Modules</li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-Appointments.html">Appointments</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Appointments.html#~createAppointment">createAppointment</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Appointments.html#~deleteAppointment">deleteAppointment</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Appointments.html#~getAllAppointments">getAllAppointments</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Appointments.html#~getAppointment">getAppointment</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Appointments.html#~getToday">getToday</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Appointments.html#~updateAppointment">updateAppointment</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-Company.html">Company</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Company.html#~createCompany">createCompany</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Company.html#~deleteCompany">deleteCompany</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Company.html#~getAllCompanies">getAllCompanies</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Company.html#~getCompany">getCompany</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Company.html#~resetCompany">resetCompany</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Company.html#~showCompanyPublicInfo">showCompanyPublicInfo</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Company.html#~updateCompanyInfo">updateCompanyInfo</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-Employee.html">Employee</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Employee.html#~createEmployee">createEmployee</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Employee.html#~deleteEmployee">deleteEmployee</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Employee.html#~employeeLogin">employeeLogin</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Employee.html#~getAllEmployees">getAllEmployees</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Employee.html#~getEmployee">getEmployee</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Employee.html#~updateEmployee">updateEmployee</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-Payment.html">Payment</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Payment.html#~basicPlanIndex">basicPlanIndex</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Payment.html#~createSubscription">createSubscription</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Payment.html#~getSubscription">getSubscription</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-Scheduler.html">Scheduler</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Scheduler.html#~getAppts">getAppts</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Scheduler.html#~onEventAdded">onEventAdded</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Scheduler.html#~onEventChanged">onEventChanged</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Scheduler.html#~onEventDeleted">onEventDeleted</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Scheduler.html#~submitForm">submitForm</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Scheduler.html#~updateApptList">updateApptList</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-VisitorList.html">VisitorList</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-VisitorList.html#~addVisitor">addVisitor</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-VisitorList.html#~clearAVisitor">clearAVisitor</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-VisitorList.html#~clearVisitorList">clearVisitorList</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-VisitorList.html#~deleteVisitor">deleteVisitor</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-VisitorList.html#~getVisitorList">getVisitorList</a></span></li>
-</nav>
-
-<div id="main">
-    
-    <h1 class="page-title">scheduler.js</h1>
-    
-
-    
-
-
-
-    
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>/**
+/**
  * @module Scheduler
  */
 
@@ -62,7 +21,7 @@ $(document).ready(function(){
     scheduler.config.limit_time_select = true;
     scheduler.attachEvent("onTemplatesReady", function(){
     scheduler.templates.event_text=function(start,end,event){
-        return "&lt;b>" + event.text + "&lt;/b>&lt;br>&lt;i>" + event.employee + "&lt;/i>";
+        return "<b>" + event.text + "</b><br><i>" + event.employee + "</i>";
     }
     }); 
 
@@ -137,7 +96,7 @@ $(document).ready(function(){
 
     var appts = getAppts();
 
-    for(var i = 0; i &lt; appts.length; i++)
+    for(var i = 0; i < appts.length; i++)
     {
       json = new Object();
       json.id = appts[i]._id;
@@ -281,10 +240,10 @@ $(document).ready(function(){
       var yyyy = d.getFullYear();
       var dd = d.getDate();
       //var monthArray = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug","Sep","Nov","Dec"];
-      if(dd &lt; 10){
+      if(dd < 10){
         dd = '0' + dd;
       }
-      if(mm &lt; 10){
+      if(mm < 10){
         mm = '0' + mm;
       }
       //console.log(monthArray[mm]);
@@ -309,10 +268,10 @@ $(document).ready(function(){
       var yyyy = d.getFullYear();
       var dd = d.getDate();
 
-      if(dd &lt; 10){
+      if(dd < 10){
         dd = '0' + dd;
       }
-      if(mm &lt; 10){
+      if(mm < 10){
         mm = '0' + mm;
       }
       return  yyyy + '-' + mm +'-' + dd;
@@ -339,7 +298,7 @@ $(document).ready(function(){
       else{
 
         formattedHour = parseInt(time.substr(0,2));
-        if(formattedHour &lt; 10){
+        if(formattedHour < 10){
           formattedHour = '0' + formattedHour;
         }
         if(formattedHour == 12){
@@ -404,7 +363,7 @@ $(document).ready(function(){
         var hour = currentTime.getHours();
         var minute = currentTime.getMinutes();
 
-        if(minute &lt; 10) {
+        if(minute < 10) {
             minute = '0' + minute;
         }
 
@@ -429,22 +388,3 @@ $(document).ready(function(){
     }
 
 });
-</code></pre>
-        </article>
-    </section>
-
-
-
-
-</div>
-
-<br class="clear">
-
-<footer>
-    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Thu Jun 15 2017 09:41:56 GMT-0700 (PDT) using the Minami theme.
-</footer>
-
-<script>prettyPrint();</script>
-<script src="scripts/linenumber.js"></script>
-</body>
-</html>

@@ -9,7 +9,6 @@
   "author": "Eduardo Aguilar",
   "scripts": {
     "document": "jsdoc server/routes -c ./docs/conf.json -P ./docs/package.json -r",
-    "document2": "jsdoc client/assets/native/js/scheduler.js -c ./docs/conf.json -P ./docs/package.json",
     "start": "node server/app.js",
     "heroku-postbuild": "gulp build:prod",
     "teste2e": "nightwatch --config nightwatch.js"
