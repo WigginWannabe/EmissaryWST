@@ -129,6 +129,7 @@ li a.active {
     background-color: #FF2274;
 }
 
+<<<<<<< HEAD
 #logo {
     display: block;
     margin: auto;
@@ -151,4 +152,13 @@ li a.active {
 
 .row {
     padding-top: 15px;
+}
+
+.testimonial {
+    column-count: 2;
+}
+
+.testimonial h2 {
+    color: #009900;
+    text-align: center;
 }
