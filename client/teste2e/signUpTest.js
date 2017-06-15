@@ -1,3 +1,10 @@
+/*
+ *  Overview:
+ *  This test tests the Signup page
+ *  >Goes to the signup page
+ *  >Use randomly generated data credentials to sign up (needed as database uses emails as identifiers)
+ */
+
 module.exports = {
     beforeEach: (browser) => {
         browser
@@ -5,6 +12,7 @@ module.exports = {
             .waitForElementVisible('body', 10000);
     },
     InputTest: (browser) => {
+        //Some fields are andomly generated (for database identifier)
         browser.setValue('#form-company-name', "test" + Math.floor((Math.random() * 100000) + 1));
         browser.setValue('#form-email', "test" + Math.floor((Math.random() * 100000) + 1) + "@testing.com");
         browser.setValue('#form-phone', "123-456-7894");
