@@ -64,17 +64,34 @@ exports.createServer = function(io_in) {
         socket.on(VISITOR_LIST_UPDATE, function(data) {
             var company_id = data.company_id;
             console.log("Appointment " + company_id);
-            AppointmentCtr.getToday(company_id, function(err, result) {
+
+            var today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            var query=
+            {
+                company_id: company_id,
+                date: {$gte:today}
+            };
+
+            Appointment.find(query, function(err, appointments){
                 console.log(result);
                 if (err) {
                     console.log("hi error");
-                    socket.emit(VISITOR_LIST_UPDATE, { error: err });
+                    socket.emit(VISITOR_LIST_UPDATE, err);
                 } 
                 else {
                     console.log("hi not error ");
                     socket.emit(VISITOR_LIST_UPDATE, result);
                 }
             });
+
+
+
+            
+            // AppointmentCtr.getToday(company_id, function(err, result) {
+
+            // });
 
 
             // VisitorListCtr.getCompanyVisitorList(company_id, function(err_msg, result){
