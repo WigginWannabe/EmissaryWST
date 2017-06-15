@@ -14,9 +14,9 @@ var REMOVE_VISITOR = "remove_visitor";
 var ADD_VISITOR = "add_visitor";
 var NOTIFY_ERROR = "notify_error";
 var GET_APPOINTMENT = "get_appointment";
-var NOT_FOUND = "not found";
-var NOT_30MIN = "not within 30 min";
-var PASSED = "appointment time has passed";
+var NOT_FOUND = "Appointment not found.\n Please schedule an appointment.";
+var NOT_30MIN = "Appointment is not within 30 minutes.\n Please try again later.";
+var PASSED = "Appointment time has passed.\n Please schedule another appointment.";
 var MIN30SEC = 1800000;
 var error_msg = false;
 
@@ -187,8 +187,12 @@ var getMatch = function(socket, data) {
                     console.log("Not within 30 minutes before appointment");
                     error_msg = NOT_30MIN;
                 }
+
             }
-            if (error_msg == false) {
+            if (error_msg) {
+                socket.emit(GET_APPOINTMENT, { error: error_msg });
+            }
+            else {
                 console.log("ADDING VISITOR");
                 //console.log(data);
                 //console.log(data.company_id);

@@ -7,7 +7,10 @@ $(document).ready(function(){
     var VALIDATE_COMPANY_ID = "validate_company_id";
     var ADD_VISITOR = "add_visitor";
     var GET_APPOINTMENT = "get_appointment";
-    
+    var NOT_FOUND = "Appointment not found.\n Please speak with the front desk.";
+    var NOT_30MIN = "Not yet within 30 minutes of your appointment.\n Please try again later.";
+    var PASSED = "Appointment time has passed.\n Please speak with the front desk.";
+
     var companyData = JSON.parse(localStorage.getItem("currentCompany"));
     console.log(companyData);
     socket.emit(VALIDATE_COMPANY_ID, companyData);
@@ -19,17 +22,22 @@ $(document).ready(function(){
 
     socket.on(GET_APPOINTMENT, function(data) {
         console.log(data);
-        if (false) {
-            alert("error occured when getting appointment");
+        if (data.error) {
+            console.log(data.error.toString());
+
+            document.getElementById('failedCheckin').innerHTML = data.error.toString();
+            showFailure();
         }
         else {
-            alert("checkin success");
+            showConfirmation();
         }
+        showButton();
     });
 
     //Bind Listeners
     $('#tap-to-check').on('click', startCheckIn);
     $('.check-in').on('submit', submitForm);
+
 
     //When a user starts their check in
     function startCheckIn(){
@@ -40,6 +48,15 @@ $(document).ready(function(){
         }, 700);
         $(this).addClass('hide');
         $('#clock').addClass('hide');
+    }
+    function showConfirmation() {
+        $('#confirmation').show();
+    }
+    function showFailure() {
+        $('#failedCheckin').show();
+    }
+    function showButton() {
+        $('#bButton').show();
     }
 
     //When a patient submits their form
@@ -71,7 +88,8 @@ $(document).ready(function(){
             top:'35%',
             opacity:'0'
         },0);
-
+        //$('.check-in').addClass('hide');
+        //$('.submit-check-in').style.display = "none";
     }
     //Grabs elements from the check in and puts it into an object
     function grabFormElements(){
