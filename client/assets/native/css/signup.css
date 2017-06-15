@@ -63,9 +63,9 @@ input[type="radio"]{
    font-size: 12px;
 }
 
-#signup-up-body{
+/*#signup-up-body{
    overflow: hidden;
-}
+}*/
 .form-box{
    width: 50%;
    max-width: 425px;
