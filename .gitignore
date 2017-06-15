@@ -10,6 +10,7 @@ server/log
 newrelic_agent.log
 client-secret.json
 client-secret.p12
+/**/.DS_Store
 
 mobile/platforms/
 mobile/plugins/

@@ -81,16 +81,19 @@
 				<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
 				<li>
 					<a href="admin-dashboard.html">
+					    <i class="entypo-chart-pie"></i>
 						<span class="title">Admin Dashboard</span>
 					</a>
 				</li>
 				<li>
 					<a href="admin-companies.html">
+					    <i class="entypo-briefcase"></i>
 						<span class="title">Companies</span>
 					</a>
 				</li>
 				<li>
 					<a href="admin-settings.html">
+					    <i class="entypo-cog"></i>
 						<span class="title">Settings</span>
 					</a>
 				</li>
@@ -111,10 +114,13 @@
 
 					<!-- Profile Info -->
 					<li class="profile-info dropdown"><!-- add class "pull-right" if you want to place this from right -->
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<img src="./../assets/images/peter.png" alt="" class="img-circle" width="60" />
+							Peter Venkman
+						</a>
 						<a href="#" id="company-name">
 							<h3>Admin Dashboard</h3>
 						</a>
-						<button id="auth-button" hidden>Authorize Google Analytics</button>
 					</li>
 
 				</ul>
@@ -162,7 +168,7 @@
                             y: numTrials
                         }]
                     }]
-                }
+                };
 
                 $(document).ready(function() {
                     var chart = new Highcharts.Chart(options);
@@ -173,8 +179,9 @@
 
 		<div class="row">
 
-            <!-- Registered users -->
-			<div class="col-sm-4 col-xs-12">
+            
+			<div class="col-sm-6 col-xs-12">
+			    <!-- Registered users -->
 				<div class="tile-stats tile-red">
 					<div class="icon"><i class="entypo-users"></i></div>
 					<div id = "companyCount" class="num" data-start="83" data-end="83" data-postfix="" data-duration="1500" data-delay="0">0</div>
@@ -183,57 +190,44 @@
 					<p>Lifetime Total</p>
 				</div>
 
-                <!-- Conversion Rate -->
-                <div class="tile-stats tile-orange">
-                    <div class="icon"><i class="entypo-paper-plane"></i></div>
-                    <div id = "convRate" class="num" data-start="37" data-end="37" data-postfix="" data-duration="1500" data-delay="600">37%
-                    </div>
-
-                    <h3>Conversion Rate</h3>
-                    <p># of Signups/ # of Unique Landing Page Views</p>
-                </div>
-			</div>
-
-			<div class="clear visible-xs"></div>
-
-			<div class="col-sm-4 col-xs-12">
-
-                <!-- Revenue Tile -->
+				<!-- Revenue Tile -->
                 <div class="tile-block tile-green">
 
                     <div class="tile-header">
                         <i class="entypo-suitcase"></i>
-                            Revenue Generated
+						    Revenue Generated
                             <span>In the Past 30 days</span>
                     </div>
 
                     <div class="tile-content">
-                        <div id = "revenueGenerated" class="num" data-start="0" data-end="540" data-postfix="" data-duration="1500" data-delay="1800">$540
+                        <div id = "revenueGenerated" class="num" data-start="0" data-end="540" data-prefix="$" data-duration="1500" data-delay="1800">$540
                         </div>
                     </div>
 
                     <div class="tile-footer">
-                        <button type="button" class="btn btn-block">Button</button>
                     </div>
 
                 </div>
 
-                <!-- Google Analytics -->
-                <div class="tile-title tile-aqua">
+                <!-- Segment Analytics -->
+                <a href="https://segment.com/login" target="_blank">
+                <div class="tile-title tile-cyan">
 
                     <div class="icon">
                         <i class="entypo-chart-bar"></i>
                     </div>
 
                     <div class="title">
-                        <h3>Google Analytics</h3>
+                        <h3>Segment Analytics</h3>
                         <p></p>
                     </div>
                 </div>
-
+                </a>
 			</div>
+                         
+			<div class="clear visible-xs"></div>
 
-            <div class="col-sm-4 col-xs-12">
+            <div class="col-sm-6 col-xs-12">
                     <!-- Tile showing percent of paid -->
                     <div class="tile-stats tile-blue">
                         <div class="icon"><i class="entypo-credit-card"></i></div>
@@ -243,7 +237,7 @@
 
                     <!-- Pie chart for paid vs. trial breakdown -->
                     <div class="tile-stats tile-white tile-white-primary">
-                        <div id="container" style="height: 450px; width: 450px; margin: 0 auto"></div>
+                        <div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
                     </div>
             </div>
         </div>

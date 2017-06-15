@@ -63,15 +63,36 @@ exports.createServer = function(io_in) {
         //requires the company_id to be sent
         socket.on(VISITOR_LIST_UPDATE, function(data) {
             var company_id = data.company_id;
-            console.log("Appointment " + data);
-            AppointmentCtr.getToday(company_id, function(err_msg, result) {
+            console.log("Appointment " + company_id);
+
+            var today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            var query=
+            {
+                company_id: company_id,
+                date: {$gte:today}
+            };
+
+            Appointment.find(query, function(err, appointments){
+
                 console.log(result);
-                if (err_msg) {
-                    exports.notifyError(company_id, {error: err_msg});
+                if (err) {
+                    console.log("hi error");
+                    socket.emit(VISITOR_LIST_UPDATE, err);
+                } 
+                else {
+                    console.log("hi not error ");
+                    socket.emit(VISITOR_LIST_UPDATE, result);
                 }
-                else
-                    exports.notfiyNewList(company_id,result);
             });
+
+
+
+
+            // AppointmentCtr.getToday(company_id, function(err, result) {
+
+            // });
 
 
             // VisitorListCtr.getCompanyVisitorList(company_id, function(err_msg, result){
@@ -180,6 +201,8 @@ var getMatch = function(socket, data) {
                 else if (timeLeft <= MIN30SEC) {
                     console.log("appointment confirmed");
                     a[apptToCheckin].is_checked_in = true;
+                    a[apptToCheckin].checkin_time = new Date();
+                    
                     a[apptToCheckin].save( function(err) {
 
                         if (err) {
@@ -233,11 +256,13 @@ var getMatch = function(socket, data) {
  * patients to reflect the changes.
  */
 exports.notifyNewList = function(company_id, data) {
-    io.to(company_id).emit(VISITOR_LIST_UPDATE, data);
+    console.log("hi error");
+    io.to(company_id).emit(VISITOR_LIST_UPDATE, JSON.stringify(data));
 };
 
 exports.notifyError = function(company_id, data) {
-    io.to(company_id).emit(NOTIFY_ERROR, data);
+    console.log("hi not error :" + data);
+    io.to(company_id).emit(NOTIFY_ERROR, JSON.stringify(data));
 };
 
 /*

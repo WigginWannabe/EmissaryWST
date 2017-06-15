@@ -17,12 +17,12 @@ gulp.task('copy:css', function () {
 });
 
 gulp.task('copy:schedule-imgs1', function () {
-  return gulp.src('.client/assets/css/**/*.png')
+  return gulp.src('./client/assets/css/imgs_dhx_terrace/*.png')
      .pipe(gulp.dest('./dist/imgs_dhx_terrace'));
 });
 
 gulp.task('copy:schedule-imgs2', function () {
-  return gulp.src('.client/assets/css/**/*.gif')
+  return gulp.src('./client/assets/css/imgs_dhx_terrace/*.gif')
      .pipe(gulp.dest('./dist/imgs_dhx_terrace'));
 });
 

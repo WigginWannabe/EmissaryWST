@@ -275,27 +275,28 @@
         return json;
     }
 
-    //TODO get trial statistics to use to calculate the count
-    // Counts the number of companies on the free trial
-    function countTrials(companies) {
+    // Counts the number of companies subscribed
+    function countPaid(companies) {
         var count = 0;
-        /*for (var comp in companies) {
-            if (comp[trial]) {
-                count++;
-            }
-        }*/
-        count = 79;  // TODO remove placeholder value
+        for (var i = 0; i < companies.length; i++) {
+           if (companies[i].is_paid) {
+               count++;
+           }
+        }
         return count;
     }
 
     var companies = getCompanies();
     var num = companies.length;
 
-    numTrials = countTrials(companies);
-    numPaid = num - numTrials;
+    numPaid = countPaid(companies);
+    numTrials = num - numPaid;
     var percentPaid = Number(((numPaid/num).toFixed(2))*100);
+
+    var revenue = numPaid * 20;
 
     document.getElementById('companyCount').innerHTML = num;
     document.getElementById('clientPercent').innerHTML = percentPaid.toString() + "%";
+    document.getElementById('revenueGenerated').innerHTML = "$" + revenue.toString();
     // Add an event listener to the 'auth-button'.
     document.getElementById('auth-button').addEventListener('click', authorize);

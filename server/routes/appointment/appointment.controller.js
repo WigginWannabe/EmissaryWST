@@ -158,32 +158,26 @@ module.exports.template.getAll = function(req, res) {
  * }
  * @returns a response indicating either Success or Error
  */
-exports.getToday = function(company_id, callback){
+module.exports.template.getToday = function(req,res){
 
     var today = new Date();
     today.setHours(0, 0, 0, 0);
+    var tomorrow= new Date();
+    tomorrow.setDate(today.getDate()+1);
+    tomorrow.setHours(0, 0, 0, 0);
 
     var query=
     {
-        company_id: company_id,
-        date: {$gte:today}
+        company_id: req.params.id,
+        date: {$gte:today, $lt: tomorrow}
     };
 
     Appointment.find(query, function(err, appointments){
-        if (err) {
-            return callback(err,null);
+        if(err){
+            return res.status(400).json(err);
         }
-        console.log(appointments);
-        return callback(null,appointments);
+        return res.status(200).json(appointments);
     });
-
-
-    // Appointment.find({company_id: req.params.id}, function(err, result){
-    //         if(err){
-    //             return res.status(400).json(err);
-    //         }
-    //         return res.status(200).json(result);
-    //     });
 };
 
 

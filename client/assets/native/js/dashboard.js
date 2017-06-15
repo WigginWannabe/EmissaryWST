@@ -34,29 +34,41 @@ $(document).ready(function(){
     * Compile all the Handle Bar Templates
     */
     //DashBoard Template
+    apptsToday = initializeAppts(getAppts());
     var source = $("#visitor-list-template").html();
     var template = Handlebars.compile(source);
+    var compiledHtml = template(apptsToday);
+    $('#visitor-list').html(compiledHtml);
 
     //Modal Template
     var modal = $('#visitor-info-template').html();
     var modalTemplate = Handlebars.compile(modal);
-
-    //SOCKET LISTEN FOR VISITOR QUEUE
-    socket.on(VISITOR_LIST_UPDATE, function (data) {
-        apptsToday = data; // has client name, appt time, checked_in, and checkin_time; ALL APPTS FOR THE DAY
-
-        //Parse Visitor List to format Date
-        for(var i = 0, len = apptsToday.length; i< len; i++){
-            apptsToday[i].checkin_time = formatTime(apptsToday[i].checkin_time);
-            apptsToday[i].date = formatTime(apptsToday[i].date);
-        }
-
-       //visitorList.checkin_time = visitorList;
-        var compiledHtml = template(visitorList);
-        $('#visitor-list').html(compiledHtml);
-    });
+    
 
 
+
+
+
+    // socket.on("connect", function(){
+    //   console.log("a user connected");
+    // });
+    
+    // //SOCKET LISTEN FOR VISITOR QUEUE
+    // socket.on(VISITOR_LIST_UPDATE, function (data) {
+    //     apptsToday = data; // has client name, appt time, checked_in, and checkin_time; ALL APPTS FOR THE DAY
+    //     console.log(data);
+    //     console.log("I AM HERE");
+    //     //Parse Visitor List to format Date
+    //     for(var i = 0, len = apptsToday.length; i< len; i++){
+    //         apptsToday[i].checkin_time = formatTime(apptsToday[i].checkin_time);
+    //         apptsToday[i].date = formatTime(apptsToday[i].date);
+    //     }
+
+    //    //visitorList.checkin_time = visitorList;
+    //     console.log(apptsToday);
+
+    // });
+    
     /***
     * Listener for Opening a Modal
     */
@@ -119,14 +131,30 @@ $(document).ready(function(){
      */
     function findVisitor(id){
 
-        for(var visitor in visitorList) {
-           if(visitorList.hasOwnProperty(visitor)){
-              if(visitorList[visitor]._id === id){
-                  if(DEBUG) console.log(visitorList[visitor]);
-                  return visitorList[visitor];
+        for(var visitor in apptsToday) {
+           if(apptsToday.hasOwnProperty(visitor)){
+              if(apptsToday[visitor]._id === id){
+                  if(DEBUG) console.log(apptsToday[visitor]);
+                  return apptsToday[visitor];
               }
            }
         }
+    }
+
+    function formatDate(date){
+      var d = new Date(Date.parse(date));
+      var mm = d.getMonth() + 1;
+      var yyyy = d.getFullYear();
+      var dd = d.getDate();
+      //var monthArray = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug","Sep","Nov","Dec"];
+      if(dd < 10){
+        dd = '0' + dd;
+      }
+      if(mm < 10){
+        mm = '0' + mm;
+      }
+      //console.log(monthArray[mm]);
+      return  mm + '/' + dd + '/' +  + yyyy;
     }
 
     /***
@@ -180,6 +208,33 @@ $(document).ready(function(){
      */
     function decreasingOrder(key){
 
+    }
+
+    function getAppts() {
+       var json;
+       $.ajax({
+           dataType: 'json',
+           type: 'GET',
+           data: $('#response').serialize(),
+           async: false,
+           url: '/api/appointments/company/' + companyData.company_id,
+           success: function(response) {
+               json = response;
+               console.log(response);
+           }
+       });
+       return json;
+    }
+
+    function initializeAppts (appts){
+      appts.sort(function(a,b){
+        return new Date(a.date) - new Date(b.date);
+      });
+      for(var i = 0, len = appts.length; i < len; i++){
+        appts[i].fullDate = formatDate(appts[i].date.toString());
+        appts[i].appointmentTime = formatTime(appts[i].date.toString());
+      }
+      return appts;
     }
 
 });

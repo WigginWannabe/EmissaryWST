@@ -23,6 +23,18 @@ http://emissary-pseudopandas-dev.herokuapp.com/
 4. **jQuery** (https://jquery.com/)
 
 
+## PseudoPandas' General Pipeline:
+https://drive.google.com/file/d/0B3ukuBLkHqb3U1FjT0xPcGNCQ3M/view?usp=sharing
+
+#### GitHub-specific Pipeline
+https://drive.google.com/file/d/0B3ukuBLkHqb3VTdLazZSZDBIeVk/view?usp=sharing
+
+
+## Peter's Dashboard Account:
+Username: **peter@admin.com**
+Password: **admin**
+
+
 ## Instructions to Get Started:
 **Step 1:** Do a `git clone` on our project on **Github** (https://github.com/WigginWannabe/EmissaryWST).
 
