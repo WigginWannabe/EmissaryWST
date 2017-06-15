@@ -175,8 +175,7 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th st-sort="Name">First Name</th>
-                    <th st-sort="Appointment">Last Name</th>
+                    <th st-sort="Name">Name</th>
                     <th st-sort="Appointment">Appointment Time</th>
                     <th st-sort="Time">Status</th>
                 </tr>
@@ -213,14 +212,17 @@
 					return "entypo-dot-3";
 				}
 			});
+
+			Handlebars.registerHelper('concatName', function (first, last) {
+				return first + " " + last;
+			});
 		</script>
 
         <!-- HANDLE BAR TEMPLATES -->
         <script type = "text/x-handlebars-template" id = "visitor-list-template">
             {{#each []}}
             <tr class="patient-check-out" data-toggle="modal" data-target="#myModal" value = "{{this._id}}">
-                <td class="patient-queue-text">{{this.first_name}}</td>
-                <td class="patient-queue-text">{{this.last_name}}</td>
+                <td class="patient-queue-text">{{concatName this.first_name this.last_name}}</td>
                 <td class="patient-queue-text appt-id">{{this.appointmentTime}}</td>
                 <td class="patient-queue-text"><i class="{{chooseIcon this.is_checked_in this.date}}"></i></td>
                 <!-- Modal -->
