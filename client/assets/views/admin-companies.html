@@ -29,7 +29,6 @@
 	<script src="./../assets/js/jquery-1.11.3.min.js"></script>
 	<script type = "text/javascript" src= "assets/js/handlebars-v4.0.5.js"></script>
 	<script src="./../assets/js/adminpanel.js"></script>
-	<script src="./../assets/js/employees.js"></script>
 	<!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 	
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -190,34 +189,52 @@
 			giCount++;
 		}
 
-		// Handlebars helper function to trim timestamp to just the date
+		// Handlebars helper function to change timestamp to readable format
         Handlebars.registerHelper('dateFormat', function(passedString) {
             var theString = passedString.split('T')[0] + " at " + passedString.split('T')[1].split('Z')[0];
             return new Handlebars.SafeString(theString)
         });
 
+        // Format paid status to yes or no format
         Handlebars.registerHelper('paidFormat', function(val) {
-            //var theString = "no";
             if (val) {
-                //theString = "yes";
                 return new Handlebars.SafeString("yes")
             }
             else {
-                //theString = "no";
                 return new Handlebars.SafeString("no")
             }
-            //return new Handlebars.SafeString(theString)
         });
 
-        Handlebars.registerHelper('loginHelper', function(id)) {
+        // Get last login of first employee of company
+        Handlebars.registerHelper('loginHelper', function(id) {
         	var prop = 'last_login';
-        	var employees  = getEmployees(id);
+        	function employeesFunc(id) {
+                var json;
+                $.ajax({
+                    dataType: 'json',
+                    type: 'GET',
+                    data: $('#response').serialize(),
+                    async: false,
+                    url: '/api/employees/company/' + id,
+                    success: function(response) {
+                        json = response;
+                    }
+                });
+                return json;
+            };
+
+            var employees = employeesFunc(id);
         	/*employees = employees.sort(function(a,b) {
         		return (b[prop] > a[prop]) ? 1 : ((b[prop] < a[prop]) ? -1 : 0);
         	});*/
 
-        	return employees[0].last_login;
-        }
+            //console.log(id);
+            //console.log(employees[0].last_login);
+            var passedString = employees[0].last_login;
+            var theString = passedString.split('T')[0] + " at " + passedString.split('T')[1].split('Z')[0];
+        	return theString;
+        });
+
 		</script>
 
 		<table class="table table-bordered table-striped datatable" id="table-2">

@@ -10,7 +10,7 @@ $(document).ready(function(){
             url: '/api/companies',
             success: function(response) {
                 json = response;
-                console.log(response);
+//                console.log(response);
             }
         });
         return json;
@@ -34,12 +34,14 @@ $(document).ready(function(){
            url: '/api/employees/company/' + id,
            success: function(response) {
                json = response;
-               //console.log(response);
+               console.log(response);
            }
-       }).done(function(data) {
-           console.log("adminpanel.js");
-           console.log(data);
        });
+       
+       //.done(function(response) {
+         //  console.log("adminpanel.js");
+           //console.log(response.body);
+       //});
        //return json;
    }
 });
