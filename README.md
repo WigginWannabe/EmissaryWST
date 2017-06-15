@@ -35,6 +35,10 @@ Username: **peter@admin.com**
 Password: **admin**
 
 
+## Emissary Manual, Requirements, Overview
+https://docs.google.com/document/d/19A0_Z7wwmyeMRsl_kKpeolrZBhVv8YJWoBwIikqI3a0/edit?usp=sharing
+
+
 ## Instructions to Get Started:
 **Step 1:** Do a `git clone` on our project on **Github** (https://github.com/WigginWannabe/EmissaryWST).
 

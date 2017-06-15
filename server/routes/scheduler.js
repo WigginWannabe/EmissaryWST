@@ -28,6 +28,7 @@ $(document).ready(function(){
     /**
      * @function onEventAdded
      * @description create a new appointment as an event on the calendar
+     * @param event_info
      * @returns event is added to the calendar
      */
     scheduler.attachEvent("onEventAdded", function(id, event){
@@ -48,6 +49,7 @@ $(document).ready(function(){
     /**
      * @function onEventChanged
      * @description change the appointment event
+     * @param event_info
      * @returns event is updated
      */
     scheduler.attachEvent("onEventChanged", function(id,event){
@@ -68,6 +70,7 @@ $(document).ready(function(){
     /**
      * @function onEventDeleted
      * @description delete the appointment event
+     * @param event_info
      * @returns event is deleted
      */
     scheduler.attachEvent("onEventDeleted", function(id, event){
@@ -155,7 +158,7 @@ $(document).ready(function(){
     /**
      * @function updateApptList
      * @description Makes a post request to update list of appts when adding a new appt
-     * @param none
+     * @param list the current list of appointments
      * @returns updates the appt list
      */
    function updateApptList(obj) {
