@@ -10,7 +10,7 @@ $(document).ready(function(){
             url: '/api/companies',
             success: function(response) {
                 json = response;
-                console.log(response);
+//                console.log(response);
             }
         });
         return json;
@@ -24,4 +24,24 @@ $(document).ready(function(){
     var compiledHtml = template(companies);
     
     $('#company-list').html(compiledHtml);
+
+    function getEmployees(id) {
+       var json;
+       $.ajax({
+           dataType: 'json',
+           type: 'GET',
+           data: $('#response').serialize(),
+           url: '/api/employees/company/' + id,
+           success: function(response) {
+               json = response;
+               console.log(response);
+           }
+       });
+       
+       //.done(function(response) {
+         //  console.log("adminpanel.js");
+           //console.log(response.body);
+       //});
+       //return json;
+   }
 });
