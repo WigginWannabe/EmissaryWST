@@ -1,13 +1,53 @@
 body {
-//    background: linear-gradient(to right top, #1E656D , #F1F3CE);
-    background: linear-gradient(to bottom, #fdffff 33.33%, #4c3f54 33.33%, #4c3f54 66.66%, #fdffff 66.66%);
-//    background: #4c3f54;
+    /*background: linear-gradient(to right top, #2d0166 , #FDFFFF);*/
+    /*background: linear-gradient(to bottom, #000, #77e700 100px, #000);*/
+    background-color: #171311;
+    background: url("https://s-media-cache-ak0.pinimg.com/originals/d8/7b/63/d87b63afdc6d174bf1caef057ec8d466.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 .page-container {
-    width: 87%;
+    width: 80%;
     margin: auto;
     margin-top: 2em;
     margin-bottom: 2em;
+    /*box-shadow: 0 10px 25px #000;*/
 }
 
+.add-button{
+   float: left;
+   border-radius: 2px;
+   padding: 7px;
+   background-color: #DF0052;
+   color: white;
+}
+
+.add-button:hover{
+   background-color: #049099;
+   cursor: pointer;
+}
+
+.update-button{
+   /*border-radius: 2px;
+   padding: 7px;
+   margin-top: 15px; */
+   float: left;
+   background-color: #ec971f;
+   color: white;
+}
+
+.update-button:hover{
+   background-color: #ec971f;
+   color: white;
+   cursor: pointer;
+}
+
+hr{
+   border-top: 3px solid #396e00 !important;
+}
+
+/*.main-menu .here {
+	background-color: rgba(#396e00,.8);
+}*/
