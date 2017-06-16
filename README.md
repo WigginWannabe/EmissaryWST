@@ -44,8 +44,19 @@ https://docs.google.com/document/d/19A0_Z7wwmyeMRsl_kKpeolrZBhVv8YJWoBwIikqI3a0/
 
 **Step 2:** Run `npm install` in the directory of the project to install the dependencies for the backend.
 
-**Step 3:** Run `gulp test:server` to test the backend API.
+**Step 3:** Run `npm start` to start the application.
 
-**Step 4:** Run `gulp test:client` to test the frontend dependecies.
+**Step 4:** Run `npm run document` to generate JSDoc documentation, "index.html", inside of docs/ directory.
 
-**Step 5:** Run `npm start` to start the application.
+
+##Testing Instructions for e2e Testing:
+*Note that nightwatch should be installed with `npm install`. These tests are from the "client/teste2e" folder.
+
+Method 1 (Steps to run testing on SauceLabs)
+**Step 1:** In nightwatch.js and .travis.yml, change the SauceLabs credentials to your own.
+**Step 2:** Run this command from the home directory to run e2e testing on SauceLabs: `nightwatch --config nightwatch.js`
+
+Method 2 (Steps to Run tests locally):
+**Step 1:** Install **Selenium**
+**Step 2:** Run `nightwatch --config nightwatch.json`
+ 
