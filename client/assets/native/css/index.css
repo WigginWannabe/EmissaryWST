@@ -1,0 +1,166 @@
+body {
+    background: url("../../../images/bamboo.jpg");
+    background-attachment: fixed;
+}
+
+.container {
+    background: rgba(0,0,0,.85);
+    width: 80vw;
+    display: block;
+    margin: auto;
+    padding: 0;
+}
+
+.site-nav {
+    width: 100%;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    text-align: center;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: #eee;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #ddd;
+}
+
+li a.active {
+    color: white;
+    background-color: #df0052;
+}
+
+#tagline {
+    font-family: "Abril Fatface", cursive;
+    font-weight: 300;
+    color: #eee;
+    font-variant: small-caps;
+    font-size: 48px;
+    margin-top: 75px;
+    margin-bottom: 50px;
+}
+
+#supporting-text {
+    font-family: "Abril Fatface", cursive;
+    font-variant: small-caps;
+    line-height: 1.5;
+    display: block;
+    margin: auto;
+    color: #eee;
+    font-size: 24px;
+    margin-bottom: 50px;
+    width: 50vw;
+}
+
+.price-text {
+    font-family: "Abril Fatface", cursive;
+    font-variant: small-caps;
+    font-size: 32px;
+    color: #396e00;
+}
+
+.features {
+    margin-top: 50px;
+    margin-bottom: 150px;
+    padding: 5px;
+}
+
+.feature {
+    display: inline-block;
+}
+
+.feature h3 {
+    color: #fff;
+    display: block;
+    margin: 15px;
+}
+
+.feature p {
+    color: #fff;
+    display: block;
+    margin: auto;
+    width: 25vw;
+    margin-bottom: 10px;
+}
+
+.feature i {
+    color: #fff;
+    display: block;
+    margin: 10px;
+}
+
+#chartCheck {
+    color: #77e700;
+}
+
+#chartX {
+    color: #DF0052;
+}
+
+.btn-success {
+    background-color: #396e00;
+    border: 0;
+}
+
+.btn-danger {
+    background-color: #DF0052;
+    border: 0;
+}
+
+.btn-success:hover {
+    background-color: #5B8F22;
+}
+
+.btn-danger:hover {
+    background-color: #FF2274;
+}
+
+#logo {
+    display: block;
+    margin: auto;
+    margin-bottom: 30px;
+}
+
+.footer {
+    margin-top: 30px;
+    //background-color: rgba(0,0,0,.7);
+    margin-bottom: 1em;
+}
+
+.black-bar {
+    width: 100%;
+    background-color: rgba(0,0,0,.7);
+}
+
+.logo-column {
+    vertical-align: middle;
+}
+
+.row {
+    padding-top: 15px;
+}
+
+.testimonial {
+    margin-top: 75px;
+    column-count: 2;
+    margin-bottom: 30px;
+}
+
+.testimonial h2 {
+    color: #009900;
+    text-align: center;
+}

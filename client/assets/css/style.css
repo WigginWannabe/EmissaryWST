@@ -69,14 +69,14 @@ img { max-width: 100%; }
 
 /***** Dropdown Menu Homepage *****/
 .dropdown-content {
-	background-color: #303641;
+	background-color: #171311;
 	box-shadow: 0px 8px 16px 9px rgba(0,0,0,0.2);
 	display: none;
 	float: right;
 	min-width: 68px;
 	position: absolute;
-	right: 0px;
-	top: 68px;
+	right: 10%;
+	top: 34px;
 	z-index: 1;	
 }
 
@@ -91,7 +91,7 @@ img { max-width: 100%; }
 	text-transform: uppercase;
 }
 
-.dropdown-content a:hover {background-color: #1DB2BC;}
+.dropdown-content a:hover {background-color: #77E700;}
 /***** Top menu *****/
 
 .navbar {

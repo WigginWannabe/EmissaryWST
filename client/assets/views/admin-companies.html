@@ -13,7 +13,8 @@
 	<meta name="description" content="Admin Panel" />
 	<meta name="author" content="" />
 
-	<link rel="icon" href="assets/images/logo-emissary.png">
+  <link rel="icon" href="/favicon.ico?v=2" />
+	<link rel="icon" href="assets/images/logo_black.png">
 
 	<title>Admin | Companies</title>
 
@@ -52,7 +53,7 @@
 				<!-- logo -->
 				<div class="logo">
 					<a href="admin-dashboard.html">
-						<img src="./../images/emissary.png" width="150" alt="" />
+						<img src="./../images/logo_black.png" width="150" alt="" />
 					</a>
 				</div>
 
@@ -79,16 +80,19 @@
 				<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
 				<li>
 					<a href="admin-dashboard.html">
+						<i class="entypo-chart-pie"></i>
 						<span class="title">Admin Dashboard</span>
 					</a>
 				</li>
 				<li>
 					<a href="admin-companies.html">
+						<i class="entypo-briefcase"></i>
 						<span class="title">Companies</span>
 					</a>
 				</li>
 				<li>
 					<a href="admin-settings.html">
+						<i class="entypo-cog"></i>
 						<span class="title">Settings</span>
 					</a>
 				</li>
@@ -111,8 +115,8 @@
 					<li class="profile-info dropdown"><!-- add class "pull-right" if you want to place this from right -->
 		
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<img src="./../assets/images/thumb-1@2x.png" alt="" class="img-circle" width="44" />
-							Peter
+							<img src="./../assets/images/peter.png" alt="" class="img-circle" width="60" />
+							Peter Venkman
 						</a>
 					</li>
 		
@@ -156,6 +160,7 @@
                     null,
 					{ "bSortable": false },  // disable sorting phone numbers
 					null,
+					null,
 					null
 				],
 				"bStateSave": true
@@ -188,11 +193,56 @@
 			giCount++;
 		}
 
-		// Handlebars helper function to trim timestamp to just the date
-        Handlebars.registerHelper('trimStringToDate', function(passedString) {
-            var theString = passedString.split('T')[0];
+		// Handlebars helper function to change timestamp to readable format
+        Handlebars.registerHelper('dateFormat', function(passedString) {
+            var theString = passedString.split('T')[0] + " at " + passedString.split('T')[1].split('Z')[0];
             return new Handlebars.SafeString(theString)
         });
+
+        // Format paid status to yes or no format
+        Handlebars.registerHelper('paidFormat', function(val) {
+            if (val) {
+                return new Handlebars.SafeString("yes")
+            }
+            else {
+                return new Handlebars.SafeString("no")
+            }
+        });
+
+        // Get last login of first employee of company
+        Handlebars.registerHelper('loginHelper', function(id) {
+        	var prop = 'last_login';
+        	function employeesFunc(id) {
+                var json;
+                $.ajax({
+                    dataType: 'json',
+                    type: 'GET',
+                    data: $('#response').serialize(),
+                    async: false,
+                    url: '/api/employees/company/' + id,
+                    success: function(response) {
+                        json = response;
+                    }
+                });
+                return json;
+            };
+
+            var employeesList = employeesFunc(id);
+
+            // Sort list so that first 
+        	var employees = employeesList.sort(function(a,b) {
+        		return (b[prop] > a[prop]) ? 1 : ((b[prop] < a[prop]) ? -1 : 0);
+        	});
+
+            if (employees[0]) {
+	            var passedString = employees[0].last_login;
+	            var theString = passedString.split('T')[0] + " at " + passedString.split('T')[1].split('Z')[0];
+	        	return theString;
+	        } else {
+	        	return "";
+	        }
+        });
+
 		</script>
 
 		<table class="table table-bordered table-striped datatable" id="table-2">
@@ -201,7 +251,8 @@
                     <th>Company Name</th>
                     <th>Email</th>
 					<th>Phone Number</th>
-					<th>Date Subscribed</th>
+					<th>Date Joined</th>
+                    <th>Paid</th>
 				    <th>Last Login</th>
                 </tr>
 			</thead>
@@ -217,8 +268,9 @@
                 <td>{{this.name}}</td>
                 <td>{{this.email}}</td>
                 <td>{{this.phone_number}}</td>
-                <td>{{trimStringToDate this.paid_time}}</td>
-                <td>{{this.last_login}}</td>
+                <td>{{dateFormat this.paid_time}}</td>
+				<td>{{paidFormat this.is_paid}}</td>
+                <td>{{loginHelper this._id}}</td>
 				<!-- Modal -->
             </tr>
             {{/each}}
@@ -230,7 +282,7 @@
 		<!-- Footer -->
 		<footer class="main">
 			
-			&copy; 2015 <strong>Emissary</strong>
+			&copy; 2017 <strong>pandappointments</strong>
 		
 		</footer>
 	</div>

@@ -1,3 +1,11 @@
+/**
+ * @module Scheduler
+ */
+
+/* This moodule is for the scheduler feature such that customers
+ * can schedule, change, or delete new appointments.
+ */
+
 $(document).ready(function(){
     // scheduler.config.xml_date="%Y-%m-%d %H:%i";
     scheduler.config.lightbox.sections = [
@@ -17,6 +25,11 @@ $(document).ready(function(){
     }
     }); 
 
+    /**
+     * @function onEventAdded
+     * @description create a new appointment as an event on the calendar
+     * @returns event is added to the calendar
+     */
     scheduler.attachEvent("onEventAdded", function(id, event){
         console.log(event);
         newAppt = {};
@@ -31,6 +44,12 @@ $(document).ready(function(){
         updateApptList(newAppt);
         event.text = newAppt.first_name + " " +  newAppt.last_name;
     });
+
+    /**
+     * @function onEventChanged
+     * @description change the appointment event
+     * @returns event is updated
+     */
     scheduler.attachEvent("onEventChanged", function(id,event){
         console.log(event);
         newAppt = {};
@@ -45,6 +64,12 @@ $(document).ready(function(){
         newAppt.is_checked_in = 0;
         updateAppointment(newAppt);
     });
+
+    /**
+     * @function onEventDeleted
+     * @description delete the appointment event
+     * @returns event is deleted
+     */
     scheduler.attachEvent("onEventDeleted", function(id, event){
         console.log(event);
         $.ajax({
@@ -56,6 +81,7 @@ $(document).ready(function(){
           }
         });
     })
+
     scheduler.config.hour_date = "%g:%i%a";
     scheduler.init('scheduler_here', new Date(),"month");
 
@@ -88,8 +114,9 @@ $(document).ready(function(){
     scheduler.parse(apptlist, "json");
 
     
-   /***
-     * Makes a get request to display list of appts
+   /**
+     * @function getAppts
+     * @description Makes a get request to display list of appts
      * @param none
      * @returns displays the appt list
      */
@@ -109,8 +136,9 @@ $(document).ready(function(){
        return json;
    }
 
-   /***
-     * When a patient submits their form
+   /**
+     * @function submitForm
+     * @description a patient submits their form
      * @param none
      * @returns updates the appt list
      */
@@ -124,8 +152,9 @@ $(document).ready(function(){
         document.getElementById("appt-form").reset();
     }
 
-    /***
-     * Makes a post request to update list of appts when adding a new appt
+    /**
+     * @function updateApptList
+     * @description Makes a post request to update list of appts when adding a new appt
      * @param none
      * @returns updates the appt list
      */
@@ -145,7 +174,8 @@ $(document).ready(function(){
 
 
     /***
-     * Grabs elements from the check in and puts it into an object
+     * @function grabFormElements
+     * @description Grabs elements from the check in and puts it into an object
      * @param none
      * @returns new appt object
      */
@@ -166,9 +196,10 @@ $(document).ready(function(){
     } 
 
     /***
-     * Updates an appointment when the user changes it through the scheduler GUI
-     * @param event: the modified appointment
-     * @return none
+     * @function updateAppointment
+     * @description Updates an appointment when the user changes it through the scheduler GUI
+     * @param event the modified appointment
+     * @returns none
      */
     function updateAppointment(event) {
       $.ajax({

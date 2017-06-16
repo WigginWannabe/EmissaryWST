@@ -89,6 +89,18 @@ if(app.get('env') !== 'development') {
   app.use('/api/*', validate);
 }
 
+/**
+ * Favicon
+ */
+
+app.get('/favicon.ico', function(req, res) {
+  res.sendFile(path.join(__dirname, '../dist/assets/images/favicon.ico'));
+});
+
+/**
+ * Routes
+ */
+
 app.get('/settings', function(req,res){
   res.sendFile(path.join(__dirname,'../dist/assets/views/settings.html'))
 });

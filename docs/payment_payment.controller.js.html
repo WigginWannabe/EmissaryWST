@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>payment/payment.controller.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Modules</li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-Appointments.html">Appointments</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Appointments.html#~createAppointment">createAppointment</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Appointments.html#~deleteAppointment">deleteAppointment</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Appointments.html#~getAllAppointments">getAllAppointments</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Appointments.html#~getAppointment">getAppointment</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Appointments.html#~getToday">getToday</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Appointments.html#~updateAppointment">updateAppointment</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-Company.html">Company</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Company.html#~createCompany">createCompany</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Company.html#~deleteCompany">deleteCompany</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Company.html#~getAllCompanies">getAllCompanies</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Company.html#~getCompany">getCompany</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Company.html#~resetCompany">resetCompany</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Company.html#~showCompanyPublicInfo">showCompanyPublicInfo</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Company.html#~updateCompanyInfo">updateCompanyInfo</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-Employee.html">Employee</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Employee.html#~createEmployee">createEmployee</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Employee.html#~deleteEmployee">deleteEmployee</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Employee.html#~employeeLogin">employeeLogin</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Employee.html#~getAllEmployees">getAllEmployees</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Employee.html#~getEmployee">getEmployee</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Employee.html#~updateEmployee">updateEmployee</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-Payment.html">Payment</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Payment.html#~basicPlanIndex">basicPlanIndex</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Payment.html#~createSubscription">createSubscription</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Payment.html#~getSubscription">getSubscription</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-Scheduler.html">Scheduler</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Scheduler.html#~getAppts">getAppts</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Scheduler.html#~onEventAdded">onEventAdded</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Scheduler.html#~onEventChanged">onEventChanged</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Scheduler.html#~onEventDeleted">onEventDeleted</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Scheduler.html#~submitForm">submitForm</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Scheduler.html#~updateApptList">updateApptList</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-VisitorList.html">VisitorList</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-VisitorList.html#~addVisitor">addVisitor</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-VisitorList.html#~clearAVisitor">clearAVisitor</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-VisitorList.html#~clearVisitorList">clearVisitorList</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-VisitorList.html#~deleteVisitor">deleteVisitor</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-VisitorList.html#~getVisitorList">getVisitorList</a></span></li>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">payment/payment.controller.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict';
+
+/** 
+ * @module Payment
+ */
+
+/*
+ * This module handles subscription of a certain account
+ */
+
+var exports = module.exports;
+var BASIC_PLAN_ID = 'emissary_basic';
+
+var Company = require('../../models/Company');
+
+var stripe = require("stripe")(
+  "sk_test_dqzYJJ6xWGgg6U1hgQr3hNye"
+); // TODO: do i need to do this for every js file that uses stripe?
+
+
+/**
+ * @function createSubscription
+ * @description create a subscription for a new customer
+ * @param email customer's email
+ * @example
+ * // error response
+ * {
+ *   error: "Could not create customer for createSubscription"
+ * }
+ */
+exports.createSubscription = function(req, res){
+	// create customer, TODO: could there be an existing stripe customer ID?
+	stripe.customers.create({ // calls stripe customer create
+		description: 'Customer for '+req.body.stripeEmail,
+		plan: BASIC_PLAN_ID, // TODO: move this string to a global constant
+		source: req.body.stripeToken
+	}, function (err, customer){ // then passes err and customer to this callback for handling
+		if (err) {
+			return res.status(400).send({ error: "Could not create customer for createSubscription" });
+		}
+		// TODO: set company's subscribed to true and 
+		// save customerID to account with a call to api/companies/update?
+		// use localstorage to retrieve id of which company to update?
+	});
+};
+
+
+/**
+ * @function getSubscription
+ * @description retrieve the subscription using the company id
+ * @param company_id company id
+ * @example
+ * // error response
+ * {
+ *	 error: "Could not get subscription"
+ * }
+ */
+exports.getSubscription = function(req, res){
+	Company.findOne({_id: req.params.id}, function (err, result){
+		var stripeCustomerID = result.stripeCustomerID;
+		stripe.customers.listSubscriptions(stripeCustomerID,
+			function(err, subscriptions){
+				var subList = subscriptions.data;
+				var index = basicPlanIndex(subList);
+				if (index == -1){
+					return res.status(200).json({error: "Could not get subscription"});
+				}
+				else {
+					return res.status(200).json(subList[index]);
+				}
+			});
+	});
+
+};
+
+
+/**
+ * @function basicPlanIndex
+ * @description get the plan id
+ * @returns the plan id
+ */
+function basicPlanIndex(arr){
+	var arrLength = arr.length;
+	for(var i = 0; i &lt; arrLength; i++){
+		if (arr[i].plan.id==BASIC_PLAN_ID){
+			return i;
+		}
+	}
+	return -1;
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Thu Jun 15 2017 13:46:00 GMT-0700 (PDT) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
