@@ -49,14 +49,16 @@ https://docs.google.com/document/d/19A0_Z7wwmyeMRsl_kKpeolrZBhVv8YJWoBwIikqI3a0/
 **Step 4:** Run `npm run document` to generate JSDoc documentation, "index.html", inside of docs/ directory.
 
 
-##Testing Instructions for e2e Testing:
+## Testing Instructions for e2e Testing:
 *Note that nightwatch should be installed with `npm install`. These tests are from the "client/teste2e" folder.
 
-Method 1 (Steps to run testing on SauceLabs)
+### Method 1 (Steps to run testing on SauceLabs)
 **Step 1:** In nightwatch.js and .travis.yml, change the SauceLabs credentials to your own.
-**Step 2:** Run this command from the home directory to run e2e testing on SauceLabs: `nightwatch --config nightwatch.js`
 
-Method 2 (Steps to Run tests locally):
-**Step 1:** Install **Selenium**
-**Step 2:** Run `nightwatch --config nightwatch.json`
+**Step 2:** Run this command from the home directory to run e2e testing on SauceLabs: `nightwatch --config nightwatch.js`.
+
+### Method 2 (Steps to Run tests locally):
+**Step 1:** Install **Selenium**.
+
+**Step 2:** Run `nightwatch --config nightwatch.json`.
  
