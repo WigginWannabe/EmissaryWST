@@ -2167,10 +2167,14 @@ section.blog .sidebar .sidebar-content .discussion-list li .details p {
   display: block;
   float: right;
   color: #FFF;
-  background: #303641;
+  background: #171311;
+  opacity: 0.6;
   text-align: center;
   line-height: 36px;
   font-size: 20px;
   width: 36px;
   height: 36px;
+}
+.menu-trigger:hover {
+  background: #77E700;
 }
