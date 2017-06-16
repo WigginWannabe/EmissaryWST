@@ -29,13 +29,9 @@ module.exports = {
             this.assert.equal(result.value, true);
         });
 
-        //check if google analytics is up
-        browser.isVisible('body > div > div.main-content > div:nth-child(4) > div:nth-child(3) > div.tile-title.tile-aqua', function(result) {
-            this.assert.equal(result.value, true);
-        });
 
         //check if percentage paid subscription is avaliable
-        browser.isVisible('body > div > div.main-content > div:nth-child(4) > div:nth-child(4) > div.tile-stats.tile-blue', function(result) {
+        browser.isVisible('#clientPercent', function(result) {
             this.assert.equal(result.value, true);
         });
 
