@@ -15,10 +15,16 @@ $(document).ready(function(){
 
     //Listener for creating a company
     $('#submit-company-btn').on('click',function(){
-        var companyData = grabCompanyData();
-        console.log(companyData);
-        ajaxPost('/api/companies',companyData);
-    })
+        if(validateCompany()){
+            var companyData = grabCompanyData();
+            console.log(companyData);
+            ajaxPost('/api/companies',companyData);
+        }
+        else {
+            return false;
+        }
+    });
+        
 
     //Grab Company Data from form
     function grabCompanyData(){
@@ -74,25 +80,61 @@ $(document).ready(function(){
         });
     }
 
-    function validateCompany(){
+    function validateCompany() {
         var companyName = $('#form-company-name').val();
         var companyEmail = $('#form-email').val();
         var companyNumber = $('#form-phone').val();
 
-        if(companyName == ""){
-            console.log("username cannot be blank");
+        if(companyName == "") {
+            $('#company-name-error').text("Please enter a company name.");
+            $('#company-name-error').show();
+            $('#company-name-error').parent().css('margin-bottom', '0px');
+            return false;
+        }
+        else {
+            $('#company-name-error').parent().css('margin-bottom', '15px');
+            $('#company-name-error').hide();
         }
 
-        if(validateEmail(companyEmail)){
-            console.log("please enter a valid email");
+        if(!validateEmail(companyEmail)) {
+            $('#email-error').text("Please enter a valid email. Ex. john@gmail.com");
+            $('#email-error').show();
+            $('#email-error').parent().css('margin-bottom', '0px');
+            return false;
+        }
+        else {
+            $('#email-error').parent().css('margin-bottom', '15px');
+            $('#email-error').hide();
         }
 
+        if(!validatePhone(companyNumber)) {
+            $('#phone-error').text("Please enter a valid phone number. Ex. (111)111-1111");
+            $('#phone-error').show();
+            $('#phone-error').parent().css('margin-bottom', '0px');
+            return false;
+        }
+        else {
+            $('#phone-error').parent().css('margin-bottom', '15px');
+            $('#phone-error').hide();
+        }
 
-    
-
+        if(!($('#radio-yes').is(':checked')) && !($('#radio-no').is(':checked'))) {
+            $('#radio-error').text("Please choose one of the options.");
+            $('#radio-error').show();
+            return false;
+        }
+        else {
+             $('#radio-error').hide();
+        }
+        console.log("hi");
+        return true;
     }
 
 
+    function validatePhone(phone) {
+        var re = /^\(([0-9]{3})\)([0-9]{3})\-([0-9]{4})$/;
+        return re.test(phone);
+    }
 
     function validateEmail(email) {
         var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

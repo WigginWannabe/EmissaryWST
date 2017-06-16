@@ -98,15 +98,19 @@
                             <div class="form-bottom">
                                 <div class="form-group">
                                     <label class="sr-only" for="form-company-name">Company name</label>
-                                    <input type="text" name="name" placeholder="Company Name" class="form-company-name form-control" id="form-company-name">
+                                    <input type="text" name="name" placeholder="Company Name" class="form-company-name form-control" id="form-company-name" required>
+                                    <div id="company-name-error" class="div-error-message"></div>
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="form-email">Email</label>
-                                    <input type="text" name="email" placeholder="Email" class="form-email form-control" id="form-email">
+                                    <input type="text" name="email" placeholder="Email" class="form-email form-control" id="form-email" required>
+                                    <div id="email-error" class="div-error-message"></div>
+
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="form-phone">Phone Number</label>
-                                    <input type="text" name="phone_number" placeholder="Phone Number" class="form-phone form-control" id="form-phone">
+                                    <input type="text" name="phone_number" placeholder="Phone Number" class="form-phone form-control" id="form-phone" required>
+                                    <div id="phone-error" hint="(111)111-1111" class="div-error-message"></div>
                                 </div>
                                 <!--<div class="form-group">
                                     <label class="sr-only" for="form-card">Phone Number</label>
@@ -120,8 +124,9 @@
                                 <div class="text-paid-service">
                                     Would you like to subscribe to Emissary's paid services?
                                 </div>
-                                <label class="radio-inline"><input type="radio" name="is-paid" value="true">Yes</label>
-                                <label class="radio-inline"><input type="radio" name="is-paid" value="false">No</label>
+                                <label class="radio-inline" required><input type="radio" id="radio-yes" name="is-paid" value="true">Yes</label>
+                                <label class="radio-inline" required><input type="radio" id="radio-no" name="is-paid" value="false">No</label>
+                                <div id="radio-error" class="div-error-message"></div>
                                 <br>
 
                                 <button id="submit-company-btn" type="button" class="btn btn-next">Next</button>
@@ -138,28 +143,28 @@
                             <div class="form-bottom">
                                 <div class="form-group">
                                     <label class="sr-only" for="form-employee-first">First Name</label>
-                                    <input type="text" name="first" placeholder="First Name" class="first form-control" id="form-employee-first">
+                                    <input type="text" name="first" placeholder="First Name" class="first form-control" id="form-employee-first" required>
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="form-employee-last">Last Name</label>
-                                    <input type="text" name="last" placeholder="Last Name" class="form-control" id="form-employee-last">
+                                    <input type="text" name="last" placeholder="Last Name" class="form-control" id="form-employee-last" required>
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="form-employee-email">Email</label>
-                                    <input type="text" name="email" placeholder="Email" class="form-email form-control" id="form-employee-email">
+                                    <input type="text" name="email" placeholder="Email" class="form-email form-control" id="form-employee-email" required>
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="form-employee-phone">Phone Number</label>
-                                    <input type="text" name="phone_number" placeholder="Phone Number" class="form-phone form-control" id="form-employee-phone">
+                                    <input type="text" name="phone_number" placeholder="Phone Number" class="form-phone form-control" id="form-employee-phone" required>
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="form-password">Password</label>
-                                    <input type="password" name="form-password" placeholder="Password" class="form-password form-control" id="form-password">
+                                    <input type="password" name="form-password" placeholder="Password" class="form-password form-control" id="form-password" required>
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="form-repeat-password">Repeat password</label>
                                     <input type="password" name="form-repeat-password" placeholder="Confirm Password"
-                                           class="form-repeat-password form-control" id="form-repeat-password">
+                                           class="form-repeat-password form-control" id="form-repeat-password" required>
                                 </div>
                                 
                                 <button id="submit-btn" type="button" class="btn btn-next">Next</button>

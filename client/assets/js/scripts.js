@@ -32,11 +32,16 @@ jQuery(document).ready(function() {
     			$(this).addClass('input-error');
     			next_step = false;
     		}
+            
     		else {
     			$(this).removeClass('input-error');
     		}
     	});
     	
+        if(!$('#radio-yes').length && !($('#radio-yes').is(':checked')) && !($('#radio-no').is(':checked')) ) {
+                next_step = false;
+            }
+
     	if( next_step ) {
     		parent_fieldset.fadeOut(400, function() {
 	    		$(this).next().fadeIn();
